@@ -1,0 +1,25 @@
+<section class="contactFormContainer l-section verticalFlexContainer">
+    <p class="contactForm__subtitle">Information about us</p>
+    <h2 class="contactForm__title">Contact us for any query</h2>
+
+    <%= form_with model: @contact, html: {class: "contactForm verticalFlexContainer"} do |form|%>
+        <div class="inputs flexContainer">
+            <%= form.text_field :name, :placeholder => "Your Name" %>
+            <%= form.email_field :email, :placeholder => "Your Email" %>
+        </div>
+
+        <div class="inputs flexContainer">
+            <%= form.number_field :contactNumber, :placeholder => "Phone Number" %>
+            <%= form.text_field :company, :placeholder => "Company" %>
+        </div>
+
+        <%= form.text_area :message, :placeholder => "Your Message" %>
+
+        <div class="Formbuttondiv">
+            <%= form.submit "Send Message", :class => "blackFillButton" %>
+        </div>
+
+    
+    <% end %>
+
+</section>

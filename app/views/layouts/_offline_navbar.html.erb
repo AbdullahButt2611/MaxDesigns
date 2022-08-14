@@ -1,0 +1,23 @@
+<header>
+    <div class="logo">
+        <a href="/welcomes" class="header__logo"> <%= image_tag "logoWhite.png"%>
+    </div>
+
+    <nav class="nav" id="nav-menu">
+        <i class='bx bx-x header__close' id="close-menu"></i>
+
+        <ul class="nav__list">
+            <li class="nav__item"><a href="/about" class="nav__link">About</a></li>
+            <li class="nav__item"><%= link_to "Contact", contacts_path , class: "nav__link"  %></li>
+            
+            <li class="nav__item"><a href="/users/sign_in" class="nav__link">Login</a></li>
+            <li class="nav__item"><a href="/users/sign_up" class="nav__link">Sign Up</a></li>
+            <li class="nav__item"><a href="http://maxdesigns.ae/" class="nav__link">Max Designs Site</a></li>
+            <% if user_signed_in? %>
+            <li class="nav__item"><%= link_to "Log Out", destroy_user_session_path(current_user), method: :delete, class: "nav__link" %></li>
+            <%end%>
+        </ul>
+    </nav>
+
+    <i class='bx bx-menu-alt-right header__toggle' id="toggle-menu"></i>
+</header>

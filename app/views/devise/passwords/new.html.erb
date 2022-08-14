@@ -1,0 +1,21 @@
+<div class="deviseMainContainer  l-section verticalFlexContainer">
+
+  <h2 class="deviseTitle">Forgot your password?</h2>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {:class => "verticalFlexContainer", method: :post }) do |f| %>
+
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Send me reset password instructions", class: "blackFillButton"  %>
+    </div>
+
+    <%= render "devise/shared/links" %>
+    
+  <% end %>
+
+</div>
