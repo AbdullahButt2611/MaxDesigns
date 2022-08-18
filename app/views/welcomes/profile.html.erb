@@ -1,0 +1,118 @@
+<div class="profileContainer l-section verticalFlexContainer">
+    <section class="profileWrapper l-section flexContainer">
+        <section class="profileContent verticalFlexContainer">
+            <img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png" alt="Avatar">
+
+            <div class="profileContentContainer verticalFlexContainer">
+                <div class="setInformation verticalFlexContainer">
+
+                    <div class="setContent verticalFlexContainer">
+                        <h1 class="setInfoTitle">Devise Information</h1>
+
+                        <div class="setInfoDetail">
+                            <h3 class="setInfoDetailTitle">Username</h3>
+                            <p class="setInfoDetailDesc"><%= current_user.username %></p>
+                        </div>
+
+                        <div class="setInfoDetail">
+                            <h3 class="setInfoDetailTitle">Email</h3>
+                            <p class="setInfoDetailDesc"><%= current_user.email %></p>
+                        </div>
+
+                        <div class="setInfoDetail">
+                            <h3 class="setInfoDetailTitle">Password</h3>
+                            <p class="setInfoDetailDesc">**********</p>
+                        </div>
+
+                        <div class="changePassword">
+                            <%= link_to "Change Password", edit_user_registration_path(current_user), class: "blackFillButton" %>
+
+                        </div>
+
+                        <div class="changePassword delAccount">
+                            <%= button_to "Delete my account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete, class: "blackFillButton" %>
+                        </div>
+
+                    </div>
+
+                    <div class="setContent verticalFlexContainer">
+                        <h1 class="setInfoTitle">Office Information</h1>
+
+                        <div class="setInfoDetail">
+                            <h3 class="setInfoDetailTitle">Pay</h3>
+                            <p class="setInfoDetailDesc">Rs. <%= current_user.pay %> Only</p>
+                        </div>
+
+                        <div class="setInfoDetail">
+                            <h3 class="setInfoDetailTitle">Attendance of Month</h3>
+                            <p class="setInfoDetailDesc">27/31 Presents</p>
+                        </div>
+
+                        <div class="setInfoDetail">
+                            <h3 class="setInfoDetailTitle">Overall Atendance</h3>
+                            <p class="setInfoDetailDesc">26%</p>
+                        </div>
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="profileDetails verticalFlexContainer">
+
+            <div class="generalInfoContainer verticalFlexContainer">
+                <div>
+                    <h1 class="profileName"><%= current_user.name %></h1>
+                    <h4 class="profilePost">Web Developer</h4>
+                </div>
+
+                <div>
+                    <h5 class="rankTitle">Ranking</h5>
+                    <h2 class="rankValue">8.6</h2>
+                </div>
+            </div>
+
+            <div class="professionalInformation verticalFlexContainer">
+                <div class="contactInfo verticalFlexContainer">
+
+                    <h2 class="contactTitle">Contact Information</h2>
+
+                    <table  class="setInfoDetail">
+                        <td  class="setInfoDetailTitle">Contact:</td>
+                        <td  class="setInfoDetailDesc"><%= current_user.contact %></td>
+                    </table>
+
+                    <table  class="setInfoDetail">
+                        <td  class="setInfoDetailTitle">Email:</td>
+                        <td  class="setInfoDetailDesc"><%= current_user.email %></td>
+                    </table>
+                        
+                </div>
+
+                <div class="redLine"></div>
+
+                <div class="contactInfo verticalFlexContainer">
+
+                    <h2 class="contactTitle">Basic Information</h2>
+
+                    <table  class="setInfoDetail">
+                        <td  class="setInfoDetailTitle">Qualification:</td>
+                        <td  class="setInfoDetailDesc"><%= current_user.qualification %></td>
+                    </table>
+
+                    <table  class="setInfoDetail">
+                        <td  class="setInfoDetailTitle">Status:</td>
+                        <td  class="setInfoDetailDesc">Available</td>
+                    </table>
+
+                </div>
+
+            </div>
+
+            <%= link_to "Log Out", destroy_user_session_path(current_user), method: :delete, class: "blackFillButton" %><
+
+        </section>
+    </section>
+</div>

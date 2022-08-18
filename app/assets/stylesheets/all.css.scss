@@ -1143,3 +1143,229 @@ textarea{
     }
     
 }
+
+
+
+/* ====================================     User Profile  ================================ */
+.profileContainer{
+    background: url("http://maxdesigns.ae/wp-content/uploads/2022/06/bg_black_marble.jpg");
+    background-attachment: fixed;
+}
+
+.profileWrapper{
+    background-color: white;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 43px -3px rgba(255, 255, 255, 0.659);
+    border-radius: 7px;
+    gap: 3rem;
+    width: 80%;
+    
+}
+
+.profileContent{
+    row-gap: 3rem;
+}
+
+.profileContent img{
+    width: 20%;
+}
+
+.setContent{
+    row-gap: 1rem;
+    justify-content: left;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    box-shadow:  0 0 4px 3px rgba(183, 183, 183, 0.15);
+    padding: 4rem 4rem;
+    border-radius: 5px;
+}
+
+.setInfoTitle{
+    align-self: center;
+    color: var(--default-color);
+    font-size: var(--h3-font-size);
+}
+
+.setInfoDetailTitle{
+    color:var(--first-color-light) ;
+    font-size: var(--normal-font-size);
+}
+
+.setInfoDetailDesc{
+    font-size: var(--small-font-size);
+    color: var(--first-color-light);
+}
+
+.profileDetails{
+    width: 70%;
+    align-self: flex-start;
+    row-gap: 2rem;
+    align-items: flex-start;
+}
+
+.generalInfoContainer{
+    align-items: flex-start;
+    box-shadow:  0 0 4px 3px rgba(183, 183, 183, 0.15);
+    padding: 4rem 4rem;
+    width: 100%;
+}
+
+.profileName{
+    font-size: var(--h3-font-size);
+    line-height: var(--h2-font-size);
+}
+
+.profilePost{
+    font-size: var(--smaller-font-size);
+    color: var(--default-color);
+}
+
+
+.professionalInformation{
+    width: 100%;
+}
+
+.rankTitle{
+    color: gray;
+}
+
+.rankValue{
+    font-size: var(--h2-font-size);
+}
+
+.professionalInformation{
+    align-items: flex-start;
+    box-shadow:  0 0 4px 3px rgba(183, 183, 183, 0.15);
+    padding: 4rem 4rem;
+    gap: 2rem;
+}
+
+.contactTitle{
+    color: gray;
+    font-size: var(--small-font-size);
+}
+
+.contactInfo{
+    align-items: flex-start;
+}
+
+
+.contactInfo .setInfoDetail .setInfoDetailTitle{
+    padding-right: 1rem;
+}
+
+.profileDetails .blackFillButton{
+    width: 100%;
+    text-align: center;
+    font-weight: var(--font-semi-bold);
+}
+
+.contactInfo .setInfoDetail .setInfoDetailTitle{
+    color: var(--default-color);
+}
+
+.delAccount input.blackFillButton{
+    cursor: pointer;
+    font-size: var(--small-font-size);
+    padding: 0.5rem 2.5rem; 
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1267px) {
+
+    .setContent .blackFillButton{
+        width: 100%;
+    }
+
+    .profileWrapper{
+        flex-direction: column;
+        width: 80%;
+    }
+
+    .profileContent{
+        align-self: flex-start;
+        width: 100%;
+    }
+
+    .profileContent img{
+        align-self: center;
+    }
+
+    .profileContentContainer{
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        align-self: flex-start;
+        justify-self: flex-start;
+    }
+
+    .setInformation{
+        width: 100%;
+    }
+
+    .setContent{
+        width: 100%;
+    }
+
+    .setContent .changePassword{
+        align-self: center;
+    }
+
+    .profileDetails{
+        width: 100%;
+    }
+
+    .generalInfoContainer{
+        width: 100%;
+    }
+
+    .profileContent img{
+        width: 30%;
+    }
+
+    
+}
+
+
+@media screen and (max-width: 715px){
+    .profileContainer{
+        padding: 4rem 2rem;
+    }
+
+    .profileWrapper{
+        width: 95%;
+        padding: 4rem 2rem;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .profileWrapper{
+        padding: 4rem 1rem;
+    }
+
+    .profileContent img{
+        width: 40%;
+    }
+
+    .setContent .changePassword button{
+        font-size: var(--smaller-font-size);
+        padding: 1rem;
+        width: 80%;
+    }
+
+    .setContent{
+        padding: 4rem 1.5rem;
+    }
+
+    .setInfoDetailTitle{
+        padding-right: 0;
+    }
+
+    .professionalInformation {
+        padding: 4rem 1.5rem;
+    }
+
+    .contactInfo .setInfoDetail .setInfoDetailTitle{
+        padding-right: 0;
+    }
+}

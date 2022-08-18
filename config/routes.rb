@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get "/about", to: "welcomes#about"
 
+  get "/profile", to: "welcomes#profile", :as => "profile"
+
   get "/contacts", to: "contacts#new", :as=> "contacts"
 
   get "/vendors", to: "vendors#index", :as => "vendors"
