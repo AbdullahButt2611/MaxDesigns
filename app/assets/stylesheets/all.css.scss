@@ -1144,6 +1144,20 @@ textarea{
     
 }
 
+#user_qualification{
+    width: 100%;
+    padding: 1rem 0.5rem;
+    border: none;
+    outline: none;
+    background-color: var(--text-color);
+    font-size: var(--small-font-size);
+    color: gray;
+}
+
+#user_qualification option:hover{
+    background-color: var(--default-color);
+}
+
 
 
 /* ====================================     User Profile  ================================ */

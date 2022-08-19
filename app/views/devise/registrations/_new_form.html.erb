@@ -29,7 +29,15 @@
       </div>
 
       <div class="field">
-        <%= f.hidden_field :pay, placeholder: "Username", value: "0" %>
+        <%= f.hidden_field :pay, value: "0" %>
+      </div>
+
+      <div class="field">
+        <%= f.hidden_field :statuses_id, value: "1" %>
+      </div>
+
+      <div class="field">
+        <%= f.select :qualification, options_for_select(["Basic", "Matric", "FA/FSc", "Graduated", "Master", "Specialization", "Diploma"]) %>
       </div>
 
       <div class="actions">
