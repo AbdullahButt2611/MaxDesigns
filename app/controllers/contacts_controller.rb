@@ -8,7 +8,8 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
 
     if @contact.save
-      redirect_to root_path
+      @user = User.last
+      
     else
       render :new
     end

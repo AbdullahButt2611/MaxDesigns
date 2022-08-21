@@ -1,6 +1,6 @@
 # # frozen_string_literal: true
 
-# class Users::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
 #   before_action :configure_sign_up_params, only: [:create]
 #   before_action :configure_account_update_params, only: [:update]
 
@@ -9,10 +9,13 @@
 #     super
 #   end
 
-#   # POST /resource
-# def create
-#   super
-# end
+  # POST /resource
+def create
+	  super
+	  if(@user.save)
+	  	UserMailer.with(user: @user).welcome_email.deliver_now
+	  end
+end
 
 #   # GET /resource/edit
 #   def edit
@@ -59,4 +62,4 @@
 #   def after_inactive_sign_up_path_for(resource)
 #     super(resource)
 #   end
-# end
+end
