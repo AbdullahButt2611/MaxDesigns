@@ -64,3 +64,6 @@ gem 'devise'
 
 # For Indentation
 gem 'rubocop'
+
+# For Viewing the content of emailer
+gem "letter_opener", group: :development
