@@ -2,7 +2,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :name, presence: true,
                    format: { with: /^[a-zA-Z ]*$/, message: 'Can only contain letter and white spaces', multiline: true }, length: { minimum: 2 }
-  
+  validates :email, uniqueness: true
   validates :contact, uniqueness: true
 
   enum activity_status: {
