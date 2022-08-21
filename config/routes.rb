@@ -4,15 +4,15 @@ Rails.application.routes.draw do
 
   root 'welcomes#index'
 
-  get "/welcomes", to: "welcomes#index"
+  get '/welcomes', to: 'welcomes#index'
 
-  get "/about", to: "welcomes#about"
+  get '/about', to: 'welcomes#about'
 
-  get "/profile", to: "welcomes#profile", :as => "profile"
+  get '/profile', to: 'welcomes#profile', as: 'profile'
 
-  get "/contacts", to: "contacts#new", :as=> "contacts"
+  get '/contacts', to: 'contacts#new', as: 'contacts'
 
-  get "/vendors", to: "vendors#index", :as => "vendors"
+  get '/vendors', to: 'vendors#index', as: 'vendors'
 
   resources :contacts
 end
