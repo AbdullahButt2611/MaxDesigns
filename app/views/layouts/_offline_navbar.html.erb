@@ -15,7 +15,7 @@
             <li class="nav__item"><a href="http://maxdesigns.ae/" class="nav__link">Max Designs Site</a></li>
 
             <% if user_signed_in? %>
-
+                <li class="nav__item"><%= link_to "Registered Users", "/registered_users", class: "nav__link" %></li>
                 <li class="nav__item"><%= link_to "Profile", profile_path, class: "nav__link" %></li>
                 <li class="nav__item"><%= link_to "Log Out", destroy_user_session_path(current_user), method: :delete, class: "nav__link" %></li>
             <%end%>

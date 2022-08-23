@@ -1,27 +1,37 @@
-<h1>Users in System</h1>
+<div class="verticalFlexContainer registeredUsersContainer">
 
-<div class="registeredUsersContainer">
-	<span>Name</span>
-	<span>Email</span>
-	<span>Contact</span>
-	<span>Qualification</span>
-	<span></span>
-	<span></span>
+    <h1 class="section__title">Newly Registered Accounts</h1>
 
-	
-	<% @all_users.each do |user| %>
-		<div class="content">
-			<span>Name</span>
-			<span>Email</span>
-			<span>Contact</span>
-			<span>Qualification</span>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Qualification</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
 
+        <tbody>
+        	<% @all_users.each do |user| %>
+                <tr>
+                    <th data-title = "Name" scope="row"><%= user.name %></th>
+                    <th data-title = "Email"><%= user.email %></th>
+                    <th data-title = "Cotact"><%= user.contact %></th>
+                    <th data-title = "Qualification"><%= user.qualification %></th>
+                    <th class="userUpdateLink "><%= link_to "Update", update_activity_status_path(user), class: "blackFillButton" ,data: { method: :patch,
+		                                             params: { activity_status: { status: 1 } } }  %></th>
 
-			<%= link_to "Update", update_activity_status_path(user), data: { method: :patch,
-		                                             params: { activity_status: { status: 1 } } }  %>
-			<%= link_to 'Remove', simple_user_update_path(user), data: { method: :patch,
-		                                             params: { activity_status: { status: 4 } } } %>
-		</div>                                            
-	<% end %>
-
+					<th class="userRemoveLink"><%= link_to 'Remove', simple_user_update_path(user),class: "whiteFillButton" ,data: { method: :patch,
+		                                             params: { activity_status: { status: 4 } } } %></th>
+                </tr>
+            <% end %>
+            
+        </tbody>
+    </table>
 </div>
+
+
+

@@ -17,11 +17,14 @@
     <!-- ==========     Fav Icon      ======= -->
     <%= favicon_link_tag asset_path('favicon.ico') %>
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
   </head>
 
   <body>
     <%= render "layouts/offline_navbar" %>
     <%= yield %>
     <%= render "layouts/footer" %>
+
+
   </body>
 </html>

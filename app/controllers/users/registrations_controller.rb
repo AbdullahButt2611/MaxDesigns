@@ -32,6 +32,7 @@ end
 def update_activity_status
 	@user = User.find(params[:format])
 	@user.available!
+	render "registered_users"
 end
 
 
