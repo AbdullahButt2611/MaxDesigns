@@ -1,0 +1,27 @@
+<h1>Users in System</h1>
+
+<div class="registeredUsersContainer">
+	<span>Name</span>
+	<span>Email</span>
+	<span>Contact</span>
+	<span>Qualification</span>
+	<span></span>
+	<span></span>
+
+	
+	<% @all_users.each do |user| %>
+		<div class="content">
+			<span>Name</span>
+			<span>Email</span>
+			<span>Contact</span>
+			<span>Qualification</span>
+
+
+			<%= link_to "Update", update_activity_status_path(user), data: { method: :patch,
+		                                             params: { activity_status: { status: 1 } } }  %>
+			<%= link_to 'Remove', simple_user_update_path(user), data: { method: :patch,
+		                                             params: { activity_status: { status: 4 } } } %>
+		</div>                                            
+	<% end %>
+
+</div>

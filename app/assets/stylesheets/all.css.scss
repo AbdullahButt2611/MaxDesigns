@@ -1288,7 +1288,8 @@ textarea{
 @media screen and (max-width: 1267px) {
 
     .setContent .blackFillButton{
-        width: 100%;
+        width: 80%;
+        font-weight: 100;
     }
 
     .profileWrapper{
@@ -1361,10 +1362,11 @@ textarea{
         width: 40%;
     }
 
-    .setContent .changePassword button{
+    .setContent .changePassword blackFillButton{
         font-size: var(--smaller-font-size);
         padding: 1rem;
         width: 80%;
+        
     }
 
     .setContent{

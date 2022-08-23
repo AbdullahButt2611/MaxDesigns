@@ -4,6 +4,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 #   before_action :configure_sign_up_params, only: [:create]
 #   before_action :configure_account_update_params, only: [:update]
 
+	before_action :all_registered_users
+
 #   # GET /resource/sign_up
 #   def new
 #     super
@@ -13,9 +15,34 @@ class Users::RegistrationsController < Devise::RegistrationsController
 def create
 	  super
 	  if(@user.save)
+	  	byebug
 	  	UserMailer.with(user: @user).welcome_email.deliver_now
 	  end
 end
+
+def registered_users
+end
+
+def simple_user_update
+	@user = User.find(params[:format])
+	@user.simple_user!
+	render "registered_users"
+end
+
+def update_activity_status
+	@user = User.find(params[:format])
+	@user.available!
+end
+
+
+private
+  def edit_params
+    params.require(:user).permit(:activity_status)
+  end
+
+  def all_registered_users
+  	@all_users = User.all_user
+  end
 
 #   # GET /resource/edit
 #   def edit

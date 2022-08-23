@@ -67,3 +67,16 @@ gem 'rubocop'
 
 # For Viewing the content of emailer
 gem "letter_opener", group: :development
+
+
+# Or, run against the main branch
+# (requires main-branch versions of all related RSpec libraries)
+group :development, :test do
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+  end
+end
+
+
+#gem to render controller testers
+gem 'rails-controller-testing'

@@ -16,5 +16,13 @@ Rails.application.routes.draw do
 
   get '/vendors', to: 'vendors#index', as: 'vendors'
 
+  devise_scope :user do
+   get "/registered_users", to: "users/registrations#registered_users"
+   patch '/simple_user_update', to: 'users/registrations#simple_user_update', as: 'simple_user_update'
+   patch '/update_activity_status', to: 'users/registrations#update_activity_status', as: 'update_activity_status'
+  end
+
+  
+
   resources :contacts
 end
