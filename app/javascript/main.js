@@ -13,6 +13,22 @@ document.addEventListener("turbolinks:load", function() {
     closeMenu.addEventListener("click", ()=>{
         navMenu.classList.remove('show')
     })
+
+    // ==============================       SideBar     ==========================================
+
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+    let searchBtn = document.querySelector(".bx-search");
+    btn.style.cursor = "pointer";
+    searchBtn.style.cursor = "pointer";
+
+    btn.onclick = function(){
+        sidebar.classList.toggle("active");
+    }
+
+    searchBtn.onclick = function(){
+        sidebar.classList.toggle("active");
+    }
 })
 
 
