@@ -32,6 +32,10 @@
         <%= f.hidden_field :pay, value: "0" %>
       </div>
 
+      <div class="field">
+        <%= f.label "Profile Photo" %>
+        <%= f.file_field :avatar %>
+      </div>
 
       <div class="field">
         <%= f.select :qualification, options_for_select(["Basic", "Matric", "FA/FSc", "Graduated", "Master", "Specialization", "Diploma"]) %>

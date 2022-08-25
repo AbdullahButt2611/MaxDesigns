@@ -1,7 +1,11 @@
 <div class="profileContainer l-section verticalFlexContainer">
     <section class="profileWrapper l-section flexContainer">
         <section class="profileContent verticalFlexContainer">
-            <img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png" alt="Avatar">
+            <%if current_user.avatar.attached?%>
+                <img src="<%=(url_for(current_user.avatar))%>" alt="Avatar">
+            <%else%>
+                <img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png" alt="Avatar">
+            <%end%>
 
             <div class="profileContentContainer verticalFlexContainer">
                 <div class="setInformation verticalFlexContainer">

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_one_attached :avatar
+
   validates :username, presence: true, uniqueness: true
   validates :name, presence: true,
                    format: { with: /^[a-zA-Z ]*$/, message: 'Can only contain letter and white spaces', multiline: true }, length: { minimum: 2 }
