@@ -459,17 +459,19 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5rem 0;
+    padding: 5rem 2rem;
     row-gap: 2rem;
     background: var(--first-color);
     color: var(--text-color);
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
 .upperFooter{
     font-size: var(--h1-font-size);
     text-transform: uppercase;
     font-weight: lighter;
+    text-align: center;
 }
 
 .lowerFooter{

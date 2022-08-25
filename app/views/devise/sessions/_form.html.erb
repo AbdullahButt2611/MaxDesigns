@@ -1,4 +1,8 @@
+
 <%= form_for(resource, as: resource_name,url: session_path(resource_name), :html => {:class => "verticalFlexContainer"})  do |f| %>
+  <% if @msg %>
+    <h2 class="deviseTitle"><%= @msg%></h2>
+  <%end%>
   <div class="field">
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
   </div>
