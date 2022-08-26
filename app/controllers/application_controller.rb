@@ -5,11 +5,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username name contact pay qualification status avatar])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username name contact pay qualification activity_status avatar user_roles])
   end
 
   def after_sign_in_path_for(_resource)
-    vendors_path
+    dashboard_path
   end
 
   def after_sign_out_path_for(_resource)

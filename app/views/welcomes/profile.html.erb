@@ -69,7 +69,7 @@
             <div class="generalInfoContainer verticalFlexContainer">
                 <div>
                     <h1 class="profileName"><%= current_user.name %></h1>
-                    <h4 class="profilePost">Web Developer</h4>
+                    <h4 class="profilePost"><%= current_user.user_roles.downcase.titleize %></h4>
                 </div>
 
                 <div>
@@ -108,7 +108,7 @@
 
                     <table  class="setInfoDetail">
                         <td  class="setInfoDetailTitle">Status:</td>
-                        <td  class="setInfoDetailDesc">Available</td>
+                        <td  class="setInfoDetailDesc"><%= current_user.activity_status.downcase.titleize %></td>
                     </table>
 
                 </div>

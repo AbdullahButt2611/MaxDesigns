@@ -80,3 +80,7 @@ end
 
 #gem to render controller testers
 gem 'rails-controller-testing'
+
+
+#Gem for Active Admin
+gem 'activeadmin'

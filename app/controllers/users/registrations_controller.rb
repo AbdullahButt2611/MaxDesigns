@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 def create
 	  super
 	  if(@user.save)
-	  	byebug
 	  	UserMailer.with(user: @user).welcome_email.deliver_now
 	  end
 end

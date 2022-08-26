@@ -1160,7 +1160,8 @@ textarea{
     
 }
 
-#user_qualification{
+#user_qualification,
+#user_user_roles{
     width: 100%;
     padding: 1rem 0.5rem;
     border: none;
@@ -1172,6 +1173,20 @@ textarea{
 
 #user_qualification option:hover{
     background-color: var(--default-color);
+}
+
+.field select{
+    border-radius: 9px;
+    padding-right: 9px;
+}
+
+
+#signupMesssageField{
+    text-align: center;
+}
+
+#signupMesssageField em{
+    font-weight: 600;
 }
 
 

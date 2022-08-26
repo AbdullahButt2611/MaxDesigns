@@ -1,3 +1,2 @@
-class VendorsController < ApplicationController
-  def index; end
+class Vendors < ApplicationController
 end

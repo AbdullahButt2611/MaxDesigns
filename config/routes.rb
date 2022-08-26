@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users, :controllers => {:registrations => "users/registrations", :sessions => "users/sessions"}
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
 
   get '/contacts', to: 'contacts#new', as: 'contacts'
 
-  get '/vendors', to: 'vendors#index', as: 'vendors'
+  get '/dashboard', to: 'dashboards#index', as: 'dashboard'
 
   devise_scope :user do
    get "/registered_users", to: "users/registrations#registered_users"

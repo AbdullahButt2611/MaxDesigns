@@ -1,3 +1,19 @@
 class Vendor < ApplicationRecord
-	before_action: authenticate_user!
+
+	# Associations
+	belongs_to :user
+
+
+
+
+
+	# Enum Declarations
+	enum company_type: {
+    lamp: 0,
+    marble: 1,
+    transport: 2,
+    paint: 3,
+    wood: 4
+  }
+
 end

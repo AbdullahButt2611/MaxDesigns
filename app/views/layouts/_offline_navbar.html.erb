@@ -10,15 +10,24 @@
             <li class="nav__item"><a href="/about" class="nav__link">About</a></li>
             <li class="nav__item"><%= link_to "Contact", contacts_path , class: "nav__link"  %></li>
             
-            <li class="nav__item"><a href="/users/sign_in" class="nav__link">Login</a></li>
-            <li class="nav__item"><a href="/users/sign_up" class="nav__link">Sign Up</a></li>
-            <li class="nav__item"><a href="http://maxdesigns.ae/" class="nav__link">Max Designs Site</a></li>
-
+            
+            
             <% if user_signed_in? %>
                 <li class="nav__item"><%= link_to "Registered Users", "/registered_users", class: "nav__link" %></li>
                 <li class="nav__item"><%= link_to "Profile", profile_path, class: "nav__link" %></li>
                 <li class="nav__item"><%= link_to "Log Out", destroy_user_session_path(current_user), method: :delete, class: "nav__link" %></li>
+            <% elsif !admin_user_signed_in? %>
+                <li class="nav__item"><a href="/users/sign_up" class="nav__link">Sign Up</a></li>
+                <li class="nav__item"><a href="/users/sign_in" class="nav__link">Login</a></li>
             <%end%>
+
+            <% if admin_user_signed_in? %>
+                <li class="nav__item"><%= link_to "Log Out as Admin", destroy_admin_user_session_path(current_admin_user), method: :delete, class: "nav__link" %></li>
+            <% elsif !user_signed_in? %>
+                <li class="nav__item"><%= link_to "Login as Admin", new_admin_user_session_path, class: "nav__link" %></li>
+            <%end%>
+
+            <li class="nav__item"><a href="http://maxdesigns.ae/" class="nav__link">Max Designs Site</a></li>
         </ul>
     </nav>
 
