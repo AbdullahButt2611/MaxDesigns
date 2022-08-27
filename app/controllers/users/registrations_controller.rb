@@ -3,7 +3,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 #   before_action :configure_sign_up_params, only: [:create]
 #   before_action :configure_account_update_params, only: [:update]
-		before_action :delete_avatar_resource, only: [:update]
+		# before_action :delete_avatar_resource, only: [:update]
+		before_action :configure_permitted_parameters, only: [:create, :update]
 
 	before_action :all_registered_users
 
@@ -14,8 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
 def create
+		# @user.avatar = params[:user][:avatar]
 	  super
-	  if(@user.save)
+	  if(@user.persisted?)
 	  	UserMailer.with(user: @user).welcome_email.deliver_now
 	  end
 end
@@ -48,6 +50,11 @@ private
   def delete_avatar_resource
   	# current_user.avatar.purge
   	# current_user.avatar = params[:user][:avatar]
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[username name contact pay qualification avatar  avatar_cache activity_status file user_roles])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[username name contact pay qualification avatar  avatar_cache remove_avatar activity_status file user_roles])
   end
 
 #   # GET /resource/edit

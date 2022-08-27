@@ -21,8 +21,6 @@
         <%= f.telephone_field :contact, placeholder: "Contact Number" %>
       </div>
 
-
-
       <div class="field">
         <%= f.label "Qualification" %>
         <%= f.select :qualification, options_for_select(["Basic", "Matric", "FA/FSc", "Graduated", "Master", "Specialization", "Diploma"]) %>
@@ -32,6 +30,9 @@
         <%= f.label "Join as" %>
         <%= f.select :user_roles, options_for_select([["Customer", :customer], ["Developer", :developer], ["Architect", :architect], ["HR", :hr], ["Management", :management], ["Accountant", :accountant], ["Vendor", :vendor]])%>
       </div>
+
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
       
       <div class="field">
         <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>

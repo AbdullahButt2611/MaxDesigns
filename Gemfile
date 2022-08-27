@@ -84,3 +84,9 @@ gem 'rails-controller-testing'
 
 #Gem for Active Admin
 gem 'activeadmin'
+
+# Strong Migration
+gem "strong_migrations"
+
+# Carrier Wave
+gem 'carrierwave', '~> 2.0'
