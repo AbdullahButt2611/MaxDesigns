@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 #   before_action :configure_sign_up_params, only: [:create]
 #   before_action :configure_account_update_params, only: [:update]
-#		before_action :delete_avatar_resource, only: [:update]
+		before_action :delete_avatar_resource, only: [:update]
 
 	before_action :all_registered_users
 
@@ -47,6 +47,7 @@ private
 
   def delete_avatar_resource
   	current_user.avatar.purge
+  	current_user.avatar = params[:user][:avatar]
   end
 
 #   # GET /resource/edit

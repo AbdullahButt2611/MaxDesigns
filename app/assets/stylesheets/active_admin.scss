@@ -15,3 +15,85 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+
+/* ================             CSS Varaibles   ============================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root{
+
+    --header-height: 3rem;
+
+    /*              Colors / Theme          */
+    --first-color: #000;
+    --first-color-light: rgb(16, 16, 16);
+    --first-color-lighten: #e0e0e0; 
+    --first-color-alt: #8a7968;
+    --text-color: white;
+    --text-color-light: #e0e0e0; 
+    --default-color: #7E0c17;
+
+
+    /*              Typographhy          */
+    --body-font: 'Poppins', sans-serif;
+    --h1-font-size: 1.75rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1.1rem;
+    --small-font-size: 0.938rem;
+    --smaller-font-size: 0.85rem;
+
+    /*              Font weight          */
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+
+    /*===== Margenes =====*/
+    --mb-1: 0.5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+    --mb-5: 2.5rem;
+
+    /*===== z index =====*/
+    --z-fixed: 100;
+}
+
+@media screen and (min-width: 768px) {
+    :root{
+        --h1-font-size: 2.5rem;
+        --h2-font-size: 1.75rem;
+        --h3-font-size: 1.5rem;
+        --normal-font-size: 1.25rem;
+        --small-font-size: 1rem;
+        --smaller-font-size: 0.95rem;
+    }
+}
+
+#wrapper{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: var(--body-font);
+}
+
+#content_wrapper{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 4rem 4rem;
+	width: 100%;
+}
+
+#login h2{
+	text-align: center;
+	color: var(--default-color);
+	font-size: var(--h1-font-size);
+}
+
+#session_new fieldset{
+	border: none;
+}
