@@ -25,11 +25,6 @@
         <%= f.label "Join as" %>
         <%= f.select :user_roles, options_for_select(User.user_roles, {selected: User.user_roles[f.object.user_roles]}) %>
       </div>
-
-    <div class="field">
-      <%= f.label "Profile Photo" %>
-      <%= f.file_field :avatar %>
-    </div>
     
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

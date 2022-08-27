@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
   # Associations
-  has_one_attached :avatar
+  
   has_one :vendor, required: false 
 
 
