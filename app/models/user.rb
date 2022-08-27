@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
   # Associations
   has_one_attached :avatar
-  has_one :vendor, optional: true
+  has_one :vendor, required: false 
 
 
 
@@ -36,7 +36,8 @@ class User < ApplicationRecord
     hr:            3,
     management:    4,
     accountant:    5,
-    admin:         6
+    admin:         6,
+    vendor:        7
 
   }
 
