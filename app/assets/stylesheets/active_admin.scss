@@ -17,8 +17,19 @@
 //   .status_tag { background: #6090DB; }
 
 
-/* ================             CSS Varaibles   ============================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+.deviseMainContainer{
+    background-color: var(--text-color-light);
+}
+
+
+.deviseTitle{
+    font-size: var(--h1-font-size);
+    text-transform: uppercase;
+    color: var(--default-color);
+}
+
+
+
 
 :root{
 
@@ -70,30 +81,179 @@
     }
 }
 
-#wrapper{
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-family: var(--body-font);
+/*===== BASE =====*/
+*, ::before, ::after{
+    box-sizing: border-box;
 }
 
-#content_wrapper{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 4rem 4rem;
-	width: 100%;
+*{
+    margin: 0;
+    padding: 0;
 }
 
-#login h2{
-	text-align: center;
-	color: var(--default-color);
-	font-size: var(--h1-font-size);
+html{
+    scroll-behavior: smooth;
 }
 
-#session_new fieldset{
-	border: none;
+
+body{
+    font-family: var(--body-font);
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+    background-color: var(--text-color);
+    line-height: 1.6;
+}
+
+h1, h2, h3, p{
+    margin: 0;
+}
+
+h3{
+    font-weight: var(--font-semi-bold);
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+/*===== CLASS CSS ===== */
+
+.section{
+    padding: 4rem 0 2rem;
+}
+
+.l-section{
+    padding: 4rem 4rem;
+}
+
+.separationQuote{
+    background-color: var(--first-color-lighten);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.quoteText{
+    font-size: var(--h3-font-size);
+    color: var(--first-color-light);
+}
+
+.quoteRefer{
+    color: #7E0c17;
+    justify-content: right;
+    font-size: var(--h2-font-size);
+}
+
+
+.redLine{
+    height: 2px;
+    width: 40%;
+    background-color: var(--default-color);
+}
+
+
+.flexContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verticalFlexContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+
+/* ==================    Buttons    =========================*/
+.transparentButton{
+    background: transparent;
+    border: 2px solid var(--text-color-light);
+    color: var(--text-color-light);
+    transition: 0.3s;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1.3rem 1rem;
+    max-width: 70%;
+    position: relative;
+}
+
+.transparentButton::before,
+.transparentButton::after{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: inherit;
+    transition: all .5s;
+}
+
+.transparentButton::before{
+    top: -15px;
+    left: -15px;
+    border-width: 3px 0 0 3px;
+}
+
+.transparentButton::after{
+    bottom: -15px;
+    right: -15px;
+    border-width: 0 3px 3px 0;
+}
+
+.transparentButton:hover::before,
+.transparentButton:hover::after{
+    width: calc(100% + 29px);
+    height: calc(100% + 29px);
+}
+
+.transparentButton:hover{
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    text-shadow: 0 0 var(--text-color);
+}
+
+
+.blackFillButton{
+    padding: 0.5rem 2rem;
+    border: 2px solid var(--first-color);
+    background-color: var(--text-color);
+    color: var(--first-color);
+    transition: 0.4s;
+}
+
+.blackFillButton:hover{
+    background-color: var(--first-color);
+    color: var(--text-color);
+}
+
+.whiteFillButton{
+    padding: 0.5rem 2rem;
+    border: 2px solid var(--first-color);
+    background-color: var(--first-color);
+    color: var(--text-color);
+    transition: 0.4s;
+}
+
+.whiteFillButton:hover{
+    border: 2px solid var(--first-color);
+    background-color: var(--text-color);
+    color: var(--first-color);
 }
