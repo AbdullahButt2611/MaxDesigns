@@ -1,2 +1,2 @@
-class Vendors < ApplicationController
+class VendorsController < ApplicationController
 end
