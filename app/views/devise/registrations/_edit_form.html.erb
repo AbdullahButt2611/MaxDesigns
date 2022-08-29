@@ -23,8 +23,12 @@
 
     <div class="field">
         <%= f.label "Join as" %>
-        <%= f.select :user_roles, options_for_select(User.user_roles, {selected: User.user_roles[f.object.user_roles]}) %>
+        <%= f.select :user_roles, options_for_select(User.user_roles.map {|k, v| [k.humanize.capitalize, User.user_roles.key(v)]}, {selected:  f.object.user_roles }) %>
+        <%byebug%>
       </div>
+
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
     
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

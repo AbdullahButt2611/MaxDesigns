@@ -15,7 +15,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
 def create
-		# @user.avatar = params[:user][:avatar]
+		byebug
 	  super
 	  if(@user.persisted?)
 	  	UserMailer.with(user: @user).welcome_email.deliver_now

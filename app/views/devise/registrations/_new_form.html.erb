@@ -28,7 +28,7 @@
 
       <div class="field">
         <%= f.label "Join as" %>
-        <%= f.select :user_roles, options_for_select([["Customer", :customer], ["Developer", :developer], ["Architect", :architect], ["HR", :hr], ["Management", :management], ["Accountant", :accountant], ["Vendor", :vendor]])%>
+        <%= f.select :user_roles, options_for_select(User.user_roles.map {|k, v| [k.humanize.capitalize, User.user_roles.key(v)]}) %>
       </div>
 
       <%= f.file_field :avatar %>
