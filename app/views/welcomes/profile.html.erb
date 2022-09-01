@@ -119,19 +119,33 @@
 
                 <% if current_user.vendor %>
                     <div class="professionalInformation verticalFlexContainer">
-                        <p>You Don't have any Company Setup yet. Get your Company setup in this application to get franchised here and link with the clients.</p>
+                        <div class="contactInfo verticalFlexContainer">
+
+                            <h2 class="contactTitle">Company's Information</h2>
+
+                            <table  class="setInfoDetail">
+                                <td  class="setInfoDetailTitle">Company Name:</td>
+                                <td  class="setInfoDetailDesc"><%= current_user.vendor.company_name %></td>
+                            </table>
+
+                            <table  class="setInfoDetail">
+                                <td  class="setInfoDetailTitle">Address:</td>
+                                <td  class="setInfoDetailDesc"><%= current_user.vendor.address %></td>
+                            </table>
+                                
+                        </div>
+
+                        <div class="redLine"></div>
+
                     </div>
-                    <p>Yes</p>
 
                 <% else %>
                     <div class="professionalInformation verticalFlexContainer">
-                        <p>You Don't have any Company Setup yet. Get your Company setup in this application to get franchised here and link with the clients.</p>
+                        <h2 class="contactTitle">You Don't have any Company Setup yet. Get your Company setup in this application to get franchised here and link with the clients.</h2>
 
-                        <%= link_to "Create Store (Need Updation in link)", destroy_user_session_path(current_user), method: :delete, class: "blackFillButton" %>
+                        <%= link_to "Create Store", new_vendor_path, class: "blackFillButton" %>
                     </div>
                 <% end %>
-            <% else %>
-                <%= current_user.user_roles%>
             <% end %>
 
         </section>

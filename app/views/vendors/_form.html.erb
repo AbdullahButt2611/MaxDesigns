@@ -1,0 +1,17 @@
+<%= form_with model: @vendor, html: {class: "contactForm verticalFlexContainer"} do |form|%>
+        
+        
+        <div class="inputs flexContainer">
+            <%= form.text_field :company_name, :placeholder => "Your Company's Name" %>
+            
+            <%= form.hidden_field :user_id, :value => current_user.id %>
+        </div>
+
+        <%= form.text_area :address, :placeholder => "Company's Address" %>
+
+        <div class="Formbuttondiv">
+            <%= form.submit "Create Company", :class => "blackFillButton" %>
+        </div>
+
+    
+    <% end %>

@@ -24,6 +24,9 @@ Rails.application.routes.draw do
    patch '/update_activity_status', to: 'users/registrations#update_activity_status', as: 'update_activity_status'
   end
 
+  resources :vendors
+
+
   
 
   resources :contacts
