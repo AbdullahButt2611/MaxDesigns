@@ -15,7 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
 def create
-		byebug
 	  super
 	  if(@user.persisted?)
 	  	UserMailer.with(user: @user).welcome_email.deliver_now
