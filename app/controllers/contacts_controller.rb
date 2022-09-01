@@ -9,7 +9,7 @@ class ContactsController < ApplicationController
 
     if @contact.save
       @user = User.last
-      
+      redirect_to root_path
     else
       render :new
     end

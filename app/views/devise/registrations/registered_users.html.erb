@@ -16,16 +16,16 @@
 
         <tbody>
         	<% @all_users.each do |user| %>
-                <tr>
+                <tr id="<%= user.id %>">
                     <th data-title = "Name" scope="row"><%= user.name %></th>
                     <th data-title = "Email"><%= user.email %></th>
                     <th data-title = "Cotact"><%= user.contact %></th>
                     <th data-title = "Qualification"><%= user.qualification %></th>
-                    <th class="userUpdateLink "><%= link_to "Update", update_activity_status_path(user), class: "blackFillButton" ,data: { method: :patch,
-		                                             params: { activity_status: { status: 1 } } }  %></th>
+                    <th class="userUpdateLink "><%= link_to "Update", update_activity_status_path(user),  remote: true,class: "blackFillButton" ,data: { method: :patch,
+		                params: { activity_status: { status: 1 } } } %></th>
 
-					<th class="userRemoveLink"><%= link_to 'Remove', simple_user_update_path(user),class: "whiteFillButton" ,data: { method: :patch,
-		                                             params: { activity_status: { status: 4 } } } %></th>
+					<th class="userRemoveLink"><%= link_to 'Remove', simple_user_update_path(user),remote: true ,class: "whiteFillButton" ,data: { method: :patch,
+		                  params: { activity_status: { status: 4 } } } %></th>
                 </tr>
             <% end %>
             
