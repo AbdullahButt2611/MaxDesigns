@@ -2,6 +2,7 @@ class Vendor < ApplicationRecord
 
 	# Associations
 	belongs_to :user, optional: true
+    has_many :items
 
     validates :company_name, presence: true, length: { minimum: 2 }
     validates :address, presence: true, length: { minimum: 5 }
