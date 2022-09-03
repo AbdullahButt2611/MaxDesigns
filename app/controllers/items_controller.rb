@@ -2,7 +2,8 @@ class ItemsController < ApplicationController
 	before_action :authenticate_user!
 	
 	def index
-		@items = current_user.vendor.items.all
+		@vendor = Vendor.find(params[:vendor_id])
+		@items = @vendor.items.all
 	end
 
 	def new
