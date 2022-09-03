@@ -1,0 +1,64 @@
+<div class="itemIndexContainer l-section verticalFlexContainer">
+        <div class="ItemIndexMain verticalFlexContainer">
+            <div class="topItemContainer">
+                <div class="ItemMainUpper flexContainer">
+                    <div class="verticalFlexContainer itemCompanyDetails">
+                        <h1 class="itemCompanyName"><%= current_user.vendor.company_name%></h1>
+                        <span class="itemComapanyType"><%= current_user.vendor.company_type%></span>
+                        <span class="itemComapanyAddress"><%= current_user.vendor.address%></span>
+                        <a href="<%= new_vendor_item_path %>" class="blackFillButton"><i class='bx bx-plus-circle'></i>Add New Item</a>
+                    </div>
+
+                    <div class="verticalFlexContainer itemOwnerDetails">
+                        <div class="itemCompanyImageContainer">
+                            <img src="<%= current_user.avatar%>" alt="Profile">
+                        </div>
+                        <span class="itemCompanyOwner"><%= current_user.name%></span>
+                    </div>
+                </div>
+
+                <div class="searchArea l-section flexContainer">
+                    <div class="itemSearchDiv flexContainer">
+                        <i class='bx bx-search'></i>
+                        <input type="search" placeholder="Search for items here...">
+                    </div>
+                    
+                    <select name="" id="">
+                        <option value="1">Chinese Marble</option>
+                    </select>
+                </div>
+                <h6 class="itemsCountHeading">26 Items Found</h1>
+            </div>
+            <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
+
+        
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Last Updated</th>
+                            <th scope="col">Edit</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody>
+                        <% @items.each do |item|%>
+                            <tr>
+                                <th data-title = "Name" scope="row"><%= item.name %></th>
+                                <th data-title = "Price"><%= item.price %></th>
+                                <th data-title = "Type"><%= item.item_type %></th>
+                                <th data-title = "Last Updated"><%= item_update_date_formatting%></th>
+                                <th class="userUpdateLink "><a href="" class="blackFillButton">Edit</a></th>
+                                <th class="userRemoveLink"><a href="" class="whiteFillButton">Remove</a></th>
+                            </tr>
+                        <% end%>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%= render "layouts/footer" %>

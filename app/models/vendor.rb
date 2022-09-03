@@ -2,7 +2,7 @@ class Vendor < ApplicationRecord
 
 	# Associations
 	belongs_to :user, optional: true
-    has_many :items
+    has_many :items, dependent: :destroy
 
     validates :company_name, presence: true, length: { minimum: 2 }
     validates :address, presence: true, length: { minimum: 5 }
@@ -11,11 +11,12 @@ class Vendor < ApplicationRecord
 
 	# Enum Declarations
 	enum company_type: {
-    lamp: 0,
+    different: 0,
     marble: 1,
     transport: 2,
     paint: 3,
-    wood: 4
+    wood: 4,
+    lamp: 5
   }
 
 end

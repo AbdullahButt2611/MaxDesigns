@@ -2,7 +2,7 @@ class User < ApplicationRecord
 
   # Associations
   mount_uploader :avatar, AvatarUploader
-  has_one :vendor, required: false
+  has_one :vendor, required: false, dependent: :destroy
 
 
   # Validations
