@@ -11,3 +11,4 @@ require("channels")
 global.$ = require('jquery')
 
 require("main") 
+
