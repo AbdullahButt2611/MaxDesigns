@@ -24,7 +24,7 @@
                     <th class="userUpdateLink "><%= link_to "Update", update_activity_status_path(user),  remote: true,class: "blackFillButton" ,data: { method: :patch,
 		                params: { activity_status: { status: 1 } } } %></th>
 
-					<th class="userRemoveLink"><%= link_to 'Remove', simple_user_update_path(user),remote: true ,class: "whiteFillButton" ,data: { method: :patch,
+					<th class="userRemoveLink"><%= link_to 'Remove', simple_user_update_path(user), xhr: true, remote: true, class: "whiteFillButton" ,data: { method: :patch,
 		                  params: { activity_status: { status: 4 } } } %></th>
                 </tr>
             <% end %>

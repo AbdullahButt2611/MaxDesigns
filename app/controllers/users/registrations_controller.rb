@@ -33,13 +33,9 @@ end
 # This method is activated by the admin when he/she chooses the activaty status to be simple user
 # by clicking on the remove button from the registered users tab.
 def simple_user_update
-
 	@user = User.find(params[:format])
-	respond_to do |format|
-		@user.simple_user!
-		format.js { render 'devise/registrations/update_simple_user'}
-	end
-	
+	@user.simple_user!
+	render layout: false
 end
 
 
