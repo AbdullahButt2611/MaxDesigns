@@ -94,3 +94,6 @@ gem "strong_migrations"
 
 # Carrier Wave
 gem 'carrierwave', '~> 2.0'
+
+# Sidekiq Gem
+gem 'sidekiq', '~> 6.1.3'

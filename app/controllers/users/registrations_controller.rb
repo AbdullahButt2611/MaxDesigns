@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 def create
 	  super
 	  if(@user.persisted?)
-	  	UserMailer.with(user: @user).welcome_email.deliver_now
+	  	SendSignUpEmailJob.perform_later(@user)
 	  end
 end
 
