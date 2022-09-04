@@ -1,7 +1,5 @@
-Rails.application.routes.draw do
 
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -32,6 +30,20 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  module Routes
+    module ClassMethods
+      
+    end
+    
+    module InstanceMethods
+      
+    end
+    
+    def self.included(receiver)
+      receiver.extend         ClassMethods
+      receiver.send :include, InstanceMethods
+    end
+  end
 
   
 
