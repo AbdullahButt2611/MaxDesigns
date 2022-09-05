@@ -27,9 +27,10 @@
         
       </div>
 
-      <%= f.file_field :avatar %>
-      <%= f.hidden_field :avatar_cache %>
-    
+      <div class="field avatarField">
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>

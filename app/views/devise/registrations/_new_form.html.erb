@@ -31,8 +31,10 @@
         <%= f.select :user_roles, options_for_select(User.user_roles.map {|k, v| [k.humanize.capitalize, User.user_roles.key(v)]}) %>
       </div>
 
-      <%= f.file_field :avatar %>
-      <%= f.hidden_field :avatar_cache %>
+      <div class="field avatarField">
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+      </div>
       
       <div class="field">
         <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password" %>
