@@ -13,10 +13,31 @@ class ItemsController < ApplicationController
 
 	def create
 	    @vendor = Vendor.find(params[:vendor_id])
-	    byebug
 		@item = @vendor.items.create(item_params)
 	    if @item.save
-	      redirect_to profile_path
+	      redirect_to vendor_items_path
+	    else
+	      render :new
+	    end
+  	end
+
+  	def destroy
+  		@vendor = Vendor.find(params[:vendor_id])
+  		@item = @vendor.items.find(params[:id])
+  		@item.destroy
+  		render layout: false
+  	end
+
+  	def edit
+  		@vendor = Vendor.find(params[:vendor_id])
+  		@item = @vendor.items.find(params[:id])
+  	end
+
+  	def update
+  		@vendor = Vendor.find(params[:vendor_id])
+  		@item = @vendor.items.find(params[:id])
+		if @item.update(item_params)
+	      redirect_to vendor_items_path
 	    else
 	      render :new
 	    end

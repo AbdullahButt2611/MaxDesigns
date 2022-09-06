@@ -37,8 +37,7 @@ class User < ApplicationRecord
     hr:            3,
     management:    4,
     accountant:    5,
-    admin:         6,
-    vendor:        7
+    vendor:        6
 
   }
 

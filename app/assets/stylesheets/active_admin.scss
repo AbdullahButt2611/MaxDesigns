@@ -470,7 +470,7 @@ footer{
     justify-content: center;
     align-items: center;
     row-gap: 1.5rem;
-    background: url("http://maxdesigns.ae/wp-content/uploads/2022/06/bg_white_marble.jpg");
+    background: url(asset_path("bg_white_marble.jpg"));
     background-attachment: fixed;
 }
 

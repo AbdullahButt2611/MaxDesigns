@@ -1,0 +1,21 @@
+<%= form_with model: @item, url: vendor_item_path(@vendor, @item), method: :patch, html: {class: "contactForm verticalFlexContainer"} do |form|%>
+        
+        
+    <div class="inputs flexContainer">
+        <%= form.text_field :name, :placeholder => "Item's Name" %>
+
+        <%= form.number_field :price, :placeholder => "Item's Price", step: 10, min: 5 %>
+        
+    </div>
+
+     <div class="inputs verticalFlexContainer itemFormSelect">
+        <%= form.label "Join as" %>
+        <%= form.select :item_type, options_for_select(Item.item_types.map {|k, v| [k.humanize.capitalize, Item.item_types.key(v)]}, {selected:  form.object.item_type }) %>
+      </div>
+
+    <div class="Formbuttondiv">
+        <%= form.submit "Add Item", :class => "blackFillButton" %>
+    </div>
+
+
+<% end %>

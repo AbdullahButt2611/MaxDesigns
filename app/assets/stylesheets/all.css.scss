@@ -410,7 +410,7 @@ header{
 
 /* Second Section */
 .mission{
-    background: url("http://maxdesigns.ae/wp-content/uploads/2022/06/bg_black_marble.jpg");
+    background: url(asset_path("bg_black_marble.jpg"));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -522,7 +522,7 @@ footer{
     justify-content: center;
     align-items: center;
     row-gap: 1.5rem;
-    background: url("http://maxdesigns.ae/wp-content/uploads/2022/06/bg_white_marble.jpg");
+    background: url(asset_path("bg_white_marble.jpg"));
     background-attachment: fixed;
 }
 
@@ -679,7 +679,7 @@ footer{
 }
 
 .aboutImplementation{
-    background: url("http://maxdesigns.ae/wp-content/uploads/2022/06/bg_white_marble.jpg");
+    background: url(asset_path("bg_white_marble.jpg"));
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: cover;
@@ -1198,7 +1198,7 @@ textarea{
 
 /* ====================================     User Profile  ================================ */
 .profileContainer{
-    background: url("http://maxdesigns.ae/wp-content/uploads/2022/06/bg_black_marble.jpg");
+    background: url(asset_path("bg_black_marble.jpg"));
     background-attachment: fixed;
 }
 
@@ -1216,8 +1216,19 @@ textarea{
     row-gap: 3rem;
 }
 
-.profileContent img{
-    width: 20%;
+.profileImageDiv{
+    width: 12rem;
+    height: 12rem;
+    background-color: var(--text-color-light);
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+.profileImageDiv img{
+    width: 100%;
 }
 
 .setContent{
@@ -1844,24 +1855,24 @@ div.field_with_errors{
 }
 
 .itemCompanyImageContainer{
-    width: 6rem;
-    height: 6rem;
+    width: 12rem;
+    height: 12rem;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .itemCompanyImageContainer img{
-    transform: scale(2);
+    width: 100%;
 }
 
 .itemCompanyDetails .blackFillButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 0.5rem;
+    margin-top: 7rem;
 }
 
 .searchArea{
@@ -1967,6 +1978,10 @@ div.field_with_errors{
 
     .itemIndexContainer{
         padding: 4rem 2rem;
+    }
+
+    .itemCompanyDetails .blackFillButton {
+        margin-top: 1rem;
     }
 }
 
