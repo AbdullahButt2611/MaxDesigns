@@ -23,9 +23,9 @@
                     <span class="tooltip">Dashboard</span>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/registered_users">
                         <i class='bx bx-user' ></i>
-                        <span class="links_name">User</span>
+                        <span class="links_name">Registered Users</span>
                     </a>
                     <span class="tooltip">User</span>
                 </li>
@@ -78,11 +78,12 @@
                     <div class="profile_details">
                         <img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png" alt="Profile Picture">
                         <div class="name_job">
-                            <div class="name">Abdullah Butt</div>
+                            <div class="name"><%= link_to current_user.name.capitalize, profile_path, class: "nav__link" %></div>
                             <div class="job">Web Developer</div>
                         </div>
                     </div>
-                    <i class='bx bx-log-out-circle' id="log_out"></i>
+                    <a href="/profile"><i class='bx bx-log-out-circle' id="log_out"></i></a>.
+
                 </div>
             </div>
         </div>
