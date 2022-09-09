@@ -1,0 +1,11 @@
+<section class="contactFormContainer l-section verticalFlexContainer">
+    <p class="contactForm__subtitle">Hi, <%= current_user.name%></p>
+    <h2 class="contactForm__title">Congratulations to you and your team for having a new project</h2>
+    <p class="contactForm__subtitle">Let's addsome important information first</p>
+    <%= render "devise/shared/error_messages", resource: @project %>
+    
+    <%= render "form", project: @project %>
+
+    
+</section>
+<%= render "layouts/footer" %>

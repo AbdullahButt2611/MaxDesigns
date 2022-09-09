@@ -12,7 +12,7 @@ class VendorsController < ApplicationController
 	    else
 	      render :new
 	    end
-  	end
+  end
 
 	def edit
 		@vendor = current_user.vendor

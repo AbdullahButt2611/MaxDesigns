@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :name, presence: true,
                    format: { with: /^[a-zA-Z ]*$/, message: 'Can only contain letter and white spaces', multiline: true }, length: { minimum: 2 }
   validates :contact, uniqueness: true
-  # User Avatar Validation
+    # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
 

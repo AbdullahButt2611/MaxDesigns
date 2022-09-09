@@ -1,0 +1,29 @@
+<%= form_with model: @project, html: {class: "contactForm verticalFlexContainer"} do |form|%>
+        
+        
+    <div class="inputs flexContainer">
+        <%= form.text_field :name, :placeholder => "Project's Name" %>
+        <%= form.text_field :client_name, :placeholder => "Your Client's Name" %>
+    </div>
+
+    <div class="inputs flexContainer">
+        <%= form.number_field :contact, :placeholder => "Client's Contact" %>
+        <%= form.number_field :amount_promised, :placeholder => "Amount Decided", min: "20000" %>
+    </div>
+
+    <div class="inputs flexContainer">
+        <%= form.date_field :deadline, :placeholder => "Client's Contact", :min => Date.current, :value => @date_now%>
+        <div class="field">
+            <%= form.label "Project Type" %>
+            <%= form.select :project_type, options_for_select(Project.project_types.map {|k, v| [k.humanize.capitalize, Project.project_types.key(v)]}) %>
+        </div>
+    </div>
+
+    <%= form.text_area :location, :placeholder => "Property's Address" %>
+
+    <div class="Formbuttondiv">
+        <%= form.submit "Create Project", :class => "blackFillButton" %>
+    </div>
+
+
+<% end %>

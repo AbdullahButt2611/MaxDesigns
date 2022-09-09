@@ -47,5 +47,5 @@ Rails.application.routes.draw do
 
   
 
-  resources :contacts
+  resources :contacts, :projects
 end
