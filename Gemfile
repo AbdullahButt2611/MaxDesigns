@@ -97,3 +97,6 @@ gem 'carrierwave', '~> 2.0'
 
 # Sidekiq Gem
 gem 'sidekiq', '~> 6.1.3'
+
+# Gem for ERD Diagram
+gem 'rails-erd', group: :development
