@@ -137,7 +137,7 @@ Rails.application.configure do
   user_name: 'apikey', 
 
   # This is the secret sendgrid API key which was issued during API key creation
-  password: ENV["SENDGRID_KEY"], 
+  password: ENV['SENDGRID_KEY'], 
   domain: 'max-designs.herokuapp.com',
   address: 'smtp.sendgrid.net',
   port: 587,
