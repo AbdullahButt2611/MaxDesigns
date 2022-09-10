@@ -134,7 +134,7 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
 
   # This is the string literal 'apikey', NOT the ID of your API key
-  user_name: 'apikey', 
+  user_name: 'MaxDesign', 
 
   # This is the secret sendgrid API key which was issued during API key creation
   password: ENV['SENDGRID_KEY'], 
