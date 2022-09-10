@@ -22,7 +22,7 @@ gem 'pg', '~> 1.4', '>= 1.4.3'
 # Jquery
 
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -100,3 +100,6 @@ gem 'sidekiq', '~> 6.1.3'
 
 # Gem for ERD Diagram
 gem 'rails-erd', group: :development
+
+# Redis Server
+gem 'resque', :require => 'resque/server'
