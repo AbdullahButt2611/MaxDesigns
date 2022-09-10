@@ -138,12 +138,12 @@ Rails.application.configure do
 
   # This is the secret sendgrid API key which was issued during API key creation
   password: ENV['SENDGRID_KEY'], 
-  domain: 'max-designs.herokuapp.com',
+  domain: 'https://max-designs.herokuapp.com/',
   address: 'smtp.sendgrid.net',
   port: 587,
   authentication: :plain,
   enable_starttls_auto: true
 }
 
-  config.action_mailer.default_url_options = { :host => 'max-designs.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'https://max-designs.herokuapp.com/' }
 end
