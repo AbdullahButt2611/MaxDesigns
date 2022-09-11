@@ -1,10 +1,7 @@
 # # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-#   before_action :configure_sign_up_params, only: [:create]
-#   before_action :configure_account_update_params, only: [:update]
-		# before_action :delete_avatar_resource, only: [:update]
-		before_action :configure_permitted_parameters, only: [:create, :update]
+	before_action :configure_permitted_parameters, only: [:create, :update]
 
 	before_action :all_registered_users
 
@@ -34,6 +31,7 @@ end
 # by clicking on the remove button from the registered users tab.
 def simple_user_update
 	@user = User.find(params[:format])
+	authorize! :simple_user_update, current_user
 	@user.simple_user!
 	render layout: false
 end
@@ -47,6 +45,7 @@ end
 # by clicking on the update button from the registered users tab.
 def update_activity_status
 	@user = User.find(params[:format])
+	authorize! :simple_user_update, current_user
 	@user.available!
 	render layout: false
 end
@@ -116,4 +115,5 @@ private
 #   def after_inactive_sign_up_path_for(resource)
 #     super(resource)
 #   end
+
 end

@@ -103,3 +103,6 @@ gem 'rails-erd', group: :development
 
 # Redis Server
 gem 'resque', :require => 'resque/server'
+
+# Authorization Gem
+gem 'cancancan'

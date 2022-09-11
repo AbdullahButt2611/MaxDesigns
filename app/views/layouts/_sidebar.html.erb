@@ -22,13 +22,16 @@
                     </a>
                     <span class="tooltip">Dashboard</span>
                 </li>
-                <li>
+                <% if can? :simple_user_update, current_user %>
+                  <li>
                     <a href="/registered_users">
                         <i class='bx bx-user' ></i>
                         <span class="links_name">Registered Users</span>
                     </a>
                     <span class="tooltip">Registered Users</span>
                 </li>
+                <% end %>
+                
                 <li>
                     <a href="/projects">
                         <i class='bx bx-folder' ></i>
