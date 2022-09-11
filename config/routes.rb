@@ -45,7 +45,13 @@ Rails.application.routes.draw do
     end
   end
 
-  
-
   resources :contacts, :projects
+
+  namespace :api do
+    namespace :v1 do
+      get "/identify", to: 'live_checkers#identify'
+    end
+  end
+
+
 end
