@@ -13,7 +13,7 @@
                 <div class="projectMainCard verticalFlexContainer">
                     <div class="projectMainCardContent l-section">
                         <div class="top leftRightContainer">
-                            <h1 class="project_name"><%= project.name %></h1>
+                            <%= link_to project.name, project_path(project), class: "project_name" %>
                             <p class="type"><%= project.project_type&.downcase&.titleize %></p>
                         </div>
                         <div class="middle leftRightContainer">

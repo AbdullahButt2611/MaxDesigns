@@ -2064,7 +2064,7 @@ div.field_with_errors{
 }
 
 .projectTopContainer .topLeftProject .topPojectTitle{
-    font-size: var(--h3-font-size);
+    font-size: var(--h2-font-size);
     color: var(--default-color);
     line-height: var(--h3-font-size);
 }
@@ -2113,6 +2113,11 @@ div.field_with_errors{
     font-size: var(--normal-font-size);
     color: var(--default-color);
     text-align: center;
+    transition: all 0.5s ease;
+}
+
+.projectMainCardContent .top .project_name:hover{
+    color: #4f080f;
 }
 
 .projectMainCardContent .top .type{
@@ -2141,6 +2146,7 @@ div.field_with_errors{
     color: var(--text-color);
     padding: 0.5rem 1rem;
     border-radius: 5px;
+    text-align: center;
 }
 
 .projectMainCardContent .bottom .redStatus{             /*Final Stage*/
@@ -2163,7 +2169,11 @@ div.field_with_errors{
     margin-top: 5px;
 }
 
-@media screen and (max-width: 540px) {
+.projectMainCardContent .operation .blackFillButton, .projectMainCardContent .operation .whiteFillButton{
+    text-align: center;
+}
+
+@media screen and (max-width: 620px) {
     .projectTopContainer {
         flex-direction: column;
         row-gap: 5px;
