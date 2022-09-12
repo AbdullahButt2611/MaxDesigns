@@ -22,5 +22,7 @@ module MaxDesigns
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :sidekiq       #Change the last value to async
+    config.load_defaults 6.0
+    config.autoloader = :classic
   end
 end
