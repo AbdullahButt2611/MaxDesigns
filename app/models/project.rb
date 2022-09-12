@@ -1,5 +1,8 @@
 class Project < ApplicationRecord
 
+	has_many :project_details
+
+
 	# Validations
 	number_regex = /\d[0-9]\)*\z/
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_10_103240) do
+ActiveRecord::Schema.define(version: 2022_09_12_143756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,26 @@ ActiveRecord::Schema.define(version: 2022_09_10_103240) do
     t.bigint "vendor_id", null: false
     t.integer "item_type", default: 0
     t.index ["vendor_id"], name: "index_items_on_vendor_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "order_type"
+    t.datetime "order_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "project_details", force: :cascade do |t|
+    t.datetime "date"
+    t.string "task"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "project_id", null: false
+    t.bigint "order_id"
+    t.bigint "user_id", null: false
+    t.index ["order_id"], name: "index_project_details_on_order_id"
+    t.index ["project_id"], name: "index_project_details_on_project_id"
+    t.index ["user_id"], name: "index_project_details_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -95,5 +115,8 @@ ActiveRecord::Schema.define(version: 2022_09_10_103240) do
   end
 
   add_foreign_key "items", "vendors"
+  add_foreign_key "project_details", "orders"
+  add_foreign_key "project_details", "projects"
+  add_foreign_key "project_details", "users"
   add_foreign_key "vendors", "users"
 end
