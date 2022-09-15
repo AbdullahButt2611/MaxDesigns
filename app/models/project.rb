@@ -1,6 +1,8 @@
 class Project < ApplicationRecord
 
-	has_many :project_details
+	has_many :project_details, dependent: :destroy
+
+	has_many :orders
 
 
 	# Validations

@@ -30,6 +30,10 @@ Rails.application.routes.draw do
     resources :items
   end
 
+  resources :projects do
+    resources :project_details
+  end
+
   module Routes
     module ClassMethods
       
@@ -45,7 +49,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contacts, :projects
+  resources :contacts
 
   namespace :api do
     namespace :v1 do

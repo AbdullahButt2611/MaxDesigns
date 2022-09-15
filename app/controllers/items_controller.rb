@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
 		if @item.update(item_params)
 	      redirect_to vendor_items_path
 	    else
-	      render :new
+	      render :edit
 	    end
   	end
 

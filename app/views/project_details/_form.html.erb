@@ -1,0 +1,18 @@
+<%= form_with model: @project_detail, url: project_project_details_path(@project, @project_detail), method: :post, html: {class: "contactForm verticalFlexContainer"} do |form|%>
+        
+        
+    <div class="inputs flexContainer">
+        <%= form.hidden_field :date, value: DateTime.now %>
+    </div>
+
+    <div class="inputs verticalFlexContainer itemFormSelect">
+        <%= form.label "Today's Task" %>
+        <%= form.text_area :task, :placeholder => "Task Accomplished" %>
+    </div>
+
+    <div class="Formbuttondiv">
+        <%= form.submit "Add Task", :class => "blackFillButton" %>
+    </div>
+
+
+<% end %>
