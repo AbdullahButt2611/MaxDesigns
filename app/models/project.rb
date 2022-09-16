@@ -1,11 +1,15 @@
 class Project < ApplicationRecord
-
+	#=========================	Associations 	===========================================
 	has_many :project_details, dependent: :destroy
 
 	has_many :orders
 
 
-	# Validations
+	#=======================		Scopes		==========================================
+	scope :not_completed_projects, ->{ where.not(project_status: "completed") }
+
+
+	#=======================	 Validations	===========================================
 	number_regex = /\d[0-9]\)*\z/
 
 
@@ -20,7 +24,7 @@ class Project < ApplicationRecord
 
 
 
-	# Enum declarations
+	#===========================	 Enum declarations		===================================
   	enum project_type: {
 	    completely_build: 0,
 	    interior_design: 1,

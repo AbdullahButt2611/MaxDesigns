@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@projects = Project.all
+		@projects = Project.not_completed_projects
 	end
 
 	def new
@@ -34,6 +34,10 @@ class ProjectsController < ApplicationController
 	    else
 	      render :edit
 	    end
+	end
+
+	def show
+		@project = Project.find(params[:id])
 	end
 
 	def destroy

@@ -117,7 +117,7 @@
 
             </div>
 
-            <% if current_user.vendor? %>
+            <% if current_user.vendor? or current_user.developer?%>
 
                 <% if current_user.vendor %>
                     <div class="professionalInformation verticalFlexContainer">

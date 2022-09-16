@@ -37,6 +37,9 @@ class Ability
       can :manage, User
     elsif user.vendor?
       cannot :simple_user_update, User
+    elsif user.developer?
+      can :read, :all
+      can :manage, :all
     end
   end
 end

@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :project_details
+    resources :orders do
+      resources :order_details
+    end
   end
 
   module Routes

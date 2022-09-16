@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_15_200910) do
+ActiveRecord::Schema.define(version: 2022_09_16_125140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 2022_09_15_200910) do
     t.bigint "vendor_id", null: false
     t.integer "item_type", default: 0
     t.index ["vendor_id"], name: "index_items_on_vendor_id"
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_id", null: false
+    t.bigint "vendor_id", null: false
+    t.bigint "item_id", null: false
+    t.index ["item_id"], name: "index_order_details_on_item_id"
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["vendor_id"], name: "index_order_details_on_vendor_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -117,6 +129,9 @@ ActiveRecord::Schema.define(version: 2022_09_15_200910) do
   end
 
   add_foreign_key "items", "vendors"
+  add_foreign_key "order_details", "items"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "vendors"
   add_foreign_key "orders", "projects"
   add_foreign_key "project_details", "orders"
   add_foreign_key "project_details", "projects"

@@ -9,7 +9,7 @@
     </div>
 
      <div class="inputs verticalFlexContainer itemFormSelect">
-        <%= form.label "Join as" %>
+        <%= form.label "Item Type" %>
         <%= form.select :item_type, options_for_select(Item.item_types.map {|k, v| [k.humanize.capitalize, Item.item_types.key(v)]}) %>
       </div>
 
