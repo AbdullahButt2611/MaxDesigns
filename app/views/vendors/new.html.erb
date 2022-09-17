@@ -1,6 +1,8 @@
 <section class="contactFormContainer l-section verticalFlexContainer">
     <p class="contactForm__subtitle">Hi, <%= current_user.name%></p>
     <h2 class="contactForm__title">Let's Edit the content of your company</h2>
+    <div class="errorDivContainer">
+    </div>
     <%= render "devise/shared/error_messages", resource: @vendor %>
     
     <%= render "form", vendor: @vendor %>

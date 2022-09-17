@@ -10,7 +10,7 @@ class VendorsController < ApplicationController
 	    if @vendor.save
 	      redirect_to profile_path
 	    else
-	      render :new
+	      render layout: false
 	    end
   end
 
@@ -24,7 +24,7 @@ class VendorsController < ApplicationController
 		if @vendor.update(vendor_params)
 	      redirect_to profile_path
 	    else
-	      render :edit
+			render layout: false
 	    end
 	end
 
