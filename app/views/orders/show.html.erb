@@ -1,0 +1,66 @@
+<div class="projectMainContainer l-section verticalFlexContainer showProjectMainContainer ">
+        <div class="projectTopContainer flexContainer orderProjectMainContainer">
+            <div>
+                <div class="topLeftProject">
+                    <h1 class="topPojectTitle upperTopPojectTitle"><%= @project.name%></h1>
+                    <h4>Reference # <%= @order.id%></h4>
+                    <p><%= order_date_formatiing(@order.order_date)%></p>
+                </div>
+                <br>
+            </div>
+            <div class="verticalFlexContainer">
+                <div class="topLeftProject ">
+                    <h1 class="clientName lowerTopPojectTitle">Rs: 12000<%#= @project.client_name%></h1>
+                    <% if @order.order_type == "unpaid" %>
+                        <h4 class = "redColorStatus" ><%= @order.order_type.downcase.titleize%></h4>
+                    <% else %>
+                        <h4 class = "greenColorStatus"><%= @order.order_type.downcase.titleize%></h4>
+                    <% end%>
+                    <p><%= @project.location%></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="projectContentContainer flexContainer">
+            <div class="leftRightContainer">
+                <h1 class="section__title">Orders Placed</h1>
+                <%= link_to "Place Order", project_orders_path(:project_id=>@project.id), method: :post, class: "blackFillButton" %>
+            </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Identity Price</th>
+                        <th scope="col">Sum Price</th>
+                        <th scope="col">Vendor</th>
+                        <%if @order.order_type == "unpaid"%>
+                            <th scope="col">Remove</th>
+                        <%end%>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% @order.order_details.each do |detail|%>
+                        <tr>
+                            <th data-title = "Item Name" scope="row"><%= find_item(detail.vendor_id, detail.item_id).name%></th>
+                            <th data-title = "Quantity"><%= detail.quantity%></th>
+                            <th data-title = "Identity Price">Rs: <%= find_item(detail.vendor_id, detail.item_id).price %></th>
+                            <th data-title = "Sum Price">Rs: <%= sum_price_calculator(detail.vendor_id, detail.item_id, detail.quantity) %></th>
+                            <th data-title = "Vendor"><%= find_vendor(detail.vendor_id) %></th>
+                            <%if @order.order_type == "unpaid"%>
+                                <th class="userRemoveLink">
+                                    <%= link_to "Destroy", project_order_order_detail_path(:id=>detail.id, :project_id => @project.id, :order_id => @order.id),
+                                    method: :delete,
+                                    data: { confirm: "This step will remove the order and all it's dependencies?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
+                                </th>
+                            <%end%>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+        </div>
+</div>
+<%= render "layouts/footer" %>

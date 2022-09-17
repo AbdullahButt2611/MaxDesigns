@@ -1,7 +1,7 @@
 class Vendor < ApplicationRecord
 
 	# Associations
-	belongs_to :user, optional: true
+	  belongs_to :user, optional: true, touch: true
     has_many :items, dependent: :destroy
 
     validates :company_name, presence: true, length: { minimum: 2 }

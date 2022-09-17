@@ -175,6 +175,7 @@ img{
     padding: 1.3rem 1rem;
     max-width: 70%;
     position: relative;
+    text-align: center;
 }
 
 .transparentButton::before,
@@ -218,6 +219,7 @@ img{
     background-color: var(--text-color);
     color: var(--first-color);
     transition: 0.4s;
+    text-align: center;
 }
 
 .blackFillButton:hover{
@@ -231,6 +233,7 @@ img{
     background-color: var(--first-color);
     color: var(--text-color);
     transition: 0.4s;
+    text-align: center;
 }
 
 .whiteFillButton:hover{
@@ -2208,3 +2211,98 @@ div.field_with_errors{
         align-self: flex-end;
     }
 }
+
+/* ====================================   Show Project    ================================ */
+.showProjectMainContainer{
+
+    background: url(asset_path("bg_white_marble.jpg"));
+    background-attachment: fixed;
+}
+
+
+.topLeftProject .clientName{
+    color: var(--first-color-alt);
+    font-size: var(--h3-font-size);
+}
+
+.projectRemarksContainer{
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.projectCounter{
+    min-width: 15rem;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+}
+
+.projectRemarksContainer .middleCounter{
+    background-color: var(--first-color);
+    color: var(--first-color);
+}
+
+.projectRemarksContainer .leftCounter{
+    background-color: var(--default-color);
+    color: var(--default-color);
+}
+
+.projectRemarksContainer .rightCounter{
+    background-color: var(--first-color-alt);
+    color: var(--first-color-alt);
+}
+
+.projectCounter .innerCounterContainer{
+    width: 14rem;
+    height: 14rem;
+    border-radius: 50%;
+    background: url(asset_path("bg_white_marble.jpg"));
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.projectCounter .innerCounterContainer h1{
+    font-size: var(--h3-font-size);
+    text-align: center;
+}
+
+.projectCounter .innerCounterContainer p{
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-bold);
+}
+
+.projectContentContainer{
+    margin: 2rem 0;
+}
+
+.projectContentContainer .section__title{
+    font-size: var(--h2-font-size);
+}
+
+/* ====================================   Show order    ================================ */
+.orderProjectMainContainer{
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.upperTopPojectTitle, .lowerTopPojectTitle{
+    font-size: var(--h1-font-size)!important;
+    line-height: var(--h1-font-size)!important;
+}
+
+.redColorStatus{
+    color: var(--default-color) !important;
+}
+
+.greenColorStatus{
+    color: green !important;
+}
+
+
+

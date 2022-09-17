@@ -12,7 +12,8 @@ class ProjectDetailsController <ApplicationController
 	    if @project_detail.save
 	      redirect_to @project
 	    else
-	      render :new
+            render layout: false
+            
 	    end
   	end
 

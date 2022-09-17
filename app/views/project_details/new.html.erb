@@ -1,8 +1,9 @@
 <section class="contactFormContainer l-section verticalFlexContainer">
     <p class="contactForm__subtitle">Looks like you're progressing.<br>Let's Add it's details</p>
     <h2 class="contactForm__title"><%= @project.name%></h2>
-    <%= render "devise/shared/error_messages", resource: @project_detail %>
-
+    <div class="errorDivContainer">
+    </div>
+    
     <%= render "form", project_detail: @project_detail %>
 
     

@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
 		    @project.enqueued!			# To change the status of the project
 		end
 	    if @project.save
-	      redirect_to dashboard_path
+	      redirect_to project_path(@project)
 	    else
 	      render :new
 	    end
@@ -43,7 +43,11 @@ class ProjectsController < ApplicationController
 	def destroy
   		@project = Project.find(params[:id])
   		@project.destroy
-  		redirect_to projects_path
+		if params[:redirect]
+			redirect_to projects_path
+		else
+			render layout: false
+		end
   	end
 
   	def show

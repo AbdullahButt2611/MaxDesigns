@@ -32,14 +32,69 @@ class Ability
 
 
     if user.hr?
+
       can :simple_user_update, User, User.where(user_roles: :no_role)
       can :update_activity_status, User, User.where(user_roles: :no_role)
       can :manage, User
+      can :read, User
+      can :read, Contact
+      can :read, Item
+      cannot :manage, Order
+      cannot :manage, Item
+      can :read, Order
+      cannot :manage, Project
+      cannot :manage, ProjectDetail
+      can :read, ProjectDetail
+      can :profile, User
+
     elsif user.vendor?
+
       cannot :simple_user_update, User
+      cannot :update_activity_status, User
+      can :manage, Item
+      can :read, Item
+      can :manage, Vendor
+      can :read, Vendor
+      can :read, Project
+      cannot :manage, Project
+      can :profile, User
+
+
     elsif user.developer?
+
       can :read, :all
       can :manage, :all
+      can :profile, User
+
+    elsif user.customer?
+
+      cannot :manage, all
+      can :profile, User
+      can :read, Project
+      can :read, Order
+      can :read, Item
+
+    elsif user.architect?
+
+      can :profile, User
+      can :manage, ProjectDetail
+      can :read, ProjectDetail
+      can :read, Project
+      can :read, Order
+
+    elsif user.management?
+
+      can :profile, User
+      can :manage, User
+      can :manage, Project
+      can :manage, Vendor
+      can :read, all
+      
+
+    elsif user.accountant?
+
+      can :profile, User
+
     end
   end
 end

@@ -2,11 +2,11 @@ class Project < ApplicationRecord
 	#=========================	Associations 	===========================================
 	has_many :project_details, dependent: :destroy
 
-	has_many :orders
+	has_many :orders, dependent: :destroy
 
 
 	#=======================		Scopes		==========================================
-	scope :not_completed_projects, ->{ where.not(project_status: "completed") }
+	scope :not_completed_projects, ->{ where.not(project_status: "completed") and order('updated_at DESC')}
 
 
 	#=======================	 Validations	===========================================
