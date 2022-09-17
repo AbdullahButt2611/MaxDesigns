@@ -11,7 +11,7 @@ class ContactsController < ApplicationController
       @user = User.last
       redirect_to root_path
     else
-      render :new
+      render layout: false
     end
   end
 

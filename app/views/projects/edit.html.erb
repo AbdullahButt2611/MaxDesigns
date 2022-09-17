@@ -2,7 +2,8 @@
     <p class="contactForm__subtitle">Hi, <%= current_user.name%></p>
     <h2 class="contactForm__title">Looks like some alterations are reuqired</h2>
     <p class="contactForm__subtitle">Here you can change the details</p>
-    <%= render "devise/shared/error_messages", resource: @project %>
+    <div class="errorDivContainer">
+    </div>
     
     <%= render "form", project: @project %>
 

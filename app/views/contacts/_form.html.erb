@@ -2,6 +2,9 @@
     <p class="contactForm__subtitle">Information about us</p>
     <h2 class="contactForm__title">Contact us for any query</h2>
 
+    <div class="errorDivContainer">
+    </div>
+
     <%= form_with model: @contact, html: {class: "contactForm verticalFlexContainer"} do |form|%>
         <div class="inputs flexContainer">
             <%= form.text_field :name, :placeholder => "Your Name" %>
