@@ -1,0 +1,9 @@
+$( "#searchTbody tr" ).each( function(){
+    if (this.id != "no-remove") {
+        this.parentNode.removeChild( this ); 
+    }
+});
+
+<% @items.each do |item|%>
+    $('#searchTbody tr:last').after("<%= j render(partial: "order_details/result_row", locals: {item: item}) %>");
+<% end %>

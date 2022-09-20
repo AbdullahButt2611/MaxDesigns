@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboards#index', as: 'dashboard'
 
+  get 'search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
+
   devise_scope :user do
    get "/registered_users", to: "users/registrations#registered_users"
    patch '/simple_user_update', to: 'users/registrations#simple_user_update', as: 'simple_user_update'
@@ -32,10 +34,16 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :project_details
+
     resources :orders do
-      resources :order_details
+      resource :order_details, except: :create
+      member do
+        post :order_details, to: 'order_details#create', as: 'create_order_detail'
+      end
     end
+
   end
+  
 
   module Routes
     module ClassMethods

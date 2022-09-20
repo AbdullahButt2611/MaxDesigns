@@ -23,8 +23,7 @@
 
         <div class="projectContentContainer flexContainer">
             <div class="leftRightContainer">
-                <h1 class="section__title">Orders Placed</h1>
-                <%= link_to "Place Order", project_orders_path(:project_id=>@project.id), method: :post, class: "blackFillButton" %>
+                <h1 class="section__title">Order Placed</h1>
             </div>
         
             <table class="table">
@@ -58,9 +57,25 @@
                             <%end%>
                         </tr>
                     <% end%>
+
+                    <tr class="rowToAddNewLink">
+                            <th data-title = "Item Name" scope="row">Order</th>
+                            <th data-title = "Quantity">something</th>
+                            <th data-title = "Identity Price">from</th>
+                            <th data-title = "Sum Price">vendor's</th>
+                            <th data-title = "Vendor">list</th>
+                            <th class="userRemoveLink">
+                                <%= link_to "Add Items", new_project_order_order_detail_path(project_id: @project.id, order_id: @order.id),  class: "whiteFillButton" %>
+                            </th>
+                        </tr>
                     
                 </tbody>
             </table>
+
+            
+
         </div>
+
+
 </div>
 <%= render "layouts/footer" %>

@@ -2305,4 +2305,34 @@ div.field_with_errors{
 }
 
 
+.rowToAddNewLink th{
+    color: var(--first-color-alt);
+    font-weight: var(--font-bold);
+    text-transform: capitalize;
+}
+
+.noLeftSide{
+    align-items: flex-start; 
+}
+
+.OrderDetailSearcher{
+    width: 100%;
+    gap: 1rem;
+}
+
+.OrderDetailSearcher input{
+    width: 30%;
+}
+
+
+@media screen and (max-width: 585px) {
+
+    .OrderDetailSearcher{
+        flex-direction: column;
+    }
+
+    .OrderDetailSearcher input{
+        width: 100%;
+    }
+}
 
