@@ -1,2 +1,5 @@
 let detail_id = <%=params[:id]%>
 $("tr#" + detail_id).remove()
+
+let h1_tag = document.getElementById('totalOrderPrice');
+h1_tag.innerText = 'Rs: <%= calculate_total_sum_of_order(@order)%>'

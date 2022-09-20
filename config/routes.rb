@@ -36,10 +36,7 @@ Rails.application.routes.draw do
     resources :project_details
 
     resources :orders do
-      resource :order_details, except: :create
-      member do
-        post :order_details, to: 'order_details#create', as: 'create_order_detail'
-      end
+      resource :order_details
     end
 
   end

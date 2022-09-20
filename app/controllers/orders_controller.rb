@@ -17,6 +17,13 @@ class OrdersController < ApplicationController
         end
     end
 
+    def destroy
+        @project = Project.find(params[:project_id])
+        @order = @project.orders.find(params[:id])
+        @order.destroy
+        render layout: false
+    end
+
     def show
         @project = Project.find(params[:project_id])
         @order = @project.orders.find(params[:id])

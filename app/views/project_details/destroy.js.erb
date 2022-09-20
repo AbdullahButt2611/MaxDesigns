@@ -1,0 +1,10 @@
+$("#projectDetailTable tr#" + <%=params[:id]%>).remove()
+
+let div_tag = document.getElementById('detailCountDiv');
+
+
+<%if @project.project_details.all.count == 0%>
+    div_tag.innerHTML = '<p>No details added yet</p>'
+<%else%>
+    div_tag.innerHTML = '<h1><%= @project.project_details.all.count%></h1><p>Total Details</p>'
+<%end%>

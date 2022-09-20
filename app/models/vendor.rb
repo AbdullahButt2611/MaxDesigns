@@ -4,6 +4,8 @@ class Vendor < ApplicationRecord
 	  belongs_to :user, optional: true, touch: true
     has_many :items, dependent: :destroy
 
+    scope :all_vendors, -> {Vendor.pluck(:company_name)}
+
     validates :company_name, presence: true, length: { minimum: 2 }
     validates :address, presence: true, length: { minimum: 5 }
 

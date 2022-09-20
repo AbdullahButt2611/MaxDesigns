@@ -1,70 +1,34 @@
 
+
+
 <div class="projectContentContainer flexContainer">
+
     <div class="leftRightContainer">
-        <h1 class="section__title">Items Added</h1>
-        <%#= link_to "Place Order", project_orders_path(:project_id=>@project.id), method: :post, class: "blackFillButton" %>
+        <h1 class="section__title">Search Items Here</h1>
+
     </div>
 
-    <table class="table">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col">Item Name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Identity Price</th>
-                <th scope="col">Sum Price</th>
-                <th scope="col">Vendor</th>
-                <th scope="col">Confirmation</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <% @order_details.each do |detail|%>
-                <% if detail.id != nil%>
-                    <tr id = "<%detail.id%>">
-                        <th data-title = "Item Name" scope="row"><%= find_item(detail.vendor_id, detail.item_id).name%></th>
-                        <th data-title = "Quantity"><%= detail.quantity%></th>
-                        <th data-title = "Identity Price">Rs: <%= find_item(detail.vendor_id, detail.item_id).price %></th>
-                        <th data-title = "Sum Price">Rs: <%= sum_price_calculator(detail.vendor_id, detail.item_id, detail.quantity) %></th>
-                        <th data-title = "Vendor"><%= find_vendor(detail.vendor_id) %></th>
-                        <%if @order.order_type == "unpaid"%>
-                            <th class="userRemoveLink">
-                                <%= link_to "Destroy", new_project_order_order_detail(:id=>detail.id, :project_id => @project.id, :order_id => @order.id),
-                                method: :delete,
-                                data: { confirm: "This step will remove the order and all it's dependencies?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
-                            </th>
-                        <%end%>
-                    </tr>
-                <% end%>
-            <% end%>
-            
-        </tbody>
-    </table>
-
-    
-
-</div>
-
-<%= form_with url: search_item_type_path,  method: :get, html: {class: "contactForm verticalFlexContainer"} do |form|%>
-    <%= form.hidden_field :project_id, :value => @project.id %>
-    <%= form.hidden_field :order_id, :value => @order.id %>
-    <div class="inputs verticalFlexContainer noLeftSide">
-        <%= form.label "Item Type" %>
-        <div class="flexContainer OrderDetailSearcher">
-            <div class="inputs verticalFlexContainer itemFormSelect">
-                <%= form.select :item_type, options_for_select(Item.item_types.map {|k, v| [k.humanize.capitalize, Item.item_types.key(v)]})%>
+    <%= form_with url: search_item_type_path,  method: :get, html: {class: "contactForm verticalFlexContainer"} do |form|%>
+        <%= form.hidden_field :project_id, :value => @project.id %>
+        <%= form.hidden_field :order_id, :value => @order.id %>
+        <div class="inputs verticalFlexContainer noLeftSide">
+            <%= form.label "Item Type" %>
+            <div class="flexContainer OrderDetailSearcher">
+                <div class="inputs verticalFlexContainer itemFormSelect">
+                    <%= form.select :item_type, options_for_select(Item.item_types.map {|k, v| [k.humanize.capitalize, Item.item_types.key(v)]})%>
+                </div>
+                <%= form.submit "Show Items", :class => "blackFillButton" %>
             </div>
-            <%= form.submit "Show Items", :class => "blackFillButton" %>
         </div>
-    </div>
 
 
-    
+        
 
 
-<% end %>
+    <% end %>
 
 
-<div class="projectContentContainer flexContainer">
+
     <div class="leftRightContainer">
         <h1 class="section__title">Searched Results</h1>
     </div>
@@ -72,21 +36,19 @@
     <table class="table">
         <thead class="thead-light">
             <tr>
+                <th scope="col">Item Id</th>
                 <th scope="col">Item Name</th>
-                <th scope="col">Identity Price</th>
                 <th scope="col">Vendor</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Confirmation</th>
+                <th scope="col">Identity Price</th>
             </tr>
         </thead>
 
         <tbody class="searchTbody" id="searchTbody">
             <tr id="no-remove">
+                <th  scope="col" style = "display: none;">Item Id</th>
                 <th  scope="col" style = "display: none;">Item Name</th>
-                <th scope="col" style = "display: none;">Identity Price</th>
                 <th scope="col" style = "display: none;">Vendor</th>
-                <th scope="col" style = "display: none;">Quantity</th>
-                <th scope="col" style = "display: none;">Confirmation</th>
+                <th scope="col" style = "display: none;">Identity Price</th>
             </tr>
         </tbody>
     </table>

@@ -24,4 +24,14 @@ module OrdersHelper
 		sum = item.price * quantity
 		return sum
 	end
+
+	def calculate_total_sum_of_order(order)
+		price = 0
+		order.order_details.each do |detail|
+			item = find_item(detail.vendor_id, detail.item_id)
+			value = item.price * detail.quantity
+			price += value
+		end
+		return price
+	end
 end

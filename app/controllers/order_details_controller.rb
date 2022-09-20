@@ -4,16 +4,18 @@ class OrderDetailsController < ApplicationController
         @project = Project.find(params[:project_id])
         @order = @project.orders.find(params[:order_id])
         @order_details = @order.order_details
+        @vendors = Vendor.all_vendors
         @order_detail = @order.order_details.new
     end
     
     def create
-        byebug
         @project = Project.find(params[:project_id])
         @order = @project.orders.find(params[:order_id])
-        @order_detail = @order.order_details.create(order_detail_params)
+        @vendor = Vendor.find_by_company_name(order_detail_params[:vendor_name])
+        @order_detail = @order.order_details.create(quantity: order_detail_params[:quantity], vendor_id: @vendor.id, 
+        item_id: order_detail_params[:item_id], order_id: order_detail_params[:order_id])
         if @order_detail.save
-            redirect_to @order
+            redirect_to project_order_path(@project, @order)
         else
             render layout: false
         end
@@ -39,7 +41,7 @@ class OrderDetailsController < ApplicationController
 
     private
     def order_detail_params
-    	params.require(:order_detail).permit(:quantity,:vendor_id, :item_id, :order_id, :project_id, :item)
+    	params.require(:order_detail).permit(:quantity,:vendor_id, :item_id, :order_id, :project_id, :vendor_name)
   	end
 
 end

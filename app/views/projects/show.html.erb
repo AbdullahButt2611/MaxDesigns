@@ -25,7 +25,7 @@
         
         <div class="projectRemarksContainer flexContainer">
             <div class="leftCounter projectCounter">
-                <div class="innerCounterContainer">
+                <div class="innerCounterContainer" id="orderCountDiv">
                     <%if @project.orders.all.count == 0%>
                         <p>No orders taken yet</p>
                     <%else%>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="middleCounter projectCounter">
-                <div class="innerCounterContainer">
+                <div class="innerCounterContainer" id="detailCountDiv">
                     <%if @project.project_details.all.count == 0%>
                         <p>No details added yet</p>
                     <%else%>
@@ -72,9 +72,9 @@
                     </tr>
                 </thead>
         
-                <tbody>
+                <tbody id="projectDetailTable" >
                     <% @project.project_details.each do |detail|%>
-                        <tr>
+                        <tr id="<%= detail.id%>">
                             <th data-title = "Task" scope="row"><%= detail.task%></th>
                             <th data-title = "Date Added"><%= project_deadline_formatiing(detail.date)%></th>
                             <th class="userUpdateLink "><%= link_to "Update", edit_project_project_detail_path(:id=>detail.id, :project_id => @project.id), class: "blackFillButton" %></th>
@@ -108,9 +108,9 @@
                     </tr>
                 </thead>
         
-                <tbody>
+                <tbody id="orderDetailTable">
                     <% @project.orders.each do |order|%>
-                    <tr>
+                    <tr id="<%= order.id%>">
                         <th data-title = "Ref #" scope="row"><%= order.id%></th>
                         <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
                         <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>

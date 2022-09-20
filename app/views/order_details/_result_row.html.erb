@@ -1,11 +1,6 @@
 <tr>
+    <th data-title = "Item Name" scope="row"><%= item.id%></th>
     <th data-title = "Item Name" scope="row"><%= item.name%></th>
-    <th data-title = "Identity Price">Rs: <%= item.price %></th>
     <th data-title = "Vendor"><%= find_vendor(item.vendor_id) %></th>
-    <%= form_for @order_detail, url: create_order_detail_project_order_path(project_id: @project.id, id: @order.id,  item: item), method: :post, remote: true, html: {class: "contactForm verticalFlexContainer"} do |form|%>
-        <th data-title = "Quantity"><%= form.number_field :quantity, :placeholder => "" %></th>
-        <th class="userRemoveLink">
-            <%= form.submit "Order", :class => "whiteFillButton" %>
-        </th>
-    <% end %>
+    <th data-title = "Identity Price">Rs: <%= item.price %></th>
 </tr>
