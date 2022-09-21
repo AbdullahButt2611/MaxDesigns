@@ -3,6 +3,9 @@ class Project < ApplicationRecord
 	has_many :project_details, dependent: :destroy
 
 	has_many :orders, dependent: :destroy
+	
+	has_many :amount_receiveds, dependent: :destroy
+
 
 
 	#=======================		Scopes		==========================================
@@ -21,6 +24,7 @@ class Project < ApplicationRecord
     validates :contact, presence: true, uniqueness: true,  length: { minimum: 11, maximum: 11 }
     validates :location, presence: true, uniqueness: true
     validates :amount_promised, presence: true, numericality: {greater_than_or_equal_to: 20000 }
+    validates :amount_present, presence: true, numericality: {greater_than_or_equal_to: 0 }
 
 
 

@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: 'dashboards#index', as: 'dashboard'
 
-  get 'search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
+  get '/search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
+  
+  get '/amounts', to: 'amount_receiveds#user_amount', as: 'amounts_page'
 
   devise_scope :user do
    get "/registered_users", to: "users/registrations#registered_users"
@@ -38,6 +40,8 @@ Rails.application.routes.draw do
     resources :orders do
       resource :order_details
     end
+
+    resources :amount_receiveds
 
   end
   

@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 
     private
     def create_project_detail(order)
-        order.project.project_details.create(date: Time.now, task: "A new project has been created", user_id: current_user.id)
+        order.project.project_details.create(date: Time.now, task: "A new project has been created with the Order Reference: " + order.id.to_s, user_id: current_user.id)
     end
 
     

@@ -11,7 +11,6 @@ class ProjectDetailsController <ApplicationController
         @project_detail.user = current_user
 	    if @project_detail.save
             if @project.enqueued?
-                byebug
                 update_project_status(@project)
             end
 	      redirect_to @project

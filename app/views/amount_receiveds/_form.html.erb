@@ -1,0 +1,30 @@
+<div class="errorDivContainer">
+</div>
+<section class="contactFormContainer l-section verticalFlexContainer">
+</section>
+<%= form_with model: @amount_received, url: project_amount_receiveds_path(project_id: @project.id), method: :post, html: {class: "contactForm verticalFlexContainer"} do |form|%>
+    <div class="inputs flexContainer">
+        <%= form.number_field :money_received, :placeholder => "Payment Received", min: "0" %>
+    </div>
+
+    <div class="inputs flexContainer" id="AmountRadioDiv">
+    <%= form.label "Mode of Payment Receival", :id => "labelForRadio" %>
+        <% AmountReceived.modes.keys.each do |mode| %>
+            <div class="flexContainer" id="radioFlexClass">
+                <%= form.radio_button :mode, mode %>
+                <%= form.label "#{:mode}_#{mode.parameterize.underscore}", mode.titleize %>
+            </div>
+        <% end %>
+    </div>
+
+    <%= form.text_area :purpose, :placeholder => "Purpose of Payment" %>
+
+    <div class="Formbuttondiv">
+        <%= form.submit "Send Message", :class => "blackFillButton" %>
+    </div>
+
+
+<% end %>
+<section class="contactFormContainer l-section verticalFlexContainer">
+</section>
+
