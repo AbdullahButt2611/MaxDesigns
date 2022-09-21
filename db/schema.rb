@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_21_055806) do
+ActiveRecord::Schema.define(version: 2022_09_21_213605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_09_21_055806) do
   create_table "amount_receiveds", force: :cascade do |t|
     t.money "money_received", scale: 2
     t.integer "mode"
-    t.text "mode"
+    t.text "purpose"
     t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 2022_09_21_055806) do
     t.index ["order_id"], name: "index_project_details_on_order_id"
     t.index ["project_id"], name: "index_project_details_on_project_id"
     t.index ["user_id"], name: "index_project_details_on_user_id"
+    t.check_constraint "project_id IS NOT NULL", name: "project_details_project_id_null"
+    t.check_constraint "user_id IS NOT NULL", name: "project_details_user_id_null"
   end
 
   create_table "projects", force: :cascade do |t|
