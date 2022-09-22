@@ -7,10 +7,14 @@ class Order < ApplicationRecord
     validates :project_id, presence: true
 
 
+
+
     enum order_type: {
         unpaid: 0,
         paid: 1,
       }
+
+      
 
     
     

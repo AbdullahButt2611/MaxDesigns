@@ -27,12 +27,15 @@ class OrdersController < ApplicationController
     def show
         @project = Project.find(params[:project_id])
         @order = @project.orders.find(params[:id])
+        byebug
     end
 
     private
     def create_project_detail(order)
         order.project.project_details.create(date: Time.now, task: "A new project has been created with the Order Reference: " + order.id.to_s, user_id: current_user.id)
     end
+
+    
 
     
 end

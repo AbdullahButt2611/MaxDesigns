@@ -24,8 +24,10 @@ class OrderDetailsController < ApplicationController
     def destroy
         @project = Project.find(params[:project_id])
         @order = @project.orders.find(params[:order_id])
-        @order_detail = @order.order_details.find(params[:id])
-        @order_detail.destroy
+        if @order.order_type == "unpaid"
+            @order_detail = @order.order_details.find(params[:id])
+            @order_detail.destroy
+        end
         render layout:false
     end
 

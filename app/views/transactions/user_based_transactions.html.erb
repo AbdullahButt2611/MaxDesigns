@@ -1,0 +1,52 @@
+<section class="contactFormContainer l-section verticalFlexContainer">
+
+            <p class="contactForm__subtitle section__title">Hi, <%= current_user.name%></p>
+    <div class="leftRightContainer user_amount_left_right">
+        <div>
+            <p class="contactForm__subtitle">Here are some of the transactions that you carried out<br>Got to perform some more transactions?</p>
+        </div>
+        <div>
+            <%= link_to "Choose Project", projects_path, class: "blackFillButton" %>
+        </div>
+    </div>
+
+    <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
+        <div class="leftRightContainer">
+            <h1 class="section__title">Your History</h1>
+        </div>
+
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Owner Name</th>
+                    <th scope="col">Order Reference</th>
+                    <th scope="col">Amount Paid</th>
+                    <th scope="col">Date Time</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @user_transactions_data.each do |trans_data|%>
+                    <tr id="<%= trans_data.id %>">
+                        <th data-title = "Project Name" scope="row"><%= find_project_from_order(trans_data.order_id).name %></th>
+                        <th data-title = "Owner Name"><%= find_project_from_order(trans_data.order_id).client_name %></th>
+                        <th data-title = "Order Ref#"><%= trans_data.order_id %></th>
+                        <th data-title = "Amount Received">Rs: <%= trans_data.amount_paid %></th>
+                        <th data-title = "Date Time"><%= amount_date_formatiing(trans_data.date) %></th>
+                    </tr>
+                <% end%>
+                
+            </tbody>
+    
+            
+        </table>
+    </div>
+
+    
+
+    
+
+    
+</section>
+<%= render "layouts/footer" %>

@@ -1,0 +1,3 @@
+class VendorHistroysController < ApplicationController
+    
+end

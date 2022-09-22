@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get '/search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
   
   get '/amounts', to: 'amount_receiveds#user_amount', as: 'amounts_page'
+  
+  get '/transactions', to: 'transactions#user_based_transactions', as: 'transactions_page'
 
   devise_scope :user do
    get "/registered_users", to: "users/registrations#registered_users"
@@ -38,6 +40,7 @@ Rails.application.routes.draw do
     resources :project_details
 
     resources :orders do
+      resources :transactions
       resource :order_details
     end
 

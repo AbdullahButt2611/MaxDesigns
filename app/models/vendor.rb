@@ -1,9 +1,14 @@
 class Vendor < ApplicationRecord
 
-	# Associations
-	  belongs_to :user, optional: true, touch: true
-    has_many :items, dependent: :destroy
-
+	#==========================         Associations    =======================================
+  belongs_to :user, optional: true, touch: true
+  has_many :items, dependent: :destroy
+  has_many :vendor_historys, dependent: :destroy
+  
+  
+  
+  
+	#==========================         Scopes    =======================================
     scope :all_vendors, -> {Vendor.pluck(:company_name)}
 
     validates :company_name, presence: true, length: { minimum: 2 }

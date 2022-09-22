@@ -1,0 +1,7 @@
+<%if not @check%>
+    alert("Amount not Enough for this operation. Ask the owner for more funds");
+<%else%>
+    document.getElementById('TypeContentChangeable').innerHTML = '<h1 class="clientName lowerTopPojectTitle" id="totalOrderPrice">Rs: <%= calculate_total_sum_of_order(@order)%></h1><h4 class = "greenColorStatus"><%= @order.order_type.downcase.titleize%></h4>';
+    document.getElementById('removableTr').style = 'display: none;';
+    
+<%end%>

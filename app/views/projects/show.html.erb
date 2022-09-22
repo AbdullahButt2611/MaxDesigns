@@ -151,13 +151,17 @@
                         <th data-title = "Ref #" scope="row"><%= order.id%></th>
                         <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
                         <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
-                        <th data-title = "Total Bill">Rs. 17000</th>
+                        <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
                         <th class="userUpdateLink "><%= link_to "Display", project_order_path(:id=>order.id, :project_id => @project.id), class: "blackFillButton" %></th>
                         <th class="userRemoveLink">
-                                <%= link_to "Destroy", project_order_path(:id=>order.id, :project_id => @project.id),
-                                method: :delete,
-                                data: { confirm: "This step will remove the order and all it's dependencies?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
+                        <%if order.order_type == "unpaid"%>
+                            <%= link_to "Destroy", project_order_path(:id=>order.id, :project_id => @project.id),
+                            method: :delete,
+                            data: { confirm: "This step will remove the order and all it's dependencies?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
                             </th>
+                        <%else%>
+                            Bill Paid
+                        <%end%>
                     </tr>
                     <% end%>
                     

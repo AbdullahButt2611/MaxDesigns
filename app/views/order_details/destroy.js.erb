@@ -1,5 +1,10 @@
-let detail_id = <%=params[:id]%>
-$("tr#" + detail_id).remove()
+<%if @order.order_type == "unpaid"%>
+    let detail_id = <%=params[:id]%>
+    $("tr#" + detail_id).remove()
 
-let h1_tag = document.getElementById('totalOrderPrice');
-h1_tag.innerText = 'Rs: <%= calculate_total_sum_of_order(@order)%>'
+    let h1_tag = document.getElementById('totalOrderPrice');
+    h1_tag.innerText = 'Rs: <%= calculate_total_sum_of_order(@order)%>'
+<%else%>
+alert("Order has been paid so details cannot be deleted. We are sorry for the inconvenience")
+<%end%>
+

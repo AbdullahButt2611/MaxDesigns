@@ -18,6 +18,11 @@ module OrdersHelper
 		return vendor.company_name
 	end
 
+	def find_vendor_as_object(vendor_id)
+		vendor = Vendor.find(vendor_id)
+		return vendor
+	end
+
 	def sum_price_calculator(vendor_id, item_id, quantity)
 		vendor = Vendor.find(vendor_id)
 		item = vendor.items.find(item_id)
@@ -33,5 +38,18 @@ module OrdersHelper
 			price += value
 		end
 		return price
+	end
+
+	def vendor_based_calculation(details)
+		counts = Hash.new
+
+		details.each do |detail|
+			if counts.key?(detail.vendor_id)
+				counts[detail.vendor_id] = counts.fetch(detail.vendor_id) + sum_price_calculator(detail.vendor_id, detail.item_id, detail.quantity)
+			else 
+				counts.store(detail.vendor_id, sum_price_calculator(detail.vendor_id, detail.item_id, detail.quantity))
+			end
+		end
+		return counts
 	end
 end

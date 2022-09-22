@@ -9,7 +9,7 @@
                 <br>
             </div>
             <div class="verticalFlexContainer">
-                <div class="topLeftProject ">
+                <div class="topLeftProject " id = "TypeContentChangeable">
                     <h1 class="clientName lowerTopPojectTitle" id="totalOrderPrice">Rs: <%= calculate_total_sum_of_order(@order)%></h1>
                     <% if @order.order_type == "unpaid" %>
                         <h4 class = "redColorStatus" ><%= @order.order_type.downcase.titleize%></h4>
@@ -24,6 +24,9 @@
         <div class="projectContentContainer flexContainer">
             <div class="leftRightContainer">
                 <h1 class="section__title">Order Placed</h1>
+                <%if @order.order_type == "unpaid"%>
+                    <%= link_to "Pay Bills", project_order_transactions_path(:project_id=>@project.id, :order_id => @order.id), xhr: true, remote: true, method: :post, class: "whiteFillButton" %>
+                <%end%>
             </div>
         
             <table class="table">
@@ -58,7 +61,8 @@
                         </tr>
                     <% end%>
 
-                    <tr class="rowToAddNewLink">
+                    <%if @order.order_type == "unpaid"%>
+                        <tr class="rowToAddNewLink" id="removableTr">
                             <th data-title = "Item Name" scope="row">Order</th>
                             <th data-title = "Quantity">something</th>
                             <th data-title = "Identity Price">from</th>
@@ -67,6 +71,57 @@
                             <th class="userRemoveLink">
                                 <%= link_to "Add Items", new_project_order_order_details_path(project_id: @project.id, order_id: @order.id),  class: "whiteFillButton" %>
                             </th>
+                        </tr>
+                    <%else%>
+                        <tr class="rowToAddNewLink">
+                            <th data-title = "Item Name" scope="row">Bill</th>
+                            <th data-title = "Quantity">has</th>
+                            <th data-title = "Identity Price">been</th>
+                            <th data-title = "Sum Price">paid</th>
+                            <th data-title = "Vendor">now</th>
+                        </tr>
+                    <%end%>
+                    
+                </tbody>
+            </table>
+
+            
+
+        </div>
+
+
+        <div class="projectContentContainer flexContainer">
+            <div class="leftRightContainer">
+                <h1 class="section__title">Order Distribution</h1>
+            </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Vendor Ref#</th>
+                        <th scope="col">Vendor Name</th>
+                        <th scope="col">Total Payment</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% vendor_based_calculation(@order.order_details).each do |v_id, sum_val|%>
+                        <tr>
+                            <th data-title = "Vendor Ref#" scope="row"><%= find_vendor_as_object(v_id).id%></th>
+                            <th data-title = "Vendor Name"><%= find_vendor_as_object(v_id).company_name%></th>
+                            <th data-title = "Total Payment">Rs: <%= sum_val %></th>
+                            <th data-title = "Status"><%= @order.order_type.titleize %></th>
+                            
+                        </tr>
+                    <% end%>
+
+                    <tr class="rowToAddNewLink">
+                            <th data-title = "Item Name" scope="row">Order</th>
+                            <th data-title = "Quantity">something</th>
+                            <th data-title = "Identity Price">from</th>
+                            <th data-title = "Sum Price">vendor's</th>
+                            
                         </tr>
                     
                 </tbody>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_21_213605) do
+ActiveRecord::Schema.define(version: 2022_09_22_074421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,17 @@ ActiveRecord::Schema.define(version: 2022_09_21_213605) do
     t.money "amount_present", scale: 2
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.money "amount_paid", scale: 2
+    t.datetime "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["order_id"], name: "index_transactions_on_order_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -134,6 +145,17 @@ ActiveRecord::Schema.define(version: 2022_09_21_213605) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vendor_historys", force: :cascade do |t|
+    t.money "amount", scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "order_id", null: false
+    t.bigint "vendor_id", null: false
+    t.datetime "date"
+    t.index ["order_id"], name: "index_vendor_historys_on_order_id"
+    t.index ["vendor_id"], name: "index_vendor_historys_on_vendor_id"
+  end
+
   create_table "vendors", force: :cascade do |t|
     t.string "company_name"
     t.text "address"
@@ -154,5 +176,9 @@ ActiveRecord::Schema.define(version: 2022_09_21_213605) do
   add_foreign_key "project_details", "orders"
   add_foreign_key "project_details", "projects"
   add_foreign_key "project_details", "users"
+  add_foreign_key "transactions", "orders"
+  add_foreign_key "transactions", "users"
+  add_foreign_key "vendor_historys", "orders"
+  add_foreign_key "vendor_historys", "vendors"
   add_foreign_key "vendors", "users"
 end
