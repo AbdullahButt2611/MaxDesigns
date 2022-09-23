@@ -12,7 +12,10 @@
                     <p>Last Updated <%= time_ago_in_words(@projects.first.updated_at)%> Ago</p>
                 <% end %>
             </div>
-            <%= link_to "Create New", new_project_path, class: "blackFillButton" %>
+
+            <% if can? :manage, Project  %>
+                <%= link_to "Create New", new_project_path, class: "blackFillButton" %>
+            <%end%>
         </div>
 
         <div class="projectContentContainer flexContainer">
@@ -28,7 +31,11 @@
                             <p class="dealine"><%= project_deadline_formatiing(project.deadline)%></p>
                         </div>
                         <div class="bottom leftRightContainer">
-                            <h1 class="order_placed"><%= project.orders.count %> Orders Placed</h1>
+
+                            <% if can? :read, Order  %>
+                                <h1 class="order_placed"><%= project.orders.count %> Orders Placed</h1>
+                            <%end%>
+
                             <% if project.project_status == "enqueued"%>
                                 <p class="status greyStatus"><%= project.project_status&.downcase&.titleize %></p>
                             <% elsif project.project_status == "in_progress"%>
@@ -39,12 +46,14 @@
                                 <p class="status greenStatus"><%= project.project_status&.downcase&.titleize %></p>        
                             <%end%>
                         </div>
-                        <div class="operation leftRightContainer">
-                            <%= link_to "Edit", edit_project_path(:id=>project.id), class: "whiteFillButton" %>
-                            <%= link_to "Destroy", project_path(:id=>project.id, :redirect=> false),
-                                method: :delete,
-                                data: { confirm: "This step will remove the Item from your shop?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "blackFillButton" %>
-                        </div>
+                        <% if can? :manage, Project  %>
+                            <div class="operation leftRightContainer">
+                                <%= link_to "Edit", edit_project_path(:id=>project.id), class: "whiteFillButton" %>
+                                <%= link_to "Destroy", project_path(:id=>project.id, :redirect=> false),
+                                    method: :delete,
+                                    data: { confirm: "This step will remove the Item from your shop?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "blackFillButton" %>
+                            </div>
+                        <%end%>
                     </div>
                 </div>
             <% end%>

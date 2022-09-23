@@ -4,6 +4,8 @@ class WelcomesController < ApplicationController
 
   def about; end
 
-  def profile; end
+  def profile; 
+    authorize! :profile, current_user
+  end
   
 end

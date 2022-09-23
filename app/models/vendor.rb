@@ -10,6 +10,8 @@ class Vendor < ApplicationRecord
   
 	#==========================         Scopes    =======================================
     scope :all_vendors, -> {Vendor.pluck(:company_name)}
+    scope :total_vendors_objects, ->{ Vendor.all.order('updated_at DESC')}
+
 
     validates :company_name, presence: true, length: { minimum: 2 }
     validates :address, presence: true, length: { minimum: 5 }

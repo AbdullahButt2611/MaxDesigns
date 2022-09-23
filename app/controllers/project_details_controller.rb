@@ -1,4 +1,7 @@
 class ProjectDetailsController <ApplicationController
+    before_action :authenticate_user!
+	load_and_authorize_resource
+    
     def new
         @project = Project.find(params[:project_id])
         @project_detail = @project.project_details.new

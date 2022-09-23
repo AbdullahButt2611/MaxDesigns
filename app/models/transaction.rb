@@ -4,7 +4,7 @@ class Transaction < ApplicationRecord
     
     
     #==========================         Scopes    =======================================
-    scope :current_users_transactions_added, ->(id) { where(user_id: id) and order('created_at DESC')}
+    scope :current_users_transactions_added, ->(id) { where(user_id: id).order('created_at DESC')}
 
 
     #==========================         Validations    =======================================

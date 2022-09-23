@@ -45,7 +45,7 @@ end
 # by clicking on the update button from the registered users tab.
 def update_activity_status
 	@user = User.find(params[:format])
-	authorize! :simple_user_update, current_user
+	authorize! :update_activity_status, current_user
 	@user.available!
 	render layout: false
 end

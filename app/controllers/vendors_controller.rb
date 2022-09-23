@@ -2,7 +2,8 @@ class VendorsController < ApplicationController
 	before_action :authenticate_user!
 	
 	def new
-		 @vendor = Vendor.new
+		authorize! :new, current_user
+		@vendor = Vendor.new
 	end
 
 	def create

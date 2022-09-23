@@ -13,7 +13,7 @@ class AmountReceived < ApplicationRecord
 
 
     #==========================         Scopes    =======================================
-    scope :current_users_amounts_added, ->(id) { where(user_id: id) and order('created_at DESC')}
+    scope :current_users_amounts_added, ->(id) { where(user_id: id).order('created_at DESC')}
     scope :projects_users_amounts_added, ->(user_id, project_id) { where(user_id: user_id, project_id: project_id) and order('created_at DESC')}
 
 

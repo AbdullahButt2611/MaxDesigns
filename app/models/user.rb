@@ -19,6 +19,7 @@ class User < ApplicationRecord
 
   # Scopes
   scope :all_user, -> {where(activity_status: 0)}
+  scope :all_active_users, ->{where.not(activity_status: 0)}
 
 
 

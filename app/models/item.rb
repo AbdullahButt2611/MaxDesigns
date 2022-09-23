@@ -2,6 +2,7 @@ class Item < ApplicationRecord
 	belongs_to :vendor, touch: true
 
 	scope :item_based_on_type, ->(type) {where(item_type: type)}
+	scope :total_items_objects, ->{ Item.all.order('updated_at DESC')}
 
 	validates :name, presence: true
 	validates :price, presence: true, numericality: { greater_than: 0, less_than: 1000000 }

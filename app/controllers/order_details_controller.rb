@@ -1,4 +1,6 @@
 class OrderDetailsController < ApplicationController
+    before_action :authenticate_user!
+	load_and_authorize_resource
     
     def new
         @project = Project.find(params[:project_id])
