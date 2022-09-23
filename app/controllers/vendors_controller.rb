@@ -29,6 +29,10 @@ class VendorsController < ApplicationController
 	    end
 	end
 
+	def item_details_page
+		@vendors = Vendor.total_vendors_objects
+	end
+
   private
 
   def vendor_params

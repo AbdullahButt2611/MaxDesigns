@@ -1,0 +1,45 @@
+<div class="verticalFlexContainer registeredUsersContainer pay_section_main_container">
+
+    <h1 class="section__title">Salary Details</h1>
+    <table class="table pay_section_table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Activity Status</th>
+                <th scope="col">Role</th>
+                <th scope="col">Pay</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        	<% @users.each do |user| %>
+                <%if not user.customer?%>
+                    <tr>
+                        <th data-title = "Name" scope="row"><%= user.name %></th>
+                        <th data-title = "Email"><%= user.email %></th>
+                        <th data-title = "Contact"><%= user.contact %></th>
+                        <th data-title = "Qualification"><%= user.qualification %></th>
+                        <th data-title = "Activity Status"><%= user.activity_status.titleize %></th>
+                        <th data-title = "Role"><%= user.user_roles.titleize %></th>
+                        <%if user.pay == 0%>
+                            <th data-title = "Pay">Pay Not Defined</th>
+                        <%else%>
+                            <th data-title = "Pay">Rs: <%= user.pay %></th>
+                        <%end%>
+
+                        <th class="userUpdateLink "><%= link_to "Update", edit_user_pay_path(user), class: "blackFillButton" %></th>
+                    </tr>
+                <% end %>
+            <% end %>
+            
+        </tbody>
+    </table>
+</div>
+<%= render "layouts/footer" %>
+
+
+

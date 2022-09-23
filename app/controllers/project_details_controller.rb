@@ -15,6 +15,8 @@ class ProjectDetailsController <ApplicationController
 	    if @project_detail.save
             if @project.enqueued?
                 update_project_status(@project)
+            else 
+                change_final_status(@project)
             end
 	      redirect_to @project
 	    else
@@ -55,5 +57,11 @@ class ProjectDetailsController <ApplicationController
     def update_project_status(project)
         project.update(project_status: :in_progress)
     end
+
+    def change_final_status(project)
+		if project.project_details.count >= 45
+			project.final_stage!
+		end
+	end
     
 end

@@ -29,7 +29,6 @@ class OrdersController < ApplicationController
     def show
         @project = Project.find(params[:project_id])
         @order = @project.orders.find(params[:id])
-        byebug
     end
 
     private

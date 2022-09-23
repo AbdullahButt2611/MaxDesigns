@@ -25,11 +25,19 @@ Rails.application.routes.draw do
   get '/amounts', to: 'amount_receiveds#user_amount', as: 'amounts_page'
   
   get '/transactions', to: 'transactions#user_based_transactions', as: 'transactions_page'
+  
+  get '/offered_items', to: 'vendors#item_details_page', as: 'offered_items_page'
+
+  get "/project_status_index", to: "projects#project_status_index", as: 'project_status_index'
+  patch '/complete_changer/:id', to: 'projects#complete_changer', as: 'complete_changer'
 
   devise_scope :user do
    get "/registered_users", to: "users/registrations#registered_users"
    patch '/simple_user_update', to: 'users/registrations#simple_user_update', as: 'simple_user_update'
    patch '/update_activity_status', to: 'users/registrations#update_activity_status', as: 'update_activity_status'
+   get '/users_pay_section', to: 'users/registrations#user_pays_section', as: 'user_pays_section'
+   get "/edit_user_pay/:id/edit", to: "users/registrations#edit_user_pay", as: 'edit_user_pay'
+   patch '/update_user_pay/:id', to: 'users/registrations#update_user_pay', as: 'update_user_pay'
   end
 
   resources :vendors do

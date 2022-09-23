@@ -62,6 +62,37 @@
                             <span class="tooltip">Transactions</span>
                         </li>
                     <%end%>
+
+                    <% if can? :item_details_page, Vendor  %>
+                        <li>
+                            <a href="<%= offered_items_page_path%>">
+                                <i class='bx bxs-cart-download'></i>
+                                <span class="links_name">Offered Items</span>
+                            </a>
+                            <span class="tooltip">Offered Items</span>
+                        </li>
+                    <%end%>
+
+                    <% if can? :user_pays_section, Vendor  %>
+                        <li>
+                            <a href="<%=user_pays_section_path%>">
+                                <i class='bx bx-coin'></i>
+                                <span class="links_name">Salary Management</span>
+                            </a>
+                            <span class="tooltip">Salary Management</span>
+                        </li>
+                    <%end%>
+                    
+                    <% if can? :project_status_index, Project  %>
+                        <li>
+                            <a href="<%= project_status_index_path%>">
+                                <i class='bx bx-chat' ></i>
+                                <span class="links_name">Complete Projects</span>
+                            </a>
+                            <span class="tooltip">Complete Projects</span>
+                        </li>
+                    <%end%>
+
                     <li>
                         <a href="#">
                             <i class='bx bx-chat' ></i>

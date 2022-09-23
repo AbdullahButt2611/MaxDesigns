@@ -1,0 +1,25 @@
+<section class="contactFormContainer l-section verticalFlexContainer">
+    <p class="contactForm__subtitle">Salary Management</p>
+    <h2 class="contactForm__title">Update Salary of <%= @user.name.titleize%> </h2>
+    
+    <%= render "devise/shared/error_messages", resource: @user %>
+
+    <section class="contactFormContainer l-section verticalFlexContainer">
+    </section>
+
+    <%= form_for @user, url: update_user_pay_path(@user), method: :patch, html: {class: "contactForm verticalFlexContainer"} do |form|%>
+        <div class="inputs flexContainer">
+            <%= form.number_field :pay, :placeholder => "Enter Salary", min: "0" %>
+        </div>
+
+        <div class="Formbuttondiv">
+            <%= form.submit "Change Salary", :class => "blackFillButton" %>
+        </div>
+
+    
+    <% end %>
+
+    <section class="contactFormContainer l-section verticalFlexContainer">
+    </section>
+</section>
+<%= render "layouts/footer" %>

@@ -4,6 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	before_action :configure_permitted_parameters, only: [:create, :update]
 
 	before_action :all_registered_users
+	
 
 #   # GET /resource/sign_up
 #   def new
@@ -48,6 +49,30 @@ def update_activity_status
 	authorize! :update_activity_status, current_user
 	@user.available!
 	render layout: false
+end
+
+
+def user_pays_section
+	authorize! :user_pays_section, current_user
+	@users = User.all_active_users
+end
+
+
+def edit_user_pay
+	authorize! :edit_user_pay, current_user
+	@user = User.find(params[:id])
+end
+
+
+def update_user_pay
+	authorize! :update_user_pay, current_user
+	@user = User.find(params[:id])
+	@value = params[:user][:pay]
+	if @user.update(pay: @value)
+		redirect_to user_pays_section_path
+	else
+		render :edit_user_pay
+	end
 end
 
 

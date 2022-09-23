@@ -61,6 +61,7 @@ class Ability
 
 
       elsif user.developer?
+        can :item_details_page, Vendor
 
         can :read, :all
         can :manage, :all
@@ -68,7 +69,7 @@ class Ability
 
       elsif user.customer?
         cannot :manage, :all
-        can :profile, User
+        can :profile, User                          #Use it as reference
         can :read, Project
         cannot :read, Order
         cannot :manage, Order
@@ -86,9 +87,15 @@ class Ability
         cannot :manage, VendorHistory
         can :read, Vendor
         cannot :read, Contact
-        cannot :simple_user_update, User
-        cannot :update_activity_status, User
-
+        cannot :simple_user_update, User            #Use it as reference
+        cannot :update_activity_status, User        #Use it as reference
+        can :item_details_page, Vendor              #Use it as reference
+        cannot :update_user_pay, User               #Use it as reference
+        cannot :edit_user_pay, User                 #Use it as reference
+        cannot :user_pays_section, User             #Use it as reference
+        cannot :project_status_index, Project       #Use it as reference
+        cannot :complete_changer, Project           #Use it as reference
+        
 
       elsif user.architect?
 

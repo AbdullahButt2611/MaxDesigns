@@ -40,26 +40,28 @@
                         </div>
 
                     </div>
+                    
+                    <%if not current_user.customer?%>
+                        <div class="setContent verticalFlexContainer">
+                            <h1 class="setInfoTitle">Office Information</h1>
 
-                    <div class="setContent verticalFlexContainer">
-                        <h1 class="setInfoTitle">Office Information</h1>
+                            <div class="setInfoDetail">
+                                <h3 class="setInfoDetailTitle">Pay</h3>
+                                <p class="setInfoDetailDesc">Rs. <%= current_user.pay %> Only</p>
+                            </div>
 
-                        <div class="setInfoDetail">
-                            <h3 class="setInfoDetailTitle">Pay</h3>
-                            <p class="setInfoDetailDesc">Rs. <%= current_user.pay %> Only</p>
+                            <div class="setInfoDetail">
+                                <h3 class="setInfoDetailTitle">Attendance of Month</h3>
+                                <p class="setInfoDetailDesc">27/31 Presents</p>
+                            </div>
+
+                            <div class="setInfoDetail">
+                                <h3 class="setInfoDetailTitle">Overall Atendance</h3>
+                                <p class="setInfoDetailDesc">26%</p>
+                            </div>
+                            
                         </div>
-
-                        <div class="setInfoDetail">
-                            <h3 class="setInfoDetailTitle">Attendance of Month</h3>
-                            <p class="setInfoDetailDesc">27/31 Presents</p>
-                        </div>
-
-                        <div class="setInfoDetail">
-                            <h3 class="setInfoDetailTitle">Overall Atendance</h3>
-                            <p class="setInfoDetailDesc">26%</p>
-                        </div>
-                        
-                    </div>
+                    <%end%>
 
                 </div>
             </div>
@@ -74,10 +76,12 @@
                     <h4 class="profilePost"><%= current_user.user_roles&.downcase&.titleize %></h4>
                 </div>
 
-                <div>
-                    <h5 class="rankTitle">Ranking</h5>
-                    <h2 class="rankValue">8.6</h2>
-                </div>
+                <%if not current_user.customer?%>
+                    <div>
+                        <h5 class="rankTitle">Ranking</h5>
+                        <h2 class="rankValue"><%= generate_random_ranking %></h2>
+                    </div>
+                <%end%>
             </div>
 
             <div class="professionalInformation verticalFlexContainer">

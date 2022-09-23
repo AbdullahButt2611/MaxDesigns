@@ -1,0 +1,43 @@
+<section class="contactFormContainer l-section verticalFlexContainer">
+
+    <p class="contactForm__subtitle section__title">Offered Items</p>
+    <section class="contactFormContainer l-section verticalFlexContainer">
+    </section>
+
+    <% @vendors.each do |vendor|%>
+        <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
+            <div class="leftRightContainer">
+                <h1 class="section__title"><%= vendor.company_name%></h1>
+            </div>
+
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Item Reference</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Item Price</th>
+                        <th scope="col">Item Type</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% vendor.items.each do |item|%>
+                        <tr>
+                            <th data-title = "Item Reference" scope="row"><%= item.id %></th>
+                            <th data-title = "Item Name"><%= item.name %></th>
+                            <th data-title = "Item Price">Rs: <%= item.price %></th>
+                            <th data-title = "Item Type"><%= item.item_type.titleize %></th>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+        
+                
+            </table>
+        </div>
+    <%end%>
+
+    <section class="contactFormContainer l-section verticalFlexContainer">
+    </section>
+</section>
+<%= render "layouts/footer" %>

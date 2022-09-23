@@ -398,6 +398,22 @@ header{
 }
 
 
+/* =================================================     Scroll Bar    ==================================================== */
+::-webkit-scrollbar{
+    width: 0.60rem;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--scroll-thumb-color);
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--scroll-thumb-color-alt);
+}
+
+
 /*==================================== Welcome Page ======================================= */
 
 /* First Section */
@@ -2591,7 +2607,68 @@ div.field_with_errors{
 }
 
 
+/* ====================================   User Pays Section    ================================ */
+@media screen and (max-width: 1005px) {
 
+    .pay_section_table{
+        box-shadow: none;
+    }
+
+    .pay_section_table tbody{
+        padding: 0 16px;
+    }
+
+    .pay_section_table thead{
+        display: none;
+    }
+
+    .pay_section_table tbody, .pay_section_table tbody tr{
+        display: block;
+        width: 100%;
+    }
+
+    .pay_section_table tbody tr th::before, .pay_section_table tbody tr td::before{
+        content: attr(data-title);
+        display: block;
+        font-weight: 600;
+        font-size: 12px;
+        color: rgba(5, 57, 94, 0.5);
+    }
+
+    .pay_section_table tbody tr th{
+        display: block;
+        width: 50%;
+        float: left;
+        text-align: left;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--default-color);
+    }
+
+    .pay_section_table tbody tr{
+        margin-bottom: 16px;
+        box-shadow: 0px 1px 9px rgba(5, 57, 94, 0.2);
+        float: left;
+        clear: both;
+        border-radius: 7px;
+    }
+
+    .userUpdateLink .blackFillButton{
+        margin-top: 7px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    
+    .pay_section_table tbody tr th{
+        font-size: 13px;
+    }
+
+    .userUpdateLink .blackFillButton, .userRemoveLink .whiteFillButton{
+        padding: 0.5rem 1.2rem;
+    }
+
+}
 
 
 

@@ -158,7 +158,7 @@
                     </thead>
             
                     <tbody id="orderDetailTable">
-                        <% @project.orders.each do |order|%>
+                        <% @project.orders.where(order_type: "unpaid").limit(10).each do |order|%>
                         <tr id="<%= order.id%>">
                             <th data-title = "Ref #" scope="row"><%= order.id%></th>
                             <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
