@@ -8,6 +8,12 @@ class AmountReceivedsController < ApplicationController
 
     def user_amount
         @users_amount_data = AmountReceived.current_users_amounts_added(current_user.id)
+        respond_to do |format|
+            format.html
+            format.pdf do
+              render pdf: current_user.name+"_generated_amount_receipts", template: "amount_receiveds/user_amount_pdf.html.erb", disposition: 'attachment', layout: 'pdf' 
+            end
+        end
     end
 
     def new

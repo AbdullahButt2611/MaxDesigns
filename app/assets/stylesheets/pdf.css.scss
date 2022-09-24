@@ -1528,6 +1528,7 @@ textarea{
     background-color: var(--default-color);
     color: #FFf;
     font-weight: 700;
+    display: table-row-group;
 }
 
 .table tbody tr:nth-child(even){
@@ -2670,22 +2671,6 @@ div.field_with_errors{
 
 }
 
-@media screen and (max-width: 750px){
-    #all_payment_heading{
-        flex-direction: column;
-    }
-
-    #all_payment_heading div{
-        margin-top: 1rem;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
-
-
-
 /* ====================================   PDF    ================================ */
 .pdfContainer{
     background-color: var(--text-color);
@@ -2716,5 +2701,13 @@ div.field_with_errors{
     align-self: flex-end;
     justify-self: flex-end;
 }
+
+
+
+
+
+
+
+
 
 

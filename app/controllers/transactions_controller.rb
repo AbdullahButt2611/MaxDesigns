@@ -20,6 +20,12 @@ class TransactionsController < ApplicationController
 
     def user_based_transactions
       @user_transactions_data = Transaction.current_users_transactions_added(current_user.id)
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Transactions Transcript", template: "transactions/user_based_transactions_pdf.html.erb", disposition: 'attachment', layout: 'pdf', page_size: "Letter"  
+        end
+      end
     end
 
 

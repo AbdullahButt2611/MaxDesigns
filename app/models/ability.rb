@@ -95,6 +95,9 @@ class Ability
         cannot :user_pays_section, User             #Use it as reference
         cannot :project_status_index, Project       #Use it as reference
         cannot :complete_changer, Project           #Use it as reference
+        cannot :see_all_payments, Project           #Use it as reference
+        cannot :see_all_details, Project            #Use it as reference
+        cannot :see_all_order_details, Project      #Use it as reference
         
 
       elsif user.architect?

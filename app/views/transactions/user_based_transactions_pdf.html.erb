@@ -1,25 +1,24 @@
-<section class="contactFormContainer l-section verticalFlexContainer">
+<section class="contactFormContainer l-section verticalFlexContainer pdfContainer">
 
-            <p class="contactForm__subtitle section__title">Hi, <%= current_user.name%></p>
     <div class="leftRightContainer user_amount_left_right">
-        <div>
-            <p class="contactForm__subtitle">Here are some of the transactions that you carried out<br>Got to perform some more transactions?</p>
+        <div class="pdfLogoImage">
+            <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoGrey.png'%></p>
         </div>
-        <div>
-            <%= link_to "Choose Project", projects_path, class: "blackFillButton" %>
+        <div class="pdfDate">
+            <p class="pdfDate__subtitle"><%= amount_date_formatiing(DateTime.now) %></p>
         </div>
     </div>
+
+    <p class="contactForm__subtitle section__title"  id="report_heading">Transactions Transcript</p>
 
     <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
         <div class="leftRightContainer">
             <h1 class="section__title">Your History</h1>
-            <div id="link_button_with_heading">
-                <%= link_to "Download PDF", transactions_page_path(format: :pdf), class: "whiteFillButton" %>
-            </div>
         </div>
 
         <table class="table">
-            <thead class="thead-light">
+            <div id="header">
+                <thead class="thead-light">
                 <tr>
                     <th scope="col">Project Name</th>
                     <th scope="col">Owner Name</th>
@@ -28,6 +27,7 @@
                     <th scope="col">Date Time</th>
                 </tr>
             </thead>
+            
 
             <tbody>
                 <% @user_transactions_data.each do |trans_data|%>
@@ -46,10 +46,4 @@
         </table>
     </div>
 
-    
-
-    
-
-    
 </section>
-<%= render "layouts/footer" %>

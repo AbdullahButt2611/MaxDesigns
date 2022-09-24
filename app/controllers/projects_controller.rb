@@ -52,6 +52,12 @@ class ProjectsController < ApplicationController
   	def show
 	    @project = Project.find(params[:id])
 		@users_amount_data = AmountReceived.projects_users_amounts_added(current_user.id, @project.id)
+		respond_to do |format|
+			format.html
+			format.pdf do
+			  render pdf: @project.name+" Details", template: "projects/show_pdf.html.erb", disposition: 'attachment', layout: 'pdf', page_size: "Letter"  
+			end
+		  end
 	end
 
 	def project_status_index
@@ -60,9 +66,47 @@ class ProjectsController < ApplicationController
 
 	def complete_changer
 		@project = Project.find(params[:id])
-		byebug
-		@project.completed!
-		render layout: false
+		respond_to do |format|
+			format.js do
+				@project.completed!
+				render layout: false
+			end
+		end
+	end
+
+	def see_all_payments
+		@project = Project.find(params[:id])
+		@users_amount_data = AmountReceived.projects_users_amounts_added(current_user.id, @project.id)
+		respond_to do |format|
+			format.html
+			format.pdf do
+			  render pdf: @project.name+" Payment Details By "+current_user.name, template: "projects/see_all_payments_pdf.html.erb", disposition: 'attachment', layout: 'pdf', page_size: "Letter"  
+			end
+		end
+	end
+
+
+	def see_all_details
+		@project = Project.find(params[:id])
+		@users_amount_data = AmountReceived.projects_users_amounts_added(current_user.id, @project.id)
+		respond_to do |format|
+			format.html
+			format.pdf do
+			  render pdf: @project.name+" Project Details", template: "projects/see_all_details_pdf.html.erb", disposition: 'attachment', layout: 'pdf', page_size: "Letter"  
+			end
+		end
+	end
+
+
+	def see_all_order_details
+		@project = Project.find(params[:id])
+		@users_amount_data = AmountReceived.projects_users_amounts_added(current_user.id, @project.id)
+		respond_to do |format|
+			format.html
+			format.pdf do
+			  render pdf: @project.name+" Order Details By ", template: "projects/see_all_order_details_pdf.html.erb", disposition: 'attachment', layout: 'pdf', page_size: "Letter"  
+			end
+		end
 	end
 
 

@@ -31,6 +31,12 @@ Rails.application.routes.draw do
   get "/project_status_index", to: "projects#project_status_index", as: 'project_status_index'
   patch '/complete_changer/:id', to: 'projects#complete_changer', as: 'complete_changer'
 
+  get '/see_all_payments', to: 'projects#see_all_payments', as: 'see_all_payments'
+
+  get '/see_all_details', to: 'projects#see_all_details', as: 'see_all_details'
+
+  get '/see_all_order_details', to: 'projects#see_all_order_details', as: 'see_all_order_details'
+
   devise_scope :user do
    get "/registered_users", to: "users/registrations#registered_users"
    patch '/simple_user_update', to: 'users/registrations#simple_user_update', as: 'simple_user_update'

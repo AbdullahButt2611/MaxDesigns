@@ -1,0 +1,108 @@
+<div class="projectMainContainer l-section verticalFlexContainer showProjectMainContainer ">
+        <div class="projectTopContainer flexContainer">
+            <div>
+                <div class="topLeftProject">
+                    <h1 class="topPojectTitle"><%= @project.name%></h1>
+                </div>
+                <br>
+                <div class="topLeftProject">
+                    <h1 class="clientName"><%= @project.client_name%></h1>
+                    <p><%= @project.location%></p>
+                </div>
+            </div>
+
+            <%# if can? :manage, Project  %>
+                <div class="verticalFlexContainer">
+                    <a href="<%= see_all_order_details_path(:id=>@project.id, format: :pdf)%>" class="blackFillButton">Download PDF</a>
+                </div>
+            <%# end  %>
+        </div>
+
+        <div class="redLine"></div>
+
+        <div class="redLine"></div>
+
+
+         <% if can? :read, Order  %>
+            <div class="projectContentContainer flexContainer">
+                <div class="leftRightContainer">
+                    <h1 class="section__title">Orders Placed (UnPaid)</h1>
+                    <%= link_to "Place Order", project_orders_path(:project_id=>@project.id), method: :post, class: "blackFillButton" %>
+                </div>
+            
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Ref #</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Date Added</th>
+                            <th scope="col">Total Bill</th>
+                            <th scope="col">Show</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody id="orderDetailTable">
+                        <% @project.orders.where(order_type: "unpaid").each do |order|%>
+                        <tr id="<%= order.id%>">
+                            <th data-title = "Ref #" scope="row"><%= order.id%></th>
+                            <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
+                            <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
+                            <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
+                            <th class="userUpdateLink "><%= link_to "Display", project_order_path(:id=>order.id, :project_id => @project.id), class: "blackFillButton" %></th>
+                            <th class="userRemoveLink">
+                            <%if order.order_type == "unpaid"%>
+                                <%= link_to "Destroy", project_order_path(:id=>order.id, :project_id => @project.id),
+                                method: :delete,
+                                data: { confirm: "This step will remove the order and all it's dependencies?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
+                                </th>
+                            <%else%>
+                                Bill Paid
+                            <%end%>
+                        </tr>
+                        <% end%>
+                        
+                    </tbody>
+                </table>
+
+                <section class="l-section verticalFlexContainer">
+                </section>
+
+                <div class="leftRightContainer">
+                    <h1 class="section__title">Orders Placed (Paid)</h1>
+                </div>
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Ref #</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Date Added</th>
+                            <th scope="col">Total Bill</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody id="orderDetailTable">
+                        <% @project.orders.where(order_type: "paid").each do |order|%>
+                        <tr id="<%= order.id%>">
+                            <th data-title = "Ref #" scope="row"><%= order.id%></th>
+                            <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
+                            <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
+                            <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
+                            <th class="userUpdateLink "><%= link_to "Display", project_order_path(:id=>order.id, :project_id => @project.id), class: "blackFillButton" %></th>
+                        </tr>
+                        <% end%>
+                        
+                    </tbody>
+                </table>
+
+
+            </div>
+        <% end  %>    
+
+
+    </div>
+
+
+    <%= render "layouts/footer" %>

@@ -1,0 +1,137 @@
+<div class="projectMainContainer l-section verticalFlexContainer showProjectMainContainer ">
+     <div class="leftRightContainer user_amount_left_right">
+        <div class="pdfLogoImage">
+            <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoGrey.png'%></p>
+        </div>
+        <div class="pdfDate">
+            <p class="pdfDate__subtitle"><%= amount_date_formatiing(DateTime.now) %></p>
+        </div>
+    </div>
+
+    <br><br>
+    
+    <div class="projectTopContainer flexContainer">
+        <div class="projectTopContainer flexContainer">
+            <div class="topLeftProject">
+                <h1 class="topPojectTitle"><%= @project.name%></h1>
+                <h4><%= @project.project_type.downcase.titleize%></h4>
+                <p><%= @project.project_status.downcase.titleize%></p>
+            </div>
+            <div class="topLeftProject">
+                <h1 class="clientName"><%= @project.client_name%></h1>
+                <h4><%= @project.contact%></h4>
+                <p><%= @project.location%></p>
+            </div>
+        </div>
+    </div>
+    
+    <br><br>
+
+    <div class="redLine"></div>
+
+    <br><br>
+
+    <% if can? :read, AmountReceived  %>
+        <div class="projectContentContainer flexContainer">
+            <div class="leftRightContainer">
+                <h1 class="section__title">Amount Received Details</h1>
+            </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Owner Name</th>
+                        <th scope="col">Amount Received</th>
+                        <th scope="col">Purpose</th>
+                        <th scope="col">Date Time</th>
+                        <th scope="col">Mode of Payment</th>
+                        <th scope="col">Employee</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                
+                    <% @project.amount_receiveds.each do |amount_data|%>
+                        <tr id="<%= amount_data.id %>">
+                            <th data-title = "Project Name" scope="row"><%= find_project(amount_data.project_id).name %></th>
+                            <th data-title = "Owner Name"><%= find_project(amount_data.project_id).client_name %></th>
+                            <th data-title = "Amount Received">Rs: <%= amount_data.money_received %></th>
+                            <th data-title = "Purpose"><%= amount_data.purpose %></th>
+                            <th data-title = "Date Time"><%= amount_date_formatiing(amount_data.date) %></th>
+                            <th data-title = "Mode of Payment"><%= amount_data.mode.titleize%></th>
+                            <th data-title = "Mode of Payment"><%= User.find(amount_data.user_id).name%></th>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <div class="redLine"></div>
+    <% end  %>    
+
+    <br><br>
+
+    <% if can? :read, ProjectDetail  %>
+        <div class="projectContentContainer flexContainer">
+            <div class="leftRightContainer">
+                <h1 class="section__title">Project Details</h1>
+            </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Task</th>
+                        <th scope="col">Date Added</th>
+                    </tr>
+                </thead>
+        
+                <tbody id="projectDetailTable" >
+                    <% @project.project_details.order('updated_at DESC').each do |detail|%>
+                        <tr id="<%= detail.id%>">
+                            <th data-title = "Task" scope="row"><%= detail.task%></th>
+                            <th data-title = "Date Added"><%= project_deadline_formatiing(detail.date)%></th>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+        </div>
+    <% end  %>
+
+    <br><br>
+
+    <% if can? :read, Order  %>
+        <div class="projectContentContainer flexContainer">
+            <div class="leftRightContainer">
+                <h1 class="section__title">Orders Placed</h1>
+            </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Ref #</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date Added</th>
+                        <th scope="col">Total Bill</th>
+                    </tr>
+                </thead>
+        
+                <tbody id="orderDetailTable">
+                    <% @project.orders.each do |order|%>
+                    <tr id="<%= order.id%>">
+                        <th data-title = "Ref #" scope="row"><%= order.id%></th>
+                        <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
+                        <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
+                        <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
+                    </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+        </div>
+    <% end  %>
+
+
+    </div>

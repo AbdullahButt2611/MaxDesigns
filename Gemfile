@@ -106,3 +106,7 @@ gem 'resque', :require => 'resque/server'
 
 # Authorization Gem
 gem 'cancancan'
+
+
+# PDF Generator
+gem 'wicked_pdf'

@@ -1,25 +1,25 @@
-<section class="contactFormContainer l-section verticalFlexContainer">
+<section class="contactFormContainer l-section verticalFlexContainer pdfContainer">
 
-            <p class="contactForm__subtitle section__title">Hi, <%= current_user.name%></p>
     <div class="leftRightContainer user_amount_left_right">
-        <div>
-            <p class="contactForm__subtitle">Got Some new details to add? <br>Want to put something in system</p>
+        <div class="pdfLogoImage">
+            <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoGrey.png'%></p>
         </div>
-        <div>
-            <%= link_to "Choose Project", projects_path, class: "blackFillButton" %>
+        <div class="pdfDate">
+            <p class="pdfDate__subtitle"><%= amount_date_formatiing(DateTime.now) %></p>
+        </div>
+    </div>
+    
+    <p class="contactForm__subtitle section__title" id="report_heading">Amount Received History Report</p>
+
+    <div class="leftRightContainer user_amount_left_right">
+        <div class="pdfLogoImage" id="report_comment">
+            <p class="contactForm__subtitle" >Hi, <%= current_user.name%>, looks like you've been looking for your history of the payments that you've dealt directly using the system.</p>
         </div>
     </div>
 
     <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
         <div class="leftRightContainer">
-        <div></div>
-         
-    </div>
-        <div class="leftRightContainer">
             <h1 class="section__title">Your History</h1>
-            <div id="link_button_with_heading">
-                <%= link_to "Download PDF", amounts_page_path(format: :pdf), class: "whiteFillButton" %>
-            </div>
         </div>
 
         <table class="table">
@@ -49,10 +49,7 @@
             </tbody>
         </table>
     </div>
-
-    
     
 
     
 </section>
-<%= render "layouts/footer" %>

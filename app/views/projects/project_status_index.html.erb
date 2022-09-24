@@ -12,10 +12,6 @@
                     <p>Last Updated <%= time_ago_in_words(@projects.first.updated_at)%> Ago</p>
                 <% end %>
             </div>
-
-            <% if can? :manage, Project  %>
-                <%= link_to "Create New", new_project_path, class: "blackFillButton" %>
-            <%end%>
         </div>
 
         <div class="projectContentContainer flexContainer">

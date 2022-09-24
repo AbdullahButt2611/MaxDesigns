@@ -1,0 +1,101 @@
+<div class="projectMainContainer l-section verticalFlexContainer showProjectMainContainer ">
+    
+    <div class="leftRightContainer user_amount_left_right">
+        <div class="pdfLogoImage">
+            <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoGrey.png'%></p>
+        </div>
+        <div class="pdfDate">
+            <p class="pdfDate__subtitle"><%= amount_date_formatiing(DateTime.now) %></p>
+        </div>
+    </div>
+
+    <br><br>
+    
+    <div class="projectTopContainer flexContainer">
+        <div>
+            <div class="topLeftProject">
+                <h1 class="topPojectTitle"><%= @project.name%></h1>
+            </div>
+            <br>
+            <div class="topLeftProject">
+                <h1 class="clientName"><%= @project.client_name%></h1>
+                <p><%= @project.location%></p>
+            </div>
+        </div>
+    </div>
+    
+    <br><br>
+
+    <div class="redLine"></div>
+
+    <br><br>
+
+    <p class="contactForm__subtitle section__title" id="report_heading">Orders Report</p>
+
+    <br><br>
+
+    
+    <div class="projectContentContainer flexContainer">
+        <div class="leftRightContainer">
+            <h1 class="section__title">Orders Placed (UnPaid)</h1>
+        </div>
+    
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Ref #</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Total Bill</th>
+                </tr>
+            </thead>
+    
+            <tbody id="orderDetailTable">
+                <% @project.orders.where(order_type: "unpaid").each do |order|%>
+                <tr id="<%= order.id%>">
+                    <th data-title = "Ref #" scope="row"><%= order.id%></th>
+                    <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
+                    <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
+                    <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
+                </tr>
+                <% end%>
+                
+            </tbody>
+        </table>
+
+        <section class="l-section verticalFlexContainer">
+        </section>
+
+        <div class="leftRightContainer">
+            <h1 class="section__title">Orders Placed (Paid)</h1>
+        </div>
+    
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Ref #</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date Added</th>
+                    <th scope="col">Total Bill</th>
+                </tr>
+            </thead>
+    
+            <tbody id="orderDetailTable">
+                <% @project.orders.where(order_type: "paid").each do |order|%>
+                <tr id="<%= order.id%>">
+                    <th data-title = "Ref #" scope="row"><%= order.id%></th>
+                    <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
+                    <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
+                    <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
+                </tr>
+                <% end%>
+                
+            </tbody>
+        </table>
+    </div>
+
+      
+
+</div>
+
+
