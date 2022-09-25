@@ -45,6 +45,8 @@ Rails.application.routes.draw do
 
   get '/see_all_order_details', to: 'projects#see_all_order_details', as: 'see_all_order_details'
 
+  get '/:id/history', to: 'vendor_historys#index', as: 'vendor_history'
+
   devise_scope :user do
    get "/registered_users", to: "users/registrations#registered_users"
    patch '/simple_user_update', to: 'users/registrations#simple_user_update', as: 'simple_user_update'

@@ -1,0 +1,69 @@
+<div class="itemIndexContainer l-section verticalFlexContainer">
+        <div class="ItemIndexMain verticalFlexContainer">
+            <div class="topItemContainer">
+                <div class="ItemMainUpper flexContainer">
+                    <div class="verticalFlexContainer itemCompanyDetails">
+                        <h1 class="itemCompanyName"><%= current_user.vendor.company_name%></h1>
+                        <span class="itemComapanyType"><%= current_user.vendor.company_type%></span>
+                        <span class="itemComapanyAddress"><%= current_user.vendor.address%></span>
+                        <br>
+                        <%= link_to "Download PDF", vendor_history_path(:id=>@vendor.id, format: :pdf), class: "whiteFillButton" %>
+                    </div>
+
+                    <div class="verticalFlexContainer itemOwnerDetails">
+                        <div class="itemCompanyImageContainer">
+                            <img src="<%= current_user.avatar%>" alt="Profile">
+                        </div>
+                        <span class="itemCompanyOwner"><%= current_user.name%></span>
+                    </div>
+                </div>
+
+                <div class="leftRightContainer">
+                    <h1 class="section__title">Your History</h1>
+                </div>
+                 <% @vendor_history.each do |history|%>
+                    <table class="table">
+
+                            <%if not  @month_count == history.date.month%>
+                                <thead class="thead-light">
+                                    
+                                    <div class="leftRightContainer">
+                                        <p class="contactForm__subtitle section__title" id="vendor_history_month_heading"><%= history.date.strftime("%B")%></p>
+                                    </div>
+                                    <tr>
+                                        <th scope="col">Project Name</th>
+                                        <th scope="col">Order Reference</th>
+                                        <th scope="col">Amount Paid</th>
+                                        <th scope="col">Dated</th>
+                                    </tr>
+                                </thead>
+                                <%@month_count = history.date.month%>
+                                <tbody>
+                                        <tr>
+                                            <th data-title = "Project Name" scope="row"><%= Order.find(history.order_id).project.name %></th>
+                                            <th data-title = "Order Reference"><%= history.order_id %></th>
+                                            <th data-title = "Amount Paid"><%= history.amount %></th>
+                                            <th data-title = "Dated"><%= amount_date_formatiing(history.date)%></th>
+                                        </tr>
+                                    
+                                </tbody>
+                            <%else%>
+                                <tbody>
+                                        <tr>
+                                            <th data-title = "Project Name" scope="row"><%= Order.find(history.order_id).project.name %></th>
+                                            <th data-title = "Order Reference"><%= history.order_id %></th>
+                                            <th data-title = "Amount Paid"><%= history.amount %></th>
+                                            <th data-title = "Dated"><%= amount_date_formatiing(history.date)%></th>
+                                        </tr>
+                                    
+                                </tbody>
+                            <% end%>
+
+                    </table>
+                <% end%>
+                
+            </div>
+            
+        </div>
+    </div>
+    <%= render "layouts/footer" %>

@@ -7,6 +7,8 @@
                         <span class="itemComapanyType"><%= current_user.vendor.company_type%></span>
                         <span class="itemComapanyAddress"><%= current_user.vendor.address%></span>
                         <a href="<%= new_vendor_item_path %>" class="blackFillButton"><i class='bx bx-plus-circle'></i>Add New Item</a>
+                        <br>
+                        <a href="<%= vendor_history_path(current_user.vendor) %>" class="whiteFillButton">Your Order History</a>
                     </div>
 
                     <div class="verticalFlexContainer itemOwnerDetails">

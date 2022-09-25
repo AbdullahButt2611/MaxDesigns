@@ -9,6 +9,11 @@ class VendorHistory < ApplicationRecord
     validates :date, presence: true
     validate  :date_is_date?
 
+    
+    
+    #==========================       Functions       =======================================
+    scope :particular_vendor_history, ->(id) {where(vendor_id: id).order("updated_at DESC")}
+
 
     #==========================       Functions       =======================================
     private
