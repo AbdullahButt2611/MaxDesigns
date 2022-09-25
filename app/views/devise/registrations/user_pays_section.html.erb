@@ -11,6 +11,8 @@
                 <th scope="col">Activity Status</th>
                 <th scope="col">Role</th>
                 <th scope="col">Pay</th>
+                <th scope="col">Total Details Added</th>
+                <th scope="col">Details Added (<%=DateTime.now.strftime("%B")%>)</th>
                 <% if can? :edit_user_pay, User  %>
                     <th scope="col">Action</th>
                 <% end %>
@@ -32,6 +34,8 @@
                         <%else%>
                             <th data-title = "Pay">Rs: <%= user.pay %></th>
                         <%end%>
+                        <th data-title = "Total Details Added"><%= ProjectDetail.details_added_by_user(user.id).count %></th>
+                        <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)"><%= ProjectDetail.details_added_by_user_in_month(user.id, DateTime.now.month).count %></th>
 
                         <% if can? :edit_user_pay, User  %>
                             <th class="userUpdateLink "><%= link_to "Update", edit_user_pay_path(user), class: "blackFillButton" %></th>
