@@ -16,6 +16,14 @@ Rails.application.routes.draw do
 
   get '/profile', to: 'welcomes#profile', as: 'profile'
 
+  get '/unprocessable_identity', to: 'welcomes#error', as: 'error'
+
+  get '/project_image_index', to: 'projects#project_image_handler_index', as: 'project_image_handler_index'
+
+  get '/edit_project_image/:id', to: 'projects#edit_projects_image', as: 'edit_projects_image'
+  
+  patch '/change_project_image/:id', to: 'projects#put_projects_image', as: 'put_projects_image'
+
   get '/contacts', to: 'contacts#new', as: 'contacts'
 
   get '/dashboard', to: 'dashboards#index', as: 'dashboard'

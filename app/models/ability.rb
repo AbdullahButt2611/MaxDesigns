@@ -64,7 +64,10 @@ class Ability
         cannot :complete_changer, Project           
         cannot :see_all_payments, Project           
         cannot :see_all_details, Project            
-        cannot :see_all_order_details, Project      
+        cannot :see_all_order_details, Project
+        cannot :project_image_handler_index, Project
+        cannot :edit_projects_image, Project
+        cannot :put_projects_image, Project
 
 
         
@@ -102,7 +105,10 @@ class Ability
         cannot :complete_changer, Project           
         cannot :see_all_payments, Project           
         cannot :see_all_details, Project            
-        cannot :see_all_order_details, Project      
+        cannot :see_all_order_details, Project
+        cannot :project_image_handler_index, Project
+        cannot :edit_projects_image, Project
+        cannot :put_projects_image, Project
 
         
 
@@ -110,6 +116,9 @@ class Ability
       elsif user.developer?
         can :item_details_page, Vendor
         can :user_pays_section, User
+        can :project_image_handler_index, Project
+        can :edit_projects_image, Project
+        can :put_projects_image, Project
 
         can :read, :all
         can :manage, :all
@@ -147,17 +156,46 @@ class Ability
         cannot :see_all_payments, Project           #Use it as reference
         cannot :see_all_details, Project            #Use it as reference
         cannot :see_all_order_details, Project      #Use it as reference
+        cannot :project_image_handler_index, Project
+        cannot :edit_projects_image, Project
+        cannot :put_projects_image, Project
         
 
       elsif user.architect?
-
-        # can :profile, User
-        # can :manage, ProjectDetail
-        # can :read, ProjectDetail
-        # can :read, Project
-        # can :read, Order
         cannot :manage, User
         can :profile, User
+        can :project_image_handler_index, Project
+        can :edit_projects_image, Project
+        can :put_projects_image, Project
+        can :read, Project
+        can :read, ProjectDetail
+        can :manage, ProjectDetail
+        cannot :read, Order
+        cannot :read, Item
+        cannot :manage, Item
+        can :read, Dashboard
+        cannot :read, AmountReceived
+        cannot :manage, AmountReceived
+        cannot :read, OrderDetail
+        cannot :manage, OrderDetail
+        cannot :read, Transaction
+        cannot :manage, Transaction
+        cannot :read, VendorHistory
+        cannot :manage, VendorHistory
+        cannot :read, Vendor
+        cannot :manage, Vendor
+        cannot :read, Contact
+        cannot :simple_user_update, User            #Use it as reference
+        cannot :update_activity_status, User        #Use it as reference
+        cannot :item_details_page, Vendor              #Use it as reference
+        cannot :update_user_pay, User               #Use it as reference
+        cannot :edit_user_pay, User                 #Use it as reference
+        cannot :user_pays_section, User             #Use it as reference
+        cannot :project_status_index, Project       #Use it as reference
+        cannot :complete_changer, Project           #Use it as reference
+        cannot :see_all_payments, Project           #Use it as reference
+        can :see_all_details, Project            #Use it as reference
+        cannot :see_all_order_details, Project      #Use it as reference
 
       elsif user.management?
 
@@ -171,6 +209,12 @@ class Ability
         can :user_pays_section, User
         cannot :edit_user_pay, User
         cannot :update_user_pay, User
+        cannot :project_image_handler_index, Project
+        cannot :edit_projects_image, Project
+        cannot :put_projects_image, Project
+        cannot :project_image_handler_index, Project
+        cannot :edit_projects_image, Project
+        cannot :put_projects_image, Project
         
 
       elsif user.accountant?
@@ -205,7 +249,10 @@ class Ability
         cannot :complete_changer, Project           
         can :see_all_payments, Project           
         can :see_all_details, Project            
-        can :see_all_order_details, Project      
+        can :see_all_order_details, Project
+        cannot :project_image_handler_index, Project
+        cannot :edit_projects_image, Project
+        cannot :put_projects_image, Project
       end
     else
       can :read, Dashboard

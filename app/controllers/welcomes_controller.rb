@@ -7,5 +7,9 @@ class WelcomesController < ApplicationController
   def profile; 
     authorize! :profile, current_user
   end
+
+  def error
+    
+  end
   
 end

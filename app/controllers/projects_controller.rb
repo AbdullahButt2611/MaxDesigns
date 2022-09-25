@@ -109,11 +109,31 @@ class ProjectsController < ApplicationController
 		end
 	end
 
+	def project_image_handler_index
+		@projects = Project.total_projects
+	end
+	
+	def edit_projects_image
+		@project = Project.find(params[:id])
+	end
+
+	def put_projects_image
+		@project = Project.find(params[:id])
+		@image = params[:project][:avatar]
+		@project.update(avatar: @image)
+		create_project_detail(@project)
+		redirect_to project_image_handler_index_path
+	end
+
 
 	private
   	def project_params
-    	params.require(:project).permit(:name,:client_name, :contact, :location, :amount_promised, :deadline, :project_type)
+    	params.require(:project).permit(:name, :client_name, :contact, :location, :amount_promised, :deadline, :project_type, :avatar,  :avatar_cache, :remove_avatar)
   	end
+
+	  def create_project_detail(project)
+        project.project_details.create(date: Time.now, task: "A new Image has been updated for the project profile by " + current_user.name + "(" + current_user.user_roles.titleize + ")", user_id: current_user.id)
+    end
 
 	
 

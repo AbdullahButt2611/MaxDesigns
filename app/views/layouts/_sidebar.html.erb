@@ -92,6 +92,16 @@
                             <span class="tooltip">Complete Projects</span>
                         </li>
                     <%end%>
+                    
+                    <% if can? :project_image_handler_index, Project  %>
+                        <li>
+                            <a href="<%= project_image_handler_index_path %>">
+                                <i class='bx bx-image-add'></i>
+                                <span class="links_name">Project Image</span>
+                            </a>
+                            <span class="tooltip">Project Image</span>
+                        </li>
+                    <%end%>
                     <!--
                     <li>
                         <a href="#">

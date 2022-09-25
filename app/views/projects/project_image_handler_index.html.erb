@@ -1,0 +1,64 @@
+<div class="projectMainContainer l-section verticalFlexContainer">
+        <div class="projectTopContainer flexContainer">
+            <div class="topLeftProject">
+                <h1 class="topPojectTitle">Max Design's Projects</h1>
+                <% if @projects.count == 0 %>
+                    <h4>No Project To display yet</h4>
+                <% elsif @projects.count == 1 %>
+                    <h4>Only <%= @projects.count%> project is available</h4>
+                    <p>Last Updated <%= time_ago_in_words(@projects.first.updated_at)%> Ago</p>
+                 <% else %>
+                    <h4>Total <%= @projects.count%> projects are available</h4>
+                    <p>Last Updated <%= time_ago_in_words(@projects.first.updated_at)%> Ago</p>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="projectContentContainer flexContainer">
+            <div class="leftRightContainer" id="all_payment_heading">
+                <h1 class="section__title">Projects List</h1>
+            </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Owner Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col">Images</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                
+                    <% @projects.each do |project|%>
+                        <tr>
+                            <th data-title = "Project Name" scope="row"><%= project.name %></th>
+                            <th data-title = "Owner Name"><%= project.client_name %></th>
+                            <th data-title = "Status"><%= project.project_status.titleize %></th>
+                            <th data-title = "Deadline"><%= project_deadline_formatiing(project.deadline) %></th>
+                            <th data-title = "Images">
+                                <% if project.avatar? %>
+                                    Yes
+                                <%else%>
+                                    No
+                                <%end%>
+                            </th>
+                            <th data-title = ""> 
+                                <% if project.avatar? %>
+                                    <%= link_to "Edit", edit_projects_image_path(project), class: "blackFillButton" %>
+                                <%else%>
+                                    <%= link_to "Add", edit_projects_image_path(project), class: "whiteFillButton" %>
+                                <%end%>
+                            </th>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<%= render "layouts/footer" %>

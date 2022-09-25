@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
 	#=========================	Associations 	===========================================
+	mount_uploader :avatar, AvatarUploader
+	
 	has_many :project_details, dependent: :destroy
 
 	has_many :orders, dependent: :destroy

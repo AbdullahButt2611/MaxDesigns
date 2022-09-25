@@ -2702,7 +2702,19 @@ div.field_with_errors{
     justify-self: flex-end;
 }
 
+.projectProfileImageDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 2rem;
+}
 
+.projectProfileImageDiv img{
+    border-radius: 2rem;
+    width: auto;
+    height: 350px;
+}
 
 
 

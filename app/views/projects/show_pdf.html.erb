@@ -28,7 +28,13 @@
     <br><br>
 
     <div class="redLine"></div>
+    <% if @project.avatar?  %>
+        <div class="projectProfileImageDiv">
+            <%= wicked_pdf_image_tag image_url(@project.avatar)%>
+        </div>
 
+        <div class="redLine"></div>
+    <% end  %>
     <br><br>
 
     <% if can? :read, AmountReceived  %>

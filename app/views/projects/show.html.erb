@@ -61,6 +61,14 @@
 
         <div class="redLine"></div>
 
+        <% if @project.avatar?  %>
+            <div class="projectProfileImageDiv">
+                <img src = "<%= @project.avatar%>">
+            </div>
+
+            <div class="redLine"></div>
+        <%end%>
+
 
         <% if can? :read, AmountReceived  %>
             <div class="projectContentContainer flexContainer">
