@@ -68,6 +68,7 @@ class Ability
         cannot :project_image_handler_index, Project
         cannot :edit_projects_image, Project
         cannot :put_projects_image, Project
+        can :index, Contact
 
 
         
@@ -109,6 +110,7 @@ class Ability
         cannot :project_image_handler_index, Project
         cannot :edit_projects_image, Project
         cannot :put_projects_image, Project
+        cannot :index, Contact
 
         
 
@@ -119,6 +121,7 @@ class Ability
         can :project_image_handler_index, Project
         can :edit_projects_image, Project
         can :put_projects_image, Project
+        can :index, Contact
 
         can :read, :all
         can :manage, :all
@@ -159,6 +162,7 @@ class Ability
         cannot :project_image_handler_index, Project
         cannot :edit_projects_image, Project
         cannot :put_projects_image, Project
+        cannot :index, Contact
         
 
       elsif user.architect?
@@ -196,6 +200,7 @@ class Ability
         cannot :see_all_payments, Project           #Use it as reference
         can :see_all_details, Project            #Use it as reference
         cannot :see_all_order_details, Project      #Use it as reference
+        cannot :index, Contact
 
       elsif user.management?
 
@@ -215,6 +220,7 @@ class Ability
         cannot :project_image_handler_index, Project
         cannot :edit_projects_image, Project
         cannot :put_projects_image, Project
+        can :index, Contact
         
 
       elsif user.accountant?
@@ -253,6 +259,8 @@ class Ability
         cannot :project_image_handler_index, Project
         cannot :edit_projects_image, Project
         cannot :put_projects_image, Project
+        cannot :index, Contact
+
       end
     else
       can :read, Dashboard

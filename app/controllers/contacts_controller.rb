@@ -1,5 +1,10 @@
 class ContactsController < ApplicationController
   
+  def index
+    authorize! :index, current_user
+    @contacts = Contact.all_contacts
+  end
+
   def new
     @contact = Contact.new
   end

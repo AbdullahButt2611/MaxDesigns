@@ -102,6 +102,15 @@
                             <span class="tooltip">Project Image</span>
                         </li>
                     <%end%>
+                    <% if can? :index, Contact  %>
+                        <li>
+                            <a href="<%= contacts_display_path%>">
+                                <i class='bx bx-chat' ></i>
+                                <span class="links_name">Messages</span>
+                            </a>
+                            <span class="tooltip">Messages</span>
+                        </li>
+                    <%end%>
                     <!--
                     <li>
                         <a href="#">

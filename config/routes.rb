@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get '/contacts', to: 'contacts#new', as: 'contacts'
 
+  get '/contacts/all', to: 'contacts#index', as: 'contacts_display'
+
   get '/dashboard', to: 'dashboards#index', as: 'dashboard'
 
   get '/search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
@@ -88,7 +90,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contacts
+  resources :contacts, except: [:new, :index]
 
   namespace :api do
     namespace :v1 do
