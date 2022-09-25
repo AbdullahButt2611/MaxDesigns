@@ -1,0 +1,202 @@
+<div class="projectMainContainer l-section verticalFlexContainer showProjectMainContainer ">
+     <div class="leftRightContainer user_amount_left_right">
+        <div class="pdfLogoImage">
+            <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoGrey.png'%></p>
+        </div>
+        <div class="pdfDate">
+            <p class="pdfDate__subtitle"><%= amount_date_formatiing(DateTime.now) %></p>
+        </div>
+    </div>
+
+    <br><br>
+
+    <p class="contactForm__subtitle section__title"  id="report_heading">Final Report</p>
+
+    <br><br>
+    
+    <div class="projectTopContainer flexContainer">
+        <div class="projectTopContainer flexContainer">
+            <div class="topLeftProject">
+                <h1 class="topPojectTitle"><%= @project.name%></h1>
+                <h4><%= @project.project_type.downcase.titleize%></h4>
+                <p><%= @project.project_status.downcase.titleize%></p>
+            </div>
+            <div class="topLeftProject">
+                <h1 class="clientName"><%= @project.client_name%></h1>
+                <h4><%= @project.contact%></h4>
+                <p><%= @project.location%></p>
+            </div>
+        </div>
+    </div>
+    
+    <br><br>
+
+    
+
+    <div class="redLine"></div>
+    <% if @project.avatar?  %>
+        <div class="projectProfileImageDiv verticalFlexContainer">
+            <%= wicked_pdf_image_tag image_url(@project.avatar)%>
+            <h4><%= @project.name.titleize%> Final Look</h4>
+        </div>
+
+        <div class="redLine"></div>
+    <% end  %>
+    <br><br>
+
+    <div class="projectContentContainer flexContainer">
+        <div class="leftRightContainer">
+            <h1 class="section__title">Amount Received Details</h1>
+        </div>
+    
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Owner Name</th>
+                    <th scope="col">Amount Received</th>
+                    <th scope="col">Purpose</th>
+                    <th scope="col">Date Time</th>
+                    <th scope="col">Mode of Payment</th>
+                    <th scope="col">Employee</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+            
+                <% @project.amount_receiveds.order("date DESC").each do |amount_data|%>
+                    <tr id="<%= amount_data.id %>">
+                        <th data-title = "Project Name" scope="row"><%= find_project(amount_data.project_id).name %></th>
+                        <th data-title = "Owner Name"><%= find_project(amount_data.project_id).client_name %></th>
+                        <th data-title = "Amount Received">Rs: <%= amount_data.money_received %></th>
+                        <th data-title = "Purpose"><%= amount_data.purpose %></th>
+                        <th data-title = "Date Time"><%= amount_date_formatiing(amount_data.date) %></th>
+                        <th data-title = "Mode of Payment"><%= amount_data.mode.titleize%></th>
+                        <th data-title = "Mode of Payment"><%= User.find(amount_data.user_id).name%></th>
+                    </tr>
+                <% end%>
+                
+            </tbody>
+        </table>
+
+        <div class="leftRightContainer projectTopContainer">
+            <div class="topLeftProject">
+                <h1 class="clientName">Amount Promised:
+                    <div class="topLeftProject">
+                        <h1 class="topPojectTitle">Rs: <%= @project.amount_promised%></h1>
+                    </div>
+                </h1>
+            </div>
+
+            <div class="topLeftProject">
+                <h1 class="clientName">Total Amount Received: 
+                    <h1 class="topPojectTitle">Rs: <%= calculate_total_sum_of_amount_details(@project)%></h1>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div class="redLine"></div>
+   
+
+    <br><br>
+
+    
+    <div class="projectContentContainer flexContainer">
+        <div class="leftRightContainer">
+            <h1 class="section__title">Project Details</h1>
+        </div>
+    
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Task</th>
+                    <th scope="col">Date Added</th>
+                </tr>
+            </thead>
+    
+            <tbody id="projectDetailTable" >
+                <% @project.project_details.order('updated_at DESC').each do |detail|%>
+                    <tr id="<%= detail.id%>">
+                        <th data-title = "Task" scope="row"><%= detail.task%></th>
+                        <th data-title = "Date Added"><%= project_deadline_formatiing(detail.date)%></th>
+                    </tr>
+                <% end%>
+                
+            </tbody>
+        </table>
+    </div>
+    
+
+    <br><br>
+    
+    
+    <div class="redLine"></div>
+   
+
+    <br><br>
+
+    
+    <div class="projectContentContainer flexContainer">
+        <div class="leftRightContainer">
+            <h1 class="section__title">Orders Placed</h1>
+        </div>
+
+        <br><br>
+
+        <% @project.orders.each do |order|%>
+            <br><br>
+            <div class="leftRightContainer flexContainerAligned">
+                <p class="contactForm__subtitle section__title"  id="report_heading">Ref: <%= order.id%></p>
+                <h1 class="section__title"> <%= project_deadline_formatiing(order.order_date)%></h1>
+            </div>
+            
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Identity Price</th>
+                        <th scope="col">Sum Price</th>
+                        <th scope="col">Vendor</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% order.order_details.each do |detail|%>
+                        <tr>
+                            <th data-title = "Item Name" scope="row"><%= find_item(detail.vendor_id, detail.item_id).name%></th>
+                            <th data-title = "Quantity"><%= detail.quantity%></th>
+                            <th data-title = "Identity Price">Rs: <%= find_item(detail.vendor_id, detail.item_id).price %></th>
+                            <th data-title = "Sum Price">Rs: <%= sum_price_calculator(detail.vendor_id, detail.item_id, detail.quantity) %></th>
+                            <th data-title = "Vendor"><%= find_vendor(detail.vendor_id) %></th>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+
+            <div class="leftRightContainer flexContainerAligned">
+                <h1 class="section__title"> <%= order.order_type.downcase.titleize%></h1>
+                <p class="contactForm__subtitle section__title"  id="report_heading">Total Bill: &nbsp;&nbsp;Rs. <%= calculate_total_sum_of_order(order)%></p>
+            </div>
+        <% end%>
+    </div>
+
+    <div class="FinalCount">
+        <div class="leftRightContainer">
+                <div class="pdfLogoImage">
+                    <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoWhite.png'%></p>
+                </div>
+                <div class="verticalFlexContainer">
+                    <p>Orders Total Bill: </p>
+                    <h1> Rs.<%=  calculate_total_sum_of_all_orders(@project)%></h1>
+                </div>
+            </div>
+    </div>
+    
+
+
+    </div>

@@ -125,6 +125,17 @@ class ProjectsController < ApplicationController
 		redirect_to project_image_handler_index_path
 	end
 
+	def project_reports
+		@projects = Project.completed_projects
+		respond_to do |format|
+			format.html
+			format.pdf do
+				@project = Project.find(params[:id])
+			  	render pdf: @project.name+" Final Report ", template: "projects/complete_report_pdf.html.erb", disposition: 'attachment', layout: 'pdf', page_size: "Letter"  
+			end
+		end
+	end
+
 
 	private
   	def project_params

@@ -34,4 +34,24 @@ module ProjectsHelper
 		end
 		return price
 	end
+
+	def calculate_total_sum_of_all_orders(project)
+		price = 0
+		project.orders.each do |order|
+			if order.order_type == "paid"
+				value = calculate_total_sum_of_order(order)
+				price += value
+			end
+		end
+		return price
+	end
+
+	def calculate_total_sum_of_amount_details(project)
+		price = 0
+		project.amount_receiveds.each do |detail|
+			item = detail.money_received
+			price += item
+		end
+		return price
+	end
 end

@@ -12,7 +12,7 @@ class Project < ApplicationRecord
 
 	#=======================		Scopes		==========================================
 	scope :not_completed_projects, ->{ where.not(project_status: 3).order('updated_at DESC')}
-	scope :completed_projects, ->{ where(project_status: "completed").order('updated_at DESC')}
+	scope :completed_projects, ->{ where(project_status: 3).order('updated_at DESC')}
 	scope :total_projects, ->{ Project.all.order('updated_at DESC')}
 
 

@@ -102,6 +102,7 @@
                             <span class="tooltip">Project Image</span>
                         </li>
                     <%end%>
+
                     <% if can? :index, Contact  %>
                         <li>
                             <a href="<%= contacts_display_path%>">
@@ -111,6 +112,14 @@
                             <span class="tooltip">Contact Requests</span>
                         </li>
                     <%end%>
+
+                    <li>
+                        <a href="<%=project_reports_path%>">
+                            <i class='bx bxs-report'></i>
+                            <span class="links_name">Complete Report</span>
+                        </a>
+                        <span class="tooltip">Complete Report</span>
+                    </li>
                     <!--
                     <li>
                         <a href="#">

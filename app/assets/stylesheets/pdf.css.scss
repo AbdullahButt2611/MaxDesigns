@@ -2716,6 +2716,26 @@ div.field_with_errors{
     height: 350px;
 }
 
+.flexContainerAligned{
+    align-items: center;
+}
+
+.FinalCount{
+    margin-top: 3rem;
+    background-color: var(--first-color);
+    width: 100%;
+    padding: 2rem 2rem;
+    color: var(--text-color);
+}
+
+.FinalCount .leftRightContainer{
+    align-items: center;
+}
+
+.FinalCount .leftRightContainer .pdfLogoImage p img{
+    width: 40%;
+}
+
 
 /* ====================================   Vendor History    ================================ */
 #vendor_history_month_heading{
