@@ -21,6 +21,9 @@ class User < ApplicationRecord
   # Scopes
   scope :all_user, -> {where(activity_status: 0)}
   scope :all_active_users, ->{where.not(activity_status: 0)}
+  scope :employee_users, ->{where.not(user_roles: 0).where.not(user_roles: 6).where.not(activity_status: 0) }
+  scope :customer_users, ->{where(user_roles: 0).where.not(activity_status: 0) }
+  scope :pending_users, ->{where(activity_status: 0) }
 
 
 

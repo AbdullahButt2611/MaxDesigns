@@ -76,7 +76,7 @@
                 </div>
             </section>
 
-            <%if not current_user.customer?%>
+            <%if not current_user.customer? and not current_user.hr?%>
                 <section class="orderDashboardSection dashboardSection verticalFlexContainer">
                     <div class="leftRightContainer">
                         <h1>Orders Section</h1>
@@ -88,7 +88,7 @@
                             </div>
                             <div class="rightDash">
                                 <h3 class="dashCardTitle">Total Order</h3>
-                                <h1 class="dashCardCounter dash__title">255</h1>
+                                <h1 class="dashCardCounter dash__title"><%= @all_orders%></h1>
                             </div>
                         </div>
                         <div class="dashboardCard">
@@ -97,7 +97,7 @@
                             </div>
                             <div class="rightDash">
                                 <h3 class="dashCardTitle">Paid Order</h3>
-                                <h1 class="dashCardCounter dash__title">255</h1>
+                                <h1 class="dashCardCounter dash__title"><%= @paid_orders%></h1>
                             </div>
                         </div>
                         <div class="dashboardCard">
@@ -106,7 +106,7 @@
                             </div>
                             <div class="rightDash">
                                 <h3 class="dashCardTitle">Orders Remaining</h3>
-                                <h1 class="dashCardCounter dash__title">255</h1>
+                                <h1 class="dashCardCounter dash__title"><%= @unpaid_orders%></h1>
                             </div>
                         </div>
                         
@@ -142,7 +142,7 @@
                             </div>
                             <div class="rightDash">
                                 <h3 class="dashCardTitle">Employees</h3>
-                                <h1 class="dashCardCounter dash__title">255</h1>
+                                <h1 class="dashCardCounter dash__title"><%= @employee_users%></h1>
                             </div>
                         </div>
                         <div class="dashboardCard">
@@ -151,7 +151,7 @@
                             </div>
                             <div class="rightDash">
                                 <h3 class="dashCardTitle">Customers</h3>
-                                <h1 class="dashCardCounter dash__title">255</h1>
+                                <h1 class="dashCardCounter dash__title"><%= @customer_users%></h1>
                             </div>
                         </div>
                         <div class="dashboardCard">
@@ -160,7 +160,7 @@
                             </div>
                             <div class="rightDash">
                                 <h3 class="dashCardTitle">Pending Requests</h3>
-                                <h1 class="dashCardCounter dash__title">255</h1>
+                                <h1 class="dashCardCounter dash__title"><%= @pending_users%></h1>
                             </div>
                         </div>
                         

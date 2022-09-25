@@ -64,10 +64,12 @@
 
         <% if can? :read, AmountReceived  %>
             <div class="projectContentContainer flexContainer">
-                <div class="leftRightContainer">
-                    <h1 class="section__title">Amount Received Details</h1>
-                    <%= link_to "Received Amount", new_project_amount_received_path(:project_id=>@project.id), class: "whiteFillButton" %>
-                </div>
+                    <div class="leftRightContainer">
+                        <h1 class="section__title">Amount Received Details</h1>
+                    <% if not current_user.management?  %>
+                        <%= link_to "Received Amount", new_project_amount_received_path(:project_id=>@project.id), class: "whiteFillButton" %>
+                    <%end%>
+                    </div>
             
                 <table class="table">
                     <thead class="thead-light">
@@ -98,10 +100,12 @@
                 </table>
             </div>
 
-            <div class="leftRightContainer">
-                <div></div>
-                <%= link_to "See All Payments", see_all_payments_path(:id=>@project.id), class: "blackFillButton" %>
-            </div>
+            <% if can? :see_all_payments, Project  %>
+                <div class="leftRightContainer">
+                    <div></div>
+                    <%= link_to "See All Payments", see_all_payments_path(:id=>@project.id), class: "blackFillButton" %>
+                </div>
+            <% end  %> 
 
             <div class="redLine"></div>
         <% end  %>    
@@ -110,17 +114,21 @@
 
         <% if can? :read, ProjectDetail  %>
             <div class="projectContentContainer flexContainer">
-                <div class="leftRightContainer">
-                    <h1 class="section__title">Project Details</h1>
-                    <%= link_to "Add New Detail", new_project_project_detail_path(:project_id=>@project.id), class: "whiteFillButton" %>
-                </div>
+                    <div class="leftRightContainer">
+                        <h1 class="section__title">Project Details</h1>
+                    <% if not current_user.management?  %>
+                        <%= link_to "Add New Detail", new_project_project_detail_path(:project_id=>@project.id), class: "whiteFillButton" %>
+                    <%end%>
+                    </div>
             
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">Task</th>
                             <th scope="col">Date Added</th>
-                            <th scope="col">Edit</th>
+                            <% if not current_user.management?  %>
+                                <th scope="col">Edit</th>
+                            <%end%>
                             <th scope="col">Remove</th>
                         </tr>
                     </thead>
@@ -130,7 +138,9 @@
                             <tr id="<%= detail.id%>">
                                 <th data-title = "Task" scope="row"><%= detail.task%></th>
                                 <th data-title = "Date Added"><%= project_deadline_formatiing(detail.date)%></th>
+                                <% if not current_user.management?  %>
                                 <th class="userUpdateLink "><%= link_to "Update", edit_project_project_detail_path(:id=>detail.id, :project_id => @project.id), class: "blackFillButton" %></th>
+                                <%end%>
                                 <th class="userRemoveLink">
                                     <%= link_to "Destroy", project_project_detail_path(:id=>detail.id, :project_id => @project.id),
                                     method: :delete,
@@ -143,10 +153,12 @@
                 </table>
             </div>
 
-            <div class="leftRightContainer">
-                <div></div>
-                <%= link_to "See All Details", see_all_details_path(:id=>@project.id), class: "whiteFillButton" %>
-            </div>
+             <% if can? :see_all_details, Project  %>
+                <div class="leftRightContainer">
+                    <div></div>
+                    <%= link_to "See All Details", see_all_details_path(:id=>@project.id), class: "whiteFillButton" %>
+                </div>
+            <% end  %>
 
             <div class="redLine"></div>
 
@@ -156,10 +168,12 @@
 
         <% if can? :read, Order  %>
             <div class="projectContentContainer flexContainer">
-                <div class="leftRightContainer">
-                    <h1 class="section__title">Orders Placed</h1>
-                    <%= link_to "Place Order", project_orders_path(:project_id=>@project.id), method: :post, class: "blackFillButton" %>
-                </div>
+                    <div class="leftRightContainer">
+                        <h1 class="section__title">Orders Placed</h1>
+                    <% if not current_user.management?  %>
+                        <%= link_to "Place Order", project_orders_path(:project_id=>@project.id), method: :post, class: "blackFillButton" %>
+                    <%end%>
+                    </div>
             
                 <table class="table">
                     <thead class="thead-light">
@@ -197,10 +211,13 @@
                 </table>
             </div>
 
-            <div class="leftRightContainer">
-                <div></div>
-                <%= link_to "See All Orders", see_all_order_details_path(:id=>@project.id), class: "whiteFillButton" %>
-            </div>
+            <% if can? :see_all_order_details, Project  %>
+                <div class="leftRightContainer">
+                    <div></div>
+                    <%= link_to "See All Orders", see_all_order_details_path(:id=>@project.id), class: "whiteFillButton" %>
+                </div>
+            <% end  %>
+        
         <% end  %>
 
 

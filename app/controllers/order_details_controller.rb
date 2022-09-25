@@ -13,8 +13,8 @@ class OrderDetailsController < ApplicationController
     def create
         @project = Project.find(params[:project_id])
         @order = @project.orders.find(params[:order_id])
-        @vendor = Vendor.find_by_company_name(order_detail_params[:vendor_name])
-        @order_detail = @order.order_details.create(quantity: order_detail_params[:quantity], vendor_id: @vendor.id, 
+        @vendor = Vendor.find_by_company_name(@vendor_name)
+        @order_detail = @order.order_details.new(quantity: order_detail_params[:quantity], vendor_id: @vendor.id, 
         item_id: order_detail_params[:item_id], order_id: order_detail_params[:order_id])
         if @order_detail.save
             redirect_to project_order_path(@project, @order)
@@ -45,7 +45,8 @@ class OrderDetailsController < ApplicationController
 
     private
     def order_detail_params
-    	params.require(:order_detail).permit(:quantity,:vendor_id, :item_id, :order_id, :project_id, :vendor_name)
-  	end
+        @vendor_name = params[:order_detail][:vendor_name]
+    	params.require(:order_detail).permit(:quantity,:vendor_id, :item_id, :order_id, :project_id)
+    end
 
 end

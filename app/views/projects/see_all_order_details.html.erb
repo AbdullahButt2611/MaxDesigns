@@ -27,7 +27,9 @@
             <div class="projectContentContainer flexContainer">
                 <div class="leftRightContainer">
                     <h1 class="section__title">Orders Placed (UnPaid)</h1>
-                    <%= link_to "Place Order", project_orders_path(:project_id=>@project.id), method: :post, class: "blackFillButton" %>
+                    <% if not current_user.management?  %>
+                        <%= link_to "Place Order", project_orders_path(:project_id=>@project.id), method: :post, class: "blackFillButton" %>
+                    <%end%>
                 </div>
             
                 <table class="table">

@@ -11,7 +11,9 @@
                 <th scope="col">Activity Status</th>
                 <th scope="col">Role</th>
                 <th scope="col">Pay</th>
-                <th scope="col">Action</th>
+                <% if can? :edit_user_pay, User  %>
+                    <th scope="col">Action</th>
+                <% end %>
             </tr>
         </thead>
 
@@ -31,7 +33,9 @@
                             <th data-title = "Pay">Rs: <%= user.pay %></th>
                         <%end%>
 
-                        <th class="userUpdateLink "><%= link_to "Update", edit_user_pay_path(user), class: "blackFillButton" %></th>
+                        <% if can? :edit_user_pay, User  %>
+                            <th class="userUpdateLink "><%= link_to "Update", edit_user_pay_path(user), class: "blackFillButton" %></th>
+                        <% end %>
                     </tr>
                 <% end %>
             <% end %>

@@ -25,7 +25,9 @@
             <div class="leftRightContainer">
                 <h1 class="section__title">Order Placed</h1>
                 <%if @order.order_type == "unpaid"%>
-                    <%= link_to "Pay Bills", project_order_transactions_path(:project_id=>@project.id, :order_id => @order.id), xhr: true, remote: true, method: :post, class: "whiteFillButton" %>
+                    <% if not current_user.management?  %>
+                        <%= link_to "Pay Bills", project_order_transactions_path(:project_id=>@project.id, :order_id => @order.id), xhr: true, remote: true, method: :post, class: "whiteFillButton" %>
+                    <%end%>
                 <%end%>
             </div>
         

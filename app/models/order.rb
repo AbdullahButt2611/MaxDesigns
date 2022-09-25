@@ -6,7 +6,9 @@ class Order < ApplicationRecord
     validates :order_type, presence: true
     validates :project_id, presence: true
 
-
+    scope :all_order, -> {Order.all}
+    scope :unpaid_order, -> {where(order_type: 0)}
+    scope :paid_order, -> {where(order_type: 1)}
 
 
     enum order_type: {

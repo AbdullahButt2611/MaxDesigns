@@ -1289,12 +1289,15 @@ textarea{
     border-radius: 50%;
     overflow: hidden;
     display: flex;
-    justify-content:flex-start;
+    justify-content:center !important;
     align-items: center;
+    padding: 1rem 1rem;
 }
 
 .profileImageDiv img{
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    transform: scale(1.2);
 }
 
 .setContent{
@@ -1449,8 +1452,10 @@ textarea{
         width: 100%;
     }
 
-    .profileContent img{
-        width: 30%;
+    .profileContent .profileImageDiv img{
+        max-width: 100%;
+        max-height: 100%;
+        transform: scale(2.5);
     }
 
     

@@ -73,7 +73,7 @@
                         </li>
                     <%end%>
 
-                    <% if can? :user_pays_section, Vendor  %>
+                    <% if can? :user_pays_section, User  %>
                         <li>
                             <a href="<%=user_pays_section_path%>">
                                 <i class='bx bx-coin'></i>
@@ -92,7 +92,7 @@
                             <span class="tooltip">Complete Projects</span>
                         </li>
                     <%end%>
-
+                    <!--
                     <li>
                         <a href="#">
                             <i class='bx bx-chat' ></i>
@@ -129,6 +129,7 @@
                         </a>
                         <span class="tooltip">Setting</span>
                     </li>
+                    -->
                 <%end%>
             </ul>
 

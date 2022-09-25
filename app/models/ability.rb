@@ -33,47 +33,15 @@ class Ability
     if not user.no_role?
       if user.hr?
 
-        can :simple_user_update, User, User.where(user_roles: :no_role)
-        can :update_activity_status, User, User.where(user_roles: :no_role)
+        can :simple_user_update, User
+        can :update_activity_status, User
         can :manage, User
         can :read, User
-        can :read, Contact
-        can :read, Item
+        can :profile, User  
+        can :read, Order
         cannot :manage, Order
         cannot :manage, Item
-        can :read, Order
-        cannot :manage, Project
-        cannot :manage, ProjectDetail
-        can :read, ProjectDetail
-        can :profile, User
-
-      elsif user.vendor?
-
-        cannot :simple_user_update, User
-        cannot :update_activity_status, User
-        can :manage, Item
-        can :read, Item
-        can :manage, Vendor
-        can :read, Vendor
-        can :read, Project
-        cannot :manage, Project
-        can :profile, User
-
-
-      elsif user.developer?
-        can :item_details_page, Vendor
-
-        can :read, :all
-        can :manage, :all
-        can :profile, User
-
-      elsif user.customer?
-        cannot :manage, :all
-        can :profile, User                          #Use it as reference
-        can :read, Project
-        cannot :read, Order
-        cannot :manage, Order
-        can :read, Item
+        cannot :read, Item
         can :read, Dashboard
         cannot :read, AmountReceived
         cannot :manage, AmountReceived
@@ -86,6 +54,87 @@ class Ability
         cannot :read, VendorHistory
         cannot :manage, VendorHistory
         can :read, Vendor
+        cannot :manage, Vendor
+        can :read, Contact
+        can :update_user_pay, User               
+        can :item_details_page, Vendor              
+        can :edit_user_pay, User                 
+        can :user_pays_section, User             
+        cannot :project_status_index, Project       
+        cannot :complete_changer, Project           
+        cannot :see_all_payments, Project           
+        cannot :see_all_details, Project            
+        cannot :see_all_order_details, Project      
+
+
+        
+
+      elsif user.vendor?
+        can :manage, User
+        can :profile, User
+        cannot :read, Project
+        cannot :manage, Project
+        cannot :read, Order
+        cannot :manage, Order
+        can :read, Item
+        can :manage, Item
+        can :read, Dashboard
+        cannot :read, AmountReceived
+        cannot :manage, AmountReceived
+        cannot :read, ProjectDetail
+        cannot :manage, ProjectDetail
+        cannot :read, OrderDetail
+        cannot :manage, OrderDetail
+        cannot :read, Transaction
+        cannot :manage, Transaction
+        can :read, VendorHistory
+        can :manage, VendorHistory
+        can :read, Vendor
+        can :manage, Vendor
+        cannot :read, Contact
+        cannot :simple_user_update, User            
+        cannot :update_activity_status, User        
+        can :item_details_page, Vendor              
+        cannot :update_user_pay, User               
+        cannot :edit_user_pay, User                 
+        cannot :user_pays_section, User             
+        cannot :project_status_index, Project       
+        cannot :complete_changer, Project           
+        cannot :see_all_payments, Project           
+        cannot :see_all_details, Project            
+        cannot :see_all_order_details, Project      
+
+        
+
+
+      elsif user.developer?
+        can :item_details_page, Vendor
+        can :user_pays_section, User
+
+        can :read, :all
+        can :manage, :all
+        can :profile, User
+
+      elsif user.customer?
+        cannot :manage, User
+        can :profile, User                          #Use it as reference
+        can :read, Project
+        cannot :read, Order
+        can :read, Item
+        cannot :manage, Item
+        can :read, Dashboard
+        cannot :read, AmountReceived
+        cannot :manage, AmountReceived
+        cannot :read, ProjectDetail
+        cannot :manage, ProjectDetail
+        cannot :read, OrderDetail
+        cannot :manage, OrderDetail
+        cannot :read, Transaction
+        cannot :manage, Transaction
+        cannot :read, VendorHistory
+        cannot :manage, VendorHistory
+        can :read, Vendor
+        cannot :manage, Vendor
         cannot :read, Contact
         cannot :simple_user_update, User            #Use it as reference
         cannot :update_activity_status, User        #Use it as reference
@@ -102,25 +151,61 @@ class Ability
 
       elsif user.architect?
 
+        # can :profile, User
+        # can :manage, ProjectDetail
+        # can :read, ProjectDetail
+        # can :read, Project
+        # can :read, Order
+        cannot :manage, User
         can :profile, User
-        can :manage, ProjectDetail
-        can :read, ProjectDetail
-        can :read, Project
-        can :read, Order
 
       elsif user.management?
 
+        can :item_details_page, Vendor
+        can :user_pays_section, User
+        can :read, :all
+        can :manage, :all
         can :profile, User
-        can :manage, User
-        can :manage, Project
-        can :manage, Vendor
-        can :read, all
+        cannot :read, AmountReceived
+        cannot :manage, AmountReceived
+        can :user_pays_section, User
+        cannot :edit_user_pay, User
+        cannot :update_user_pay, User
         
 
       elsif user.accountant?
-
+        cannot :manage, User
         can :profile, User
-
+        can :read, Project
+        can :read, Order
+        can :manage, Order
+        can :read, OrderDetail
+        can :manage, OrderDetail
+        can :read, Item
+        cannot :manage, Item
+        can :read, Dashboard
+        can :read, AmountReceived
+        can :manage, AmountReceived
+        can :read, ProjectDetail
+        can :manage, ProjectDetail
+        can :read, Transaction
+        can :manage, Transaction
+        cannot :read, VendorHistory
+        cannot :manage, VendorHistory
+        can :read, Vendor
+        cannot :manage, Vendor
+        cannot :read, Contact
+        cannot :simple_user_update, User            
+        cannot :update_activity_status, User        
+        can :item_details_page, Vendor              
+        cannot :update_user_pay, User               
+        cannot :edit_user_pay, User                 
+        cannot :user_pays_section, User             
+        cannot :project_status_index, Project       
+        cannot :complete_changer, Project           
+        can :see_all_payments, Project           
+        can :see_all_details, Project            
+        can :see_all_order_details, Project      
       end
     else
       can :read, Dashboard
