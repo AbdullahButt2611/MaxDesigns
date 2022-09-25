@@ -113,13 +113,15 @@
                         </li>
                     <%end%>
 
-                    <li>
-                        <a href="<%=project_reports_path%>">
-                            <i class='bx bxs-report'></i>
-                            <span class="links_name">Complete Report</span>
-                        </a>
-                        <span class="tooltip">Complete Report</span>
-                    </li>
+                    <% if can? :project_reports, Project  %>
+                        <li>
+                            <a href="<%=project_reports_path%>">
+                                <i class='bx bxs-report'></i>
+                                <span class="links_name">Complete Report</span>
+                            </a>
+                            <span class="tooltip">Complete Report</span>
+                        </li>
+                    <%end%>
                     <!--
                     <li>
                         <a href="#">
