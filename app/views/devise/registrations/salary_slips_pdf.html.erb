@@ -1,0 +1,304 @@
+<div class="verticalFlexContainer registeredUsersContainer pay_section_main_container">
+    
+    <div class="leftRightContainer user_amount_left_right">
+        <div class="pdfLogoImage">
+            <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoGrey.png'%></p>
+        </div>
+        <div class="pdfDate">
+            <p class="pdfDate__subtitle"><%= amount_date_formatiing(DateTime.now) %></p>
+        </div>
+    </div>
+
+    <br><br>
+
+    <p class="contactForm__subtitle section__title"  id="report_heading">Salary Transcript</p>
+
+    <br><br>
+
+    <div class="leftRightContainer">
+        <h1 class="section__title">Management Team</h1>
+    </div>
+
+    <table class="table pay_section_table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Activity Status</th>
+                <th scope="col">Role</th>
+                <th scope="col">Pay</th>
+                <th scope="col">Total Details Added</th>
+                <th scope="col">Details Added (<%=DateTime.now.strftime("%B")%>)</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+        
+            <%if not @management_users == []%>
+        	    <% @management_users.each do |user| %>
+                    <tr>
+                        <th data-title = "Name" scope="row"><%= user.name %></th>
+                        <th data-title = "Email"><%= user.email %></th>
+                        <th data-title = "Contact"><%= user.contact %></th>
+                        <th data-title = "Qualification"><%= user.qualification %></th>
+                        <th data-title = "Activity Status"><%= user.activity_status.titleize %></th>
+                        <th data-title = "Role"><%= user.user_roles.titleize %></th>
+                        <th data-title = "Pay">Rs: <%= user.pay %></th>
+                        <th data-title = "Total Details Added"><%= ProjectDetail.details_added_by_user(user.id).count %></th>
+                        <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)"><%= ProjectDetail.details_added_by_user_in_month(user.id, DateTime.now.month).count %></th>
+                    </tr>
+                <% end %>
+            <%else%>
+                <tr>
+                    <th data-title = "Name" scope="row">Employees</th>
+                    <th data-title = "Email">Have</th>
+                    <th data-title = "Contact">Not</th>
+                    <th data-title = "Qualification">Been</th>
+                    <th data-title = "Activity Status">Provided</th>
+                    <th data-title = "Role">The</th>
+                    <th data-title = "Pay">Salary</th>
+                    <th data-title = "Total Details Added">Transcript</th>
+                    <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)">Yet</th>
+                </tr>
+            <%end%>    
+           
+        </tbody>
+    </table>
+
+    
+
+    
+
+    <br><br>
+
+    <div class="leftRightContainer">
+        <h1 class="section__title">HR Team</h1>
+    </div>
+
+    <table class="table pay_section_table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Activity Status</th>
+                <th scope="col">Role</th>
+                <th scope="col">Pay</th>
+                <th scope="col">Total Details Added</th>
+                <th scope="col">Details Added (<%=DateTime.now.strftime("%B")%>)</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+        
+            <%if not @hr_users == []%>
+        	    <% @hr_users.each do |user| %>
+                    <tr>
+                        <th data-title = "Name" scope="row"><%= user.name %></th>
+                        <th data-title = "Email"><%= user.email %></th>
+                        <th data-title = "Contact"><%= user.contact %></th>
+                        <th data-title = "Qualification"><%= user.qualification %></th>
+                        <th data-title = "Activity Status"><%= user.activity_status.titleize %></th>
+                        <th data-title = "Role"><%= user.user_roles.titleize %></th>
+                        <th data-title = "Pay">Rs: <%= user.pay %></th>
+                        <th data-title = "Total Details Added"><%= ProjectDetail.details_added_by_user(user.id).count %></th>
+                        <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)"><%= ProjectDetail.details_added_by_user_in_month(user.id, DateTime.now.month).count %></th>
+                    </tr>
+                <% end %>
+            <%else%>
+                <tr>
+                    <th data-title = "Name" scope="row">Employees</th>
+                    <th data-title = "Email">Have</th>
+                    <th data-title = "Contact">Not</th>
+                    <th data-title = "Qualification">Been</th>
+                    <th data-title = "Activity Status">Provided</th>
+                    <th data-title = "Role">The</th>
+                    <th data-title = "Pay">Salary</th>
+                    <th data-title = "Total Details Added">Transcript</th>
+                    <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)">Yet</th>
+                </tr>
+            <%end%>    
+           
+        </tbody>
+    </table>
+
+    
+
+    <br><br>
+
+    <div class="leftRightContainer">
+        <h1 class="section__title">Accounts Department</h1>
+    </div>
+
+    <table class="table pay_section_table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Activity Status</th>
+                <th scope="col">Role</th>
+                <th scope="col">Pay</th>
+                <th scope="col">Total Details Added</th>
+                <th scope="col">Details Added (<%=DateTime.now.strftime("%B")%>)</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+        
+            <%if not @accountant_users == []%>
+        	    <% @accountant_users.each do |user| %>
+                    <tr>
+                        <th data-title = "Name" scope="row"><%= user.name %></th>
+                        <th data-title = "Email"><%= user.email %></th>
+                        <th data-title = "Contact"><%= user.contact %></th>
+                        <th data-title = "Qualification"><%= user.qualification %></th>
+                        <th data-title = "Activity Status"><%= user.activity_status.titleize %></th>
+                        <th data-title = "Role"><%= user.user_roles.titleize %></th>
+                        <th data-title = "Pay">Rs: <%= user.pay %></th>
+                        <th data-title = "Total Details Added"><%= ProjectDetail.details_added_by_user(user.id).count %></th>
+                        <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)"><%= ProjectDetail.details_added_by_user_in_month(user.id, DateTime.now.month).count %></th>
+                    </tr>
+                <% end %>
+            <%else%>
+                <tr>
+                    <th data-title = "Name" scope="row">Employees</th>
+                    <th data-title = "Email">Have</th>
+                    <th data-title = "Contact">Not</th>
+                    <th data-title = "Qualification">Been</th>
+                    <th data-title = "Activity Status">Provided</th>
+                    <th data-title = "Role">The</th>
+                    <th data-title = "Pay">Salary</th>
+                    <th data-title = "Total Details Added">Transcript</th>
+                    <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)">Yet</th>
+                </tr>
+            <%end%>    
+           
+        </tbody>
+    </table>
+
+    
+
+    <br><br>
+
+    <div class="leftRightContainer">
+        <h1 class="section__title">Development Team</h1>
+    </div>
+
+    <table class="table pay_section_table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Activity Status</th>
+                <th scope="col">Role</th>
+                <th scope="col">Pay</th>
+                <th scope="col">Total Details Added</th>
+                <th scope="col">Details Added (<%=DateTime.now.strftime("%B")%>)</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+        
+            <%if not @developer_users == []%>
+        	    <% @developer_users.each do |user| %>
+                    <tr>
+                        <th data-title = "Name" scope="row"><%= user.name %></th>
+                        <th data-title = "Email"><%= user.email %></th>
+                        <th data-title = "Contact"><%= user.contact %></th>
+                        <th data-title = "Qualification"><%= user.qualification %></th>
+                        <th data-title = "Activity Status"><%= user.activity_status.titleize %></th>
+                        <th data-title = "Role"><%= user.user_roles.titleize %></th>
+                        <th data-title = "Pay">Rs: <%= user.pay %></th>
+                        <th data-title = "Total Details Added"><%= ProjectDetail.details_added_by_user(user.id).count %></th>
+                        <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)"><%= ProjectDetail.details_added_by_user_in_month(user.id, DateTime.now.month).count %></th>
+                    </tr>
+                <% end %>
+            <%else%>
+                <tr>
+                    <th data-title = "Name" scope="row">Employees</th>
+                    <th data-title = "Email">Have</th>
+                    <th data-title = "Contact">Not</th>
+                    <th data-title = "Qualification">Been</th>
+                    <th data-title = "Activity Status">Provided</th>
+                    <th data-title = "Role">The</th>
+                    <th data-title = "Pay">Salary</th>
+                    <th data-title = "Total Details Added">Transcript</th>
+                    <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)">Yet</th>
+                </tr>
+            <%end%>    
+           
+        </tbody>
+    </table>
+
+    
+
+    <br><br>
+
+    <div class="leftRightContainer">
+        <h1 class="section__title">Architects Team</h1>
+    </div>
+
+    <table class="table pay_section_table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Qualification</th>
+                <th scope="col">Activity Status</th>
+                <th scope="col">Role</th>
+                <th scope="col">Pay</th>
+                <th scope="col">Total Details Added</th>
+                <th scope="col">Details Added (<%=DateTime.now.strftime("%B")%>)</th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+        
+            <%if not @architect_users == []%>
+        	    <% @architect_users.each do |user| %>
+                    <tr>
+                        <th data-title = "Name" scope="row"><%= user.name %></th>
+                        <th data-title = "Email"><%= user.email %></th>
+                        <th data-title = "Contact"><%= user.contact %></th>
+                        <th data-title = "Qualification"><%= user.qualification %></th>
+                        <th data-title = "Activity Status"><%= user.activity_status.titleize %></th>
+                        <th data-title = "Role"><%= user.user_roles.titleize %></th>
+                        <th data-title = "Pay">Rs: <%= user.pay %></th>
+                        <th data-title = "Total Details Added"><%= ProjectDetail.details_added_by_user(user.id).count %></th>
+                        <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)"><%= ProjectDetail.details_added_by_user_in_month(user.id, DateTime.now.month).count %></th>
+                    </tr>
+                <% end %>
+            <%else%>
+                <tr>
+                    <th data-title = "Name" scope="row">Employees</th>
+                    <th data-title = "Email">Have</th>
+                    <th data-title = "Contact">Not</th>
+                    <th data-title = "Qualification">Been</th>
+                    <th data-title = "Activity Status">Provided</th>
+                    <th data-title = "Role">The</th>
+                    <th data-title = "Pay">Salary</th>
+                    <th data-title = "Total Details Added">Transcript</th>
+                    <th data-title = "Details Added (<%=DateTime.now.strftime("%B")%>)">Yet</th>
+                </tr>
+            <%end%>    
+           
+        </tbody>
+    </table>
+</div>
+
+
+
+

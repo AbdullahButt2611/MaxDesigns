@@ -24,6 +24,11 @@ class User < ApplicationRecord
   scope :employee_users, ->{where.not(user_roles: 0).where.not(user_roles: 6).where.not(activity_status: 0) }
   scope :customer_users, ->{where(user_roles: 0).where.not(activity_status: 0) }
   scope :pending_users, ->{where(activity_status: 0) }
+  scope :developer_users, ->{where(user_roles: 1) }
+  scope :architect_users, ->{where(user_roles: 2) }
+  scope :hr_users, ->{where(user_roles: 3) }
+  scope :management_users, ->{where(user_roles: 4) }
+  scope :accountant_users, ->{where(user_roles: 5) }
 
 
 

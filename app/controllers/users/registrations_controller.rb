@@ -75,6 +75,22 @@ def update_user_pay
 	end
 end
 
+def salary_slips
+	authorize! :salary_slips, current_user
+	@management_users =  User.management_users.order("pay DESC").where.not(pay: 0)
+	@hr_users = User.hr_users.order("pay DESC").where.not(pay: 0)
+	@accountant_users = User.accountant_users.order("pay DESC").where.not(pay: 0)
+	@developer_users = User.developer_users.order("pay DESC").where.not(pay: 0)
+	@architect_users = User.architect_users.order("pay DESC").where.not(pay: 0)
+
+	respond_to do |format|
+		format.html
+		format.pdf do
+			render pdf: "Salary Transcript", template: "devise/registrations/salary_slips_pdf.html.erb", disposition: 'attachment', layout: 'pdf', page_size: "Letter"  
+		end
+	end
+end
+
 
 private
   def edit_params

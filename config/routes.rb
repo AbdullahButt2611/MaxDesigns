@@ -43,6 +43,8 @@ Rails.application.routes.draw do
 
   get "/completed_project_reports", to: "projects#project_reports", as: 'project_reports'
 
+  
+
   get '/see_all_payments', to: 'projects#see_all_payments', as: 'see_all_payments'
 
   get '/see_all_details', to: 'projects#see_all_details', as: 'see_all_details'
@@ -58,6 +60,7 @@ Rails.application.routes.draw do
    get '/users_pay_section', to: 'users/registrations#user_pays_section', as: 'user_pays_section'
    get "/edit_user_pay/:id/edit", to: "users/registrations#edit_user_pay", as: 'edit_user_pay'
    patch '/update_user_pay/:id', to: 'users/registrations#update_user_pay', as: 'update_user_pay'
+   get "/salary_slips", to: "users/registrations#salary_slips", as: 'salary_slips'
   end
 
   resources :vendors do

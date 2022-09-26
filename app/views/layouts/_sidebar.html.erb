@@ -122,6 +122,16 @@
                             <span class="tooltip">Complete Report</span>
                         </li>
                     <%end%>
+
+                    <% if can? :salary_slips, User  %>
+                        <li>
+                            <a href="<%=salary_slips_path(format: :pdf)%>">
+                                <i class='bx bx-receipt'></i>
+                                <span class="links_name">Salary Receipts</span>
+                            </a>
+                            <span class="tooltip">Salary Receipts</span>
+                        </li>
+                    <%end%>
                     <!--
                     <li>
                         <a href="#">
