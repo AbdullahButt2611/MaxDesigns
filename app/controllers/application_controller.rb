@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  #before_action :authenticate_user!
   
 
   protected
@@ -14,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied(exception)
-    redirect_to admin_organizations_path, alert: exception.message
+    redirect_to admin_root_path, alert: exception.message
   end
 
   rescue_from CanCan::AccessDenied do |exception|   
