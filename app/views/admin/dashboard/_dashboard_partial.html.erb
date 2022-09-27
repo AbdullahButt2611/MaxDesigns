@@ -1,0 +1,159 @@
+<%@uncomplete_projects = Project.not_completed_projects.count
+		@complete_projects = Project.completed_projects.count
+		@all_projects = Project.total_projects.count
+		@all_vendors = Vendor.total_vendors_objects.count
+		@all_items = Item.total_items_objects.count
+		@all_active_users = User.all_active_users.count
+		@all_orders = Order.all_order.count
+		@unpaid_orders = Order.unpaid_order.count
+		@paid_orders = Order.paid_order.count
+		@employee_users = User.employee_users.count
+		@customer_users = User.customer_users.count
+		@pending_users = User.pending_users.count%>
+<div class="dashboardMainContainer l-section verticalFlexContainer">
+        <div class="verticalFlexContainer">
+            <h1 class="dash__title__helper">WELCOME,</h1>
+            <h1 class="dash__title"><%= current_admin_user.name&.titleize%></h1>
+        </div>
+
+        <div class="redLine"></div>
+
+        
+            <section class="unallowedDashboardSection dashboardSection verticalFlexContainer">
+                <div class="leftRightContainer verticalFlexContainer">
+                    <h1>You can access all the details of your desire as per requirement.</h1>
+                </div>
+            </section>
+        
+
+            <section class="projectDashboardSection dashboardSection verticalFlexContainer">
+                <div class="leftRightContainer">
+                    <h1>Project Details</h1>
+                </div>
+                <div class="dashboardCards">
+                    <div class="dashboardCard">
+                        
+                        <div class="rightDash">
+                            <h3 class="dashCardTitle">Total Projects</h3>
+                            <h1 class="dashCardCounter dash__title"><%= @all_projects %></h1>
+                        </div>
+                    </div>
+                    <div class="dashboardCard">
+                        <div class="rightDash">
+                            <h3 class="dashCardTitle">Completed Projects</h3>
+                            <h1 class="dashCardCounter dash__title"><%= @complete_projects %></h1>
+                        </div>
+                    </div>
+                    <div class="dashboardCard">
+                        
+                        <div class="rightDash">
+                            <h3 class="dashCardTitle">In-Process Projects</h3>
+                            <h1 class="dashCardCounter dash__title"><%= @uncomplete_projects %></h1>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="itemDashboardSection dashboardSection verticalFlexContainer">
+                <div class="leftRightContainer">
+                    <h1>Vending Management</h1>
+                </div>
+                <div class="dashboardCards">
+                    <div class="dashboardCard">
+                        
+                        <div class="rightDash">
+                            <h3 class="dashCardTitle">Total Vendors</h3>
+                            <h1 class="dashCardCounter dash__title"><%= @all_vendors %></h1>
+                        </div>
+                    </div>
+                    <div class="dashboardCard">
+                        
+                        <div class="rightDash">
+                            <h3 class="dashCardTitle">Total Offered Items</h3>
+                            <h1 class="dashCardCounter dash__title"><%= @all_items %></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+                <section class="orderDashboardSection dashboardSection verticalFlexContainer">
+                    <div class="leftRightContainer">
+                        <h1>Orders Section</h1>
+                    </div>
+                    <div class="dashboardCards">
+                        <div class="dashboardCard">
+                            
+                            <div class="rightDash">
+                                <h3 class="dashCardTitle">Total Order</h3>
+                                <h1 class="dashCardCounter dash__title"><%= @all_orders%></h1>
+                            </div>
+                        </div>
+                        <div class="dashboardCard">
+                            
+                            <div class="rightDash">
+                                <h3 class="dashCardTitle">Paid Order</h3>
+                                <h1 class="dashCardCounter dash__title"><%= @paid_orders%></h1>
+                            </div>
+                        </div>
+                        <div class="dashboardCard">
+                            
+                            <div class="rightDash">
+                                <h3 class="dashCardTitle">Orders Remaining</h3>
+                                <h1 class="dashCardCounter dash__title"><%= @unpaid_orders%></h1>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+           
+
+            <section class="userDashboardSection dashboardSection verticalFlexContainer">
+                <div class="leftRightContainer">
+                    <h1>Users Active</h1>
+                </div>
+                <div class="dashboardCards">
+                    <div class="dashboardCard">
+                        
+                        <div class="rightDash">
+                            <h1 class="dashCardCounter dash__title"><%= @all_active_users %></h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+           
+                <section class="detailDashboardSection dashboardSection verticalFlexContainer">
+                    <div class="leftRightContainer">
+                        <h1>User Details</h1>
+                    </div>
+                    <div class="dashboardCards">
+                        <div class="dashboardCard">
+                            
+                            <div class="rightDash">
+                                <h3 class="dashCardTitle">Employees</h3>
+                                <h1 class="dashCardCounter dash__title"><%= @employee_users%></h1>
+                            </div>
+                        </div>
+                        <div class="dashboardCard">
+                            
+                            <div class="rightDash">
+                                <h3 class="dashCardTitle">Customers</h3>
+                                <h1 class="dashCardCounter dash__title"><%= @customer_users%></h1>
+                            </div>
+                        </div>
+                        <div class="dashboardCard">
+                            
+                            <div class="rightDash">
+                                <h3 class="dashCardTitle">Pending Requests</h3>
+                                <h1 class="dashCardCounter dash__title"><%= @pending_users%></h1>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </section>
+            
+        
+    </div>
+<%= render "layouts/footer" %>

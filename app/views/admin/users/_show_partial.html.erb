@@ -1,0 +1,148 @@
+<div class="profileContainer l-section verticalFlexContainer">
+    <section class="profileWrapper l-section flexContainer">
+        <section class="profileContent verticalFlexContainer">
+            <div class="profileImageDiv verticalFlexContainer">
+                <%if user.avatar?%>
+                    <img src="<%=user.avatar%>" alt="Avatar">
+                <%else%>
+                    <img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png" alt="Avatar">
+                <%end%>
+            </div>
+
+            <div class="profileContentContainer verticalFlexContainer">
+                <div class="setInformation verticalFlexContainer">
+
+                    <div class="setContent verticalFlexContainer">
+                        <h1 class="setInfoTitle">Devise Information</h1>
+
+                        <div class="setInfoDetail">
+                            <h3 class="setInfoDetailTitle">Username</h3>
+                            <p class="setInfoDetailDesc"><%= user.username %></p>
+                        </div>
+
+                        <div class="setInfoDetail">
+                            <h3 class="setInfoDetailTitle">Email</h3>
+                            <p class="setInfoDetailDesc"><%= user.email %></p>
+                        </div>
+
+                        <div class="changePassword">
+                            <%= link_to "Edit My Information", edit_admin_user_path(user), class: "blackFillButton" %>
+
+                        </div>
+
+                        <div class="changePassword delAccount">
+                            <%= button_to "Delete my account", admin_users_path(user), data: { confirm: "Are you sure?" }, method: :delete, class: "blackFillButton" %>
+                        </div>
+
+                    </div>
+                    
+                    <%if not user.customer?%>
+                        <div class="setContent verticalFlexContainer">
+                            <h1 class="setInfoTitle">Office Information</h1>
+
+                            <div class="setInfoDetail">
+                                <h3 class="setInfoDetailTitle">Pay</h3>
+                                <p class="setInfoDetailDesc">Rs. <%= user.pay %> Only</p>
+                            </div>
+                            
+                        </div>
+                    <%end%>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section class="profileDetails verticalFlexContainer">
+
+            <div class="generalInfoContainer verticalFlexContainer">
+                <div>
+                    <h1 class="profileName"><%= user.name %></h1>
+                    <h4 class="profilePost"><%= user.user_roles&.downcase&.titleize %></h4>
+                </div>
+
+                <%if not user.customer?%>
+                    <div>
+                        <h5 class="rankTitle">Ranking</h5>
+                        <h2 class="rankValue"><%= generate_random_ranking %></h2>
+                    </div>
+                <%end%>
+            </div>
+
+            <div class="professionalInformation verticalFlexContainer">
+                <div class="contactInfo verticalFlexContainer">
+
+                    <h2 class="contactTitle">Contact Information</h2>
+
+                    <table  class="setInfoDetail">
+                        <td  class="setInfoDetailTitle">Contact:</td>
+                        <td  class="setInfoDetailDesc"><%= user.contact %></td>
+                    </table>
+
+                    <table  class="setInfoDetail">
+                        <td  class="setInfoDetailTitle">Email:</td>
+                        <td  class="setInfoDetailDesc"><%= user.email %></td>
+                    </table>
+                        
+                </div>
+
+                <div class="redLine"></div>
+
+                <div class="contactInfo verticalFlexContainer">
+
+                    <h2 class="contactTitle">Basic Information</h2>
+
+                    <table  class="setInfoDetail">
+                        <td  class="setInfoDetailTitle">Qualification:</td>
+                        <td  class="setInfoDetailDesc"><%= user.qualification %></td>
+                    </table>
+
+                    <table  class="setInfoDetail">
+                        <td  class="setInfoDetailTitle">Status:</td>
+                        <td  class="setInfoDetailDesc"><%= user.activity_status.downcase.titleize %></td>
+                    </table>
+
+                </div>
+
+            </div>
+
+            <% if user.vendor? or user.developer?%>
+
+                <% if user.vendor %>
+                    <div class="professionalInformation verticalFlexContainer">
+                        <div class="contactInfo verticalFlexContainer">
+
+                            <h2 class="contactTitle">Company's Information</h2>
+
+                            <table  class="setInfoDetail">
+                                <td  class="setInfoDetailTitle">Company Name:</td>
+                                <td  class="setInfoDetailDesc"><%= user.vendor.company_name %></td>
+                            </table>
+
+                            <table  class="setInfoDetail">
+                                <td  class="setInfoDetailTitle">Address:</td>
+                                <td  class="setInfoDetailDesc"><%= user.vendor.address %></td>
+                            </table>
+                                
+                        </div>
+
+                        <div class="redLine"></div>
+
+                        <%#= link_to "Visit Store", vendor_items_path(user.vendor), class: "blackFillButton" %>
+
+                    </div>
+
+                <% else %>
+                    <div class="professionalInformation verticalFlexContainer">
+                        <h2 class="contactTitle">You Don't have any Company Setup yet. Get your Company setup in this application to get franchised here and link with the clients.</h2>
+
+                        <%#= link_to "Create Store", new_vendor_path, class: "blackFillButton" %>
+                    </div>
+                <% end %>
+            <% end %>
+
+        </section>
+    </section>
+</div>
+
+<%= render "layouts/footer" %>

@@ -245,6 +245,17 @@ ActiveAdmin.setup do |config|
   #     end
   #   end
 
+  config.namespace :admin do |admin|
+    admin.build_menu :utility_navigation do |menu|
+
+      user_menu = menu.add  label: proc { current_admin_user.name },
+                              url: proc { admin_admin_user_path(current_active_admin_user.id) },
+                               id: 'current_user',
+                               if:  proc { current_active_admin_user } # Check the permissions here
+      admin.add_logout_button_to_menu menu, 100, :style => 'float:left;' # logout link
+    end
+  end
+
   # == Download Links
   #
   # You can disable download links on resource listing pages,
