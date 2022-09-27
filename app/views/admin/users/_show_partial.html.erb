@@ -26,12 +26,12 @@
                         </div>
 
                         <div class="changePassword">
-                            <%= link_to "Edit My Information", edit_admin_user_path(user), class: "blackFillButton" %>
+                            <%= link_to "Edit User's Information", edit_admin_user_path(user), class: "blackFillButton" %>
 
                         </div>
 
                         <div class="changePassword delAccount">
-                            <%= button_to "Delete my account", admin_users_path(user), data: { confirm: "Are you sure?" }, method: :delete, class: "blackFillButton" %>
+                            <%= button_to "Delete User's Account", admin_users_path(user), data: { confirm: "Are you sure?" }, method: :delete, class: "blackFillButton" %>
                         </div>
 
                     </div>

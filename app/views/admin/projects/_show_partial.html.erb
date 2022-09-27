@@ -1,0 +1,172 @@
+<div class="projectMainContainer l-section verticalFlexContainer showProjectMainContainer ">
+        <div class="projectTopContainer flexContainer">
+            <div>
+                <div class="topLeftProject">
+                    <h1 class="topPojectTitle"><%= project.name%></h1>
+                    <h4><%= project.project_type.downcase.titleize%></h4>
+                    <p><%= project.project_status.downcase.titleize%></p>
+                </div>
+                <br>
+                <div class="topLeftProject">
+                    <h1 class="clientName"><%= project.client_name%></h1>
+                    <h4><%= project.contact%></h4>
+                    <p><%= project.location%></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="redLine"></div>
+        
+        <div class="projectRemarksContainer flexContainer">
+            <div class="leftCounter projectCounter">
+                <div class="innerCounterContainer" id="orderCountDiv">
+                    <%if project.orders.all.count == 0%>
+                        <p>No orders taken yet</p>
+                    <%else%>
+                        <h1><%= project.orders.all.count%></h1>
+                        <p>Total Orders</p>
+                    <%end%>
+                </div>
+            </div>
+
+            <div class="middleCounter projectCounter">
+                <div class="innerCounterContainer" id="detailCountDiv">
+                    <%if project.project_details.all.count == 0%>
+                        <p>No details added yet</p>
+                    <%else%>
+                        <h1><%= project.project_details.all.count%></h1>
+                        <p>Total Details</p>
+                    <%end%>
+                </div>
+            </div>
+
+            <div class="rightCounter projectCounter">
+                <div class="innerCounterContainer">
+                    <h1><%= project_deadline_formatiing(project.deadline)%></h1>
+                    <p>Deadline</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="redLine"></div>
+
+        <% if project.avatar?  %>
+            <div class="projectProfileImageDiv">
+                <img src = "<%= project.avatar%>">
+            </div>
+
+            <div class="redLine"></div>
+        <%end%>
+
+
+        
+        <div class="projectContentContainer flexContainer">
+                <div class="leftRightContainer">
+                    <h1 class="section__title">Amount Received Details</h1>
+                </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Project Name</th>
+                        <th scope="col">Owner Name</th>
+                        <th scope="col">Amount Received</th>
+                        <th scope="col">Purpose</th>
+                        <th scope="col">Date Time</th>
+                        <th scope="col">Mode of Payment</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                
+                    <% project.amount_receiveds.each do |amount_data|%>
+                        <tr id="<%= amount_data.id %>">
+                            <th data-title = "Project Name" scope="row"><%= find_project(amount_data.project_id).name %></th>
+                            <th data-title = "Owner Name"><%= find_project(amount_data.project_id).client_name %></th>
+                            <th data-title = "Amount Received">Rs: <%= amount_data.money_received %></th>
+                            <th data-title = "Purpose"><%= amount_data.purpose %></th>
+                            <th data-title = "Date Time"><%= amount_date_formatiing(amount_data.date) %></th>
+                            <th data-title = "Mode of Payment"><%= amount_data.mode.titleize%></th>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        
+
+            <div class="redLine"></div>
+            
+
+        <br><br>
+
+        
+        <div class="projectContentContainer flexContainer">
+                <div class="leftRightContainer">
+                    <h1 class="section__title">Project Details</h1>
+                </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Task</th>
+                        <th scope="col">Date Added</th>
+                    </tr>
+                </thead>
+        
+                <tbody id="projectDetailTable" >
+                    <% @project.project_details.order('updated_at DESC').each do |detail|%>
+                        <tr id="<%= detail.id%>">
+                            <th data-title = "Task" scope="row"><%= detail.task%></th>
+                            <th data-title = "Date Added"><%= project_deadline_formatiing(detail.date)%></th>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+        </div>
+
+            
+        <div class="redLine"></div>
+
+        
+
+        
+        <div class="projectContentContainer flexContainer">
+                <div class="leftRightContainer">
+                    <h1 class="section__title">Orders Placed</h1>
+                </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Ref #</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date Added</th>
+                        <th scope="col">Total Bill</th>
+                        <th scope="col">Order Type</th>
+                    </tr>
+                </thead>
+        
+                <tbody id="orderDetailTable">
+                    <% @project.orders.each do |order|%>
+                        <tr id="<%= order.id%>">
+                            <th data-title = "Ref #" scope="row"><%= order.id%></th>
+                            <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
+                            <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
+                            <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
+                            <th data-title = "Order Type"><%= order.order_type.titleize %></th>
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+        </div>
+
+    
+
+    </div>
+
+
+    <%= render "layouts/footer" %>

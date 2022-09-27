@@ -1,0 +1,50 @@
+<div class="itemIndexContainer l-section verticalFlexContainer">
+        <div class="ItemIndexMain verticalFlexContainer">
+            <div class="topItemContainer">
+                <div class="ItemMainUpper flexContainer">
+                    <div class="verticalFlexContainer itemCompanyDetails">
+                        <h1 class="itemCompanyName"><%= vendor.company_name%></h1>
+                        <span class="itemComapanyType"><%= vendor.company_type%></span>
+                        <span class="itemComapanyAddress"><%= vendor.address%></span>
+                        <br>
+                        <a href="<%= vendor_history_path(vendor) %>" class="whiteFillButton">Your Order History</a>
+                    </div>
+
+                    <div class="verticalFlexContainer itemOwnerDetails">
+                        <div class="itemCompanyImageContainer">
+                            <img src="<%= vendor.user.avatar%>" alt="Profile">
+                        </div>
+                        <span class="itemCompanyOwner"><%= vendor.user.name%></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
+
+        
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Last Updated</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody>
+                        <% vendor.items.each do |item|%>
+                            <tr id="<%= item.id %>">
+                                <th data-title = "Name" scope="row"><%= item.name %></th>
+                                <th data-title = "Price"><%= item.price %></th>
+                                <th data-title = "Type"><%= item.item_type.capitalize %></th>
+                                <th data-title = "Last Updated"><%= item_update_date_formatting(item.updated_at)%></th>
+                            </tr>
+                        <% end%>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%= render "layouts/footer" %>

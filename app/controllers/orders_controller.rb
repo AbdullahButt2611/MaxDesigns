@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
 
     private
     def create_project_detail(order)
-        order.project.project_details.create(date: Time.now, task: "A new order has been added with the Order Reference: " + order.id.to_s, user_id: current_user.id)
+        order.project.project_details.create(date: Time.now, task: "A new order has been added with the Order Reference: " + order.id.to_s, user_id: current_user.id, order_id: order.id)
     end
 
     

@@ -24,4 +24,6 @@ class VendorHistory < ApplicationRecord
         end
     end
 
+    
+
 end
