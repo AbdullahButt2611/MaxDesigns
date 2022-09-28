@@ -111,3 +111,4 @@ gem 'cancancan'
 # PDF Generator
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem "wkhtmltopdf-heroku"
