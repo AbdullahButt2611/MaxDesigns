@@ -8,7 +8,7 @@
 
     <div class="inputs flexContainer">
         <%= form.number_field :contact, :placeholder => "Client's Contact" %>
-        <%= form.number_field :amount_promised, :placeholder => "Amount Decided", min: "20000" %>
+        <%= form.number_field :amount_promised, :placeholder => "Amount Decided", min: "20000" , max: "100000000000000"%>
     </div>
 
     <div class="inputs flexContainer">

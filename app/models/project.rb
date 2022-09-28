@@ -27,7 +27,7 @@ class Project < ApplicationRecord
     validates_format_of :contact, :with =>  number_regex, :message => "Only positive number without spaces are allowed"
     validates :contact, presence: true, uniqueness: true,  length: { minimum: 11, maximum: 11 }
     validates :location, presence: true, uniqueness: true
-    validates :amount_promised, presence: true, numericality: {greater_than_or_equal_to: 20000 }
+    validates :amount_promised, presence: true, numericality: {greater_than_or_equal_to: 20000, less_than_or_equal_to: 100000000000000}
     validates :amount_present, presence: true, numericality: {greater_than_or_equal_to: 0 }
 
 
