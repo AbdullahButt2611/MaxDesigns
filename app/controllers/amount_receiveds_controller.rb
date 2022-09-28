@@ -59,4 +59,8 @@ class AmountReceivedsController < ApplicationController
 		end
 	end
 
+    def update_project_status(project)
+        project.update(project_status: :in_progress)
+    end
+
 end
