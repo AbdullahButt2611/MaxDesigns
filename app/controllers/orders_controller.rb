@@ -22,7 +22,9 @@ class OrdersController < ApplicationController
     def destroy
         @project = Project.find(params[:project_id])
         @order = @project.orders.find(params[:id])
+        delete_project_detail(@order)
         @order.destroy
+        create_delete_project_detail(@order)
         render layout: false
     end
 
@@ -50,7 +52,16 @@ class OrdersController < ApplicationController
         project.update(project_status: :in_progress)
     end
 
-    
+    def delete_project_detail(order)
+        detail = ProjectDetail.find_by_order_id(order.id)
+        detail.update(order_id: nil)
+    end
+
+    def create_delete_project_detail(order)
+        order.project.project_details.create(date: Time.now, task: "An order with the Order Reference: " + order.id.to_s+" has been deleted.", user_id: current_user.id)
+        change_final_status(order.project)
+    end
+
 
     
 end
