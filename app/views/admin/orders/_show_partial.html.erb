@@ -1,0 +1,104 @@
+<div class="projectMainContainer l-section verticalFlexContainer showProjectMainContainer ">
+        <div class="projectTopContainer flexContainer orderProjectMainContainer">
+            <div>
+                <div class="topLeftProject">
+                    <h1 class="topPojectTitle upperTopPojectTitle"><%= order.project.name%></h1>
+                    <h4>Reference # <%= order.id%></h4>
+                    <p><%= order_date_formatiing(order.order_date)%></p>
+                </div>
+                <br>
+            </div>
+            <div class="verticalFlexContainer">
+                <div class="topLeftProject " id = "TypeContentChangeable">
+                    <h1 class="clientName lowerTopPojectTitle" id="totalOrderPrice">Rs: <%= calculate_total_sum_of_order(order)%></h1>
+                    <% if order.order_type == "unpaid" %>
+                        <h4 class = "redColorStatus" ><%= order.order_type.downcase.titleize%></h4>
+                    <% else %>
+                        <h4 class = "greenColorStatus"><%= order.order_type.downcase.titleize%></h4>
+                    <% end%>
+                    <p><%= order.project.location%></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="projectContentContainer flexContainer">
+            <div class="leftRightContainer">
+                <h1 class="section__title">Order Placed</h1>
+            </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Identity Price</th>
+                        <th scope="col">Sum Price</th>
+                        <th scope="col">Vendor</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% order.order_details.each do |detail|%>
+                        <tr id="<%= detail.id%>">
+                            <th data-title = "Item Name" scope="row"><%= find_item(detail.vendor_id, detail.item_id).name%></th>
+                            <th data-title = "Quantity"><%= detail.quantity%></th>
+                            <th data-title = "Identity Price">Rs: <%= find_item(detail.vendor_id, detail.item_id).price %></th>
+                            <th data-title = "Sum Price">Rs: <%= sum_price_calculator(detail.vendor_id, detail.item_id, detail.quantity) %></th>
+                            <th data-title = "Vendor"><%= find_vendor(detail.vendor_id) %></th>
+                        </tr>
+                    <% end%>
+
+                    <%if order.order_type == "paid"%>
+                        <tr class="rowToAddNewLink">
+                            <th data-title = "Item Name" scope="row">Bill</th>
+                            <th data-title = "Quantity">has</th>
+                            <th data-title = "Identity Price">been</th>
+                            <th data-title = "Sum Price">paid</th>
+                            <th data-title = "Vendor">now</th>
+                        </tr>
+                    <%end%>
+                    
+                </tbody>
+            </table>
+
+            
+
+        </div>
+
+
+        <div class="projectContentContainer flexContainer">
+            <div class="leftRightContainer">
+                <h1 class="section__title">Order Distribution</h1>
+            </div>
+        
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Vendor Ref#</th>
+                        <th scope="col">Vendor Name</th>
+                        <th scope="col">Total Payment</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    <% vendor_based_calculation(order.order_details).each do |v_id, sum_val|%>
+                        <tr>
+                            <th data-title = "Vendor Ref#" scope="row"><%= find_vendor_as_object(v_id).id%></th>
+                            <th data-title = "Vendor Name"><%= find_vendor_as_object(v_id).company_name%></th>
+                            <th data-title = "Total Payment">Rs: <%= sum_val %></th>
+                            <th data-title = "Status"><%= @order.order_type.titleize %></th>
+                            
+                        </tr>
+                    <% end%>
+                    
+                </tbody>
+            </table>
+
+            
+
+        </div>
+
+
+</div>
+<%= render "layouts/footer" %>

@@ -30,7 +30,6 @@
 
 
 
-
 :root{
 
     --header-height: 3rem;
@@ -732,8 +731,9 @@ footer{
 
 .download_links{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    width: 100%;
     gap: 12px;
 }
 
@@ -763,12 +763,90 @@ select option{
     text-transform: capitalize;
 }
 
+
+.pagination .current{
+    background: var(--default-color) !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 1.5rem !important;
+    border-radius: 17px !important;
+    font-size: var(--normal-font-size) !important;
+    transition: 0.4s;
+}
+
+.pagination .current:hover{
+    background: #4f080f !important;
+}
+
+.pagination .page a{
+    background: var(--first-color) !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 1.5rem !important;
+    border-radius: 17px !important;
+    font-size: var(--normal-font-size) !important;
+    color: var(--text-color) !important;
+    text-shadow: none;
+    transition: 0.4s;
+}
+
+.pagination .next a{
+    background: var(--first-color) !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 1.5rem !important;
+    border-radius: 17px !important;
+    font-size: var(--normal-font-size) !important;
+    color: var(--text-color) !important;
+    text-shadow: none;
+    transition: 0.4s;
+}
+
+.pagination .last a{
+    background: var(--first-color) !important;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 1.5rem !important;
+    border-radius: 17px !important;
+    font-size: var(--normal-font-size) !important;
+    color: var(--text-color) !important;
+    text-shadow: none;
+    transition: 0.4s;
+}
+
+.pagination .page a:hover, .pagination .next a:hover, .pagination .last a:hover{
+    background: var(--first-color-alt) !important;
+}
+
+
+#index_footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+#index_footer .pagination_information{
+    order: -1;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+
 .admin_users .title_bar #titlebar_right .action_items .action_item a,
 .admin_vendors .title_bar #titlebar_right .action_items .action_item a,
 .admin_vendor_histories .title_bar #titlebar_right .action_items .action_item a,
 .admin_items .title_bar #titlebar_right .action_items .action_item a,
 .admin_transactions .title_bar #titlebar_right .action_items .action_item a,
-.admin_projects .title_bar #titlebar_right .action_items .action_item a
+.admin_projects .title_bar #titlebar_right .action_items .action_item a,
+.admin_orders .title_bar #titlebar_right .action_items .action_item a,
+.admin_order_details .title_bar #titlebar_right .action_items .action_item a,
+.admin_amount_receiveds .title_bar #titlebar_right .action_items .action_item a
 {
     display: none;
 }
@@ -794,9 +872,32 @@ select option{
 .admin_transactions th.col-user,
 .admin_transactions th.col-email,
 .admin_projects th.col-total_details,
-.admin_projects th.col-total_orders
+.admin_projects th.col-total_orders,
+.admin_project_details th.col-project,
+.admin_project_details th.col-detail_added_by,
+.admin_project_details th.col-email,
+.admin_orders th.col-project,
+.admin_orders th.col-total_bill,
+.admin_orders th.col-items_count,
+.admin_order_details th.col-project_name,
+.admin_order_details th.col-vendor,
+.admin_order_details th.col-item,
+.admin_order_details th.col-item_price,
+.admin_order_details th.col-total_sum,
+.admin_amount_receiveds th.col-project,
+.admin_amount_receiveds th.col-received_by,
+.admin_amount_receiveds th.col-role
 {
     color: var(--text-color);
+}
+
+
+.admin_project_details .col-project a,
+.admin_project_details .col-detail_added_by a,
+.admin_orders .col-project a
+{
+    color: var(--default-color);
+    text-decoration: none;
 }
 
 
@@ -1855,3 +1956,9 @@ div.field_with_errors{
         align-self: flex-end;
     }
 }
+
+/* ======================               Project Details             ============================= */
+
+
+
+

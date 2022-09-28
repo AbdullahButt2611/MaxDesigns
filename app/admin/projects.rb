@@ -27,8 +27,8 @@ ActiveAdmin.register Project do
 
 
   index do
-    id_column
     selectable_column
+    id_column
     column "Image" do |project|
       if project.avatar?
         image_tag(image_url(project.avatar),width:100, height:50)

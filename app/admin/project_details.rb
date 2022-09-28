@@ -14,5 +14,25 @@ ActiveAdmin.register ProjectDetail do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  filter :project
+  filter :user
+  filter :date
+  filter :id
+
+  index do
+    selectable_column
+    id_column
+    column :project
+    column "Task Performed", :task
+    column :order_id
+    column "Detail Added By", :user
+    column "Email" do |detail|
+      User.find(detail.user_id).email
+    end
+    column :date
+    column "Last Updated", :updated_at
+    actions
+  end
   
 end
