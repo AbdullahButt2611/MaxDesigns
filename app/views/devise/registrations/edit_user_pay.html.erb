@@ -9,7 +9,7 @@
 
     <%= form_for @user, url: update_user_pay_path(@user), method: :patch, html: {class: "contactForm verticalFlexContainer"} do |form|%>
         <div class="inputs flexContainer">
-            <%= form.number_field :pay, :placeholder => "Enter Salary", min: "0" %>
+            <%= form.number_field :pay, :placeholder => "Enter Salary", min: "0", max: "1000000" %>
         </div>
 
         <div class="Formbuttondiv">

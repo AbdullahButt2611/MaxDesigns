@@ -14,7 +14,7 @@ class User < ApplicationRecord
     # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
-  validates :pay, presence: true, numericality: {greater_than_or_equal_to: 0 }
+  validates :pay, presence: true, numericality: {greater_than_or_equal_to: 0 , less_than_or_equal_to: 1000000}
 
 
 
