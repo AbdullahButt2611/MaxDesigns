@@ -1525,7 +1525,7 @@ textarea{
 }
 
 .table thead{
-    background-color: var(--default-color);
+    background-color: var(--default-color) !important;
     color: #FFf;
     font-weight: 700;
     display: table-row-group;
