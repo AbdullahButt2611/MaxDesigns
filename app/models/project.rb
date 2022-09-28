@@ -28,7 +28,7 @@ class Project < ApplicationRecord
     validates :contact, presence: true, uniqueness: true,  length: { minimum: 11, maximum: 11 }
     validates :location, presence: true, uniqueness: true
     validates :amount_promised, presence: true, numericality: {greater_than_or_equal_to: 20000, less_than_or_equal_to: 100000000000000}
-    validates :amount_present, presence: true, numericality: {greater_than_or_equal_to: 0 }
+    validates :amount_present, presence: true, numericality: {greater_than_or_equal_to: 0 , less_than_or_equal_to: 100000000000000}
 
 
 

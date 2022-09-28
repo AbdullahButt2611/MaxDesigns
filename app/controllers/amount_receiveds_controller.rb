@@ -42,11 +42,21 @@ class AmountReceivedsController < ApplicationController
     end
 
     def create_project_detail(received)
+        if received.project.enqueued?
+            update_project_status(received.project)
+        end
         received.project.project_details.create(date: Time.now, task: "Amount Received from owner as  " + received.mode + "for the purpose of "+ received.purpose+" and is stored in reference no: "+received.id.to_s, user_id: current_user.id)
+        change_final_status(received.project)
     end
 
     def project_amount_update(project, amount)
         project.update(amount_present: project.amount_present + amount)
     end
+
+    def change_final_status(project)
+		if project.project_details.count >= 45
+			project.final_stage!
+		end
+	end
 
 end

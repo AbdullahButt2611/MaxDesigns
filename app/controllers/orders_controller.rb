@@ -33,8 +33,18 @@ class OrdersController < ApplicationController
 
     private
     def create_project_detail(order)
+        if order.project.enqueued?
+            update_project_status(order.project)
+        end
         order.project.project_details.create(date: Time.now, task: "A new order has been added with the Order Reference: " + order.id.to_s, user_id: current_user.id, order_id: order.id)
+        change_final_status(order.project)
     end
+
+    def change_final_status(project)
+		if project.project_details.count >= 45
+			project.final_stage!
+		end
+	end
 
     
 
