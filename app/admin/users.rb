@@ -15,6 +15,8 @@ ActiveAdmin.register User do
   #   permitted
   # end
 
+  actions :index, :show, :edit, :update, :destroy
+
   scope :developer_users
   scope :customer_users
   scope :accountant_users
@@ -55,16 +57,9 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs do
-      f.input :name
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
-      f.input :qualification
-      f.input :contact
       f.input :activity_status
       f.input :user_roles
       f.input :pay
-      f.input :avatar
     end
     f.actions
   end

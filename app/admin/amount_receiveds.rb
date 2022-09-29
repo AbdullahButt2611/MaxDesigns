@@ -15,6 +15,8 @@ ActiveAdmin.register AmountReceived do
   #   permitted
   # end
 
+  actions :index, :destroy
+
   filter :project_id , :as => :select, :collection => Project.all.map{|project| [project.name, project.id]}
   filter :mode, as: :select, collection: AmountReceived.all.modes
   filter :date

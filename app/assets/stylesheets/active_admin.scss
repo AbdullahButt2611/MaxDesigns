@@ -886,7 +886,8 @@ select option{
 .admin_order_details th.col-total_sum,
 .admin_amount_receiveds th.col-project,
 .admin_amount_receiveds th.col-received_by,
-.admin_amount_receiveds th.col-role
+.admin_amount_receiveds th.col-role,
+.admin_items th.col-company_name
 {
     color: var(--text-color);
 }
@@ -901,6 +902,93 @@ select option{
 }
 
 
+.admin_admin_users .attributes_table .row-reset_password_token,
+.admin_admin_users .attributes_table .row-reset_password_sent_at,
+.admin_admin_users .attributes_table .row-remember_created_at
+{
+    display: none;
+}
+
+
+.formtastic{
+    background: transparent !important;
+}
+
+.formtastic .inputs, .formtastic .actions{
+    background: transparent !important;
+    width: 100%;
+}
+
+.formtastic .inputs ol, .formtastic .actions ol{
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100%;
+    gap: 1rem;
+}
+
+.formtastic .inputs ol li, .formtastic .actions ol li{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    font-size: var(--normal-font-size);
+    gap: 0.4rem;
+}
+
+.formtastic .inputs ol li label{
+    text-align: left;
+    justify-self:flex-start;
+    align-self: flex-start;
+    color: var(--default-color);
+    text-shadow: none;
+}
+
+.formtastic .inputs ol li input {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--text-color) !important;
+    border-radius: 10px;
+    color: var(--first-color-alt);
+}
+
+.formtastic .inputs ol li select {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: var(--text-color) !important;
+    border-radius: 10px;
+    color: var(--first-color-alt);
+    border: none;
+    outline: none;
+}
+
+
+.formtastic .actions ol li{
+    width: 48%;
+}
+
+.formtastic .actions ol li input{
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: var(--first-color) !important;
+}
+
+.formtastic .actions ol li a{
+    width: 100%;
+    padding: 1.5rem 2rem !important;
+    background: var(--text-color) !important;
+    color: var(--first-color) !important;
+    border-radius: 0 !important;
+    text-align: center;
+}
+
+
+.formtastic .inputs .input{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
 
 
 
@@ -1957,8 +2045,61 @@ div.field_with_errors{
     }
 }
 
-/* ======================               Project Details             ============================= */
+/* ======================               Admin Views             ============================= */
+.admin_admin_users tr th,
+.admin_contacts tr th,
+.admin_items tr th,
+.admin_order_details tr th,
+.admin_project_details tr th,
+.admin_transactions tr th
+{
+    color: var(--default-color);
+}
 
+.admin_admin_users tr td,
+.admin_contacts tr td,
+.admin_items tr td,
+.admin_order_details tr td,
+.admin_project_details tr td,
+.admin_transactions tr td
+{
+    color: var(--first-color-light);
+}
+
+.admin_admin_users tr td a,
+.admin_contacts tr td a,
+.admin_items tr td a,
+.admin_order_details tr td a,
+.admin_project_details tr td a,
+.admin_transactions tr td a
+{
+    text-decoration: none;
+    color: var(--default-color);
+}
+
+.admin_admin_users .attributes_table tr,
+.admin_contacts .attributes_table tr,
+.admin_items .attributes_table tr,
+.admin_order_details .attributes_table tr,
+.admin_project_details .attributes_table tr,
+.admin_transactions .attributes_table tr
+{
+    display: flex;
+    align-items: center;
+    font-size: var(--normal-font-size);
+}
+
+.panel h3{
+    background: var(--default-color);
+    color: var(--text-color);
+    text-shadow: none;
+    padding: 2rem 1rem;
+    font-size: var(--h3-font-size);
+}
+
+.panel{
+    background: transparent !important;
+}
 
 
 

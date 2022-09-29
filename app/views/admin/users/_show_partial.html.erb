@@ -106,41 +106,6 @@
 
             </div>
 
-            <% if user.vendor? or user.developer?%>
-
-                <% if user.vendor %>
-                    <div class="professionalInformation verticalFlexContainer">
-                        <div class="contactInfo verticalFlexContainer">
-
-                            <h2 class="contactTitle">Company's Information</h2>
-
-                            <table  class="setInfoDetail">
-                                <td  class="setInfoDetailTitle">Company Name:</td>
-                                <td  class="setInfoDetailDesc"><%= user.vendor.company_name %></td>
-                            </table>
-
-                            <table  class="setInfoDetail">
-                                <td  class="setInfoDetailTitle">Address:</td>
-                                <td  class="setInfoDetailDesc"><%= user.vendor.address %></td>
-                            </table>
-                                
-                        </div>
-
-                        <div class="redLine"></div>
-
-                        <%#= link_to "Visit Store", vendor_items_path(user.vendor), class: "blackFillButton" %>
-
-                    </div>
-
-                <% else %>
-                    <div class="professionalInformation verticalFlexContainer">
-                        <h2 class="contactTitle">You Don't have any Company Setup yet. Get your Company setup in this application to get franchised here and link with the clients.</h2>
-
-                        <%#= link_to "Create Store", new_vendor_path, class: "blackFillButton" %>
-                    </div>
-                <% end %>
-            <% end %>
-
         </section>
     </section>
 </div>

@@ -15,6 +15,8 @@ ActiveAdmin.register VendorHistory do
   #   permitted
   # end
 
+  actions :index
+
 
   filter :vendor_id , :as => :select, :collection => Vendor.all.map{|vendor| [vendor.company_name, vendor.id]}
   filter :date

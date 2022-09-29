@@ -15,6 +15,8 @@ ActiveAdmin.register Item do
   #   permitted
   # end
 
+  actions :index, :show, :destroy
+
   filter :vendor_id , :as => :select, :collection => Vendor.all.map{|vendor| [vendor.company_name, vendor.id]}
   filter :name
   filter :updated_at

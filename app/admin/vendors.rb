@@ -14,6 +14,7 @@ ActiveAdmin.register Vendor do
   #   permitted
   # end
 
+  actions :index, :show, :destroy
 
   filter :company_name
   filter :address

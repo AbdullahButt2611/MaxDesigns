@@ -15,6 +15,8 @@ ActiveAdmin.register ProjectDetail do
   #   permitted
   # end
 
+  actions :index, :show, :edit, :update, :destroy
+
   filter :project
   filter :user
   filter :date
@@ -33,6 +35,13 @@ ActiveAdmin.register ProjectDetail do
     column :date
     column "Last Updated", :updated_at
     actions
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :task
+    end
+    f.actions
   end
   
 end

@@ -14,6 +14,7 @@ ActiveAdmin.register OrderDetail do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+  actions :index, :show, :destroy
 
   filter :order_id , :as => :select, :collection => Order.all.order("id ASC").map{|order| [order.id, order.id]}
   filter :quantity

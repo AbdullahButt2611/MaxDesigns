@@ -15,6 +15,8 @@ ActiveAdmin.register Project do
   #   permitted
   # end
 
+  actions :index, :show, :destroy
+
   scope :not_completed_projects
   scope :completed_projects
 

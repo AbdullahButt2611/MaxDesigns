@@ -15,6 +15,8 @@ ActiveAdmin.register Order do
   #   permitted
   # end
 
+  actions :index
+
   scope :unpaid_order
   scope :paid_order
 
@@ -41,5 +43,7 @@ ActiveAdmin.register Order do
     column :order_type
     actions
   end
+
+  
   
 end

@@ -15,6 +15,8 @@ ActiveAdmin.register Transaction do
   #   permitted
   # end
 
+  actions :index, :show
+
   filter :user_id , :as => :select, :collection => User.all.map{|user| [user.username, user.id]}
   filter :order_id
   filter :date
