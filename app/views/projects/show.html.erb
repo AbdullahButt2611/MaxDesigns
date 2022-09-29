@@ -108,7 +108,7 @@
                 </table>
             </div>
 
-            <% if can? :see_all_payments, Project  %>
+            <% if can? :see_all_payments, Project and @users_amount_data.count > 10 %>
                 <div class="leftRightContainer">
                     <div></div>
                     <%= link_to "See All Payments", see_all_payments_path(:id=>@project.id), class: "blackFillButton" %>
@@ -161,7 +161,7 @@
                 </table>
             </div>
 
-             <% if can? :see_all_details, Project  %>
+             <% if can? :see_all_details, Project  and @project.project_details.count > 10%>
                 <div class="leftRightContainer">
                     <div></div>
                     <%= link_to "See All Details", see_all_details_path(:id=>@project.id), class: "whiteFillButton" %>
@@ -219,7 +219,7 @@
                 </table>
             </div>
 
-            <% if can? :see_all_order_details, Project  %>
+            <% if can? :see_all_order_details, Project and @project.orders.count>10  %>
                 <div class="leftRightContainer">
                     <div></div>
                     <%= link_to "See All Orders", see_all_order_details_path(:id=>@project.id), class: "whiteFillButton" %>
