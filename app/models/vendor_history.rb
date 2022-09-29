@@ -12,7 +12,7 @@ class VendorHistory < ApplicationRecord
     
     
     #==========================       Functions       =======================================
-    scope :particular_vendor_history, ->(id) {where(vendor_id: id).order("updated_at DESC")}
+    scope :particular_vendor_history, ->(id) {where(vendor_id: id).order("date ASC")}
 
 
     #==========================       Functions       =======================================

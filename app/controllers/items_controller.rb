@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
   	def destroy
   		@vendor = Vendor.find(params[:vendor_id])
   		@item = @vendor.items.find(params[:id])
+		  delete_order_detail_having_item(@item)
   		@item.destroy
   		render layout: false
   	end
@@ -49,5 +50,14 @@ class ItemsController < ApplicationController
   	private
   	def item_params
 		params.require(:item).permit(:name, :price, :item_type)
+	end
+
+	def delete_order_detail_having_item(item)
+		orders = OrderDetail.where(item_id: item.id)
+		orders.each do |detail| 
+			detail.order.project.project_details.create(date: Time.now, task: "The item with the name " + item.name+" has been removed by the vendor from the shop called "+item.vendor.company_name.titleize+". So, the it's removed from  the order detail of order reference "+detail.order.id.to_s+" of your project.", user_id: current_user.id)
+			detail.destroy
+		end
+
 	end
 end

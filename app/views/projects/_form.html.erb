@@ -22,7 +22,11 @@
     <%= form.text_area :location, :placeholder => "Property's Address" %>
 
     <div class="Formbuttondiv">
-        <%= form.submit "Create Project", :class => "blackFillButton" %>
+        <%if @project.id%>
+            <%= form.submit "Edit Project", :class => "blackFillButton" %>
+        <%else %>
+            <%= form.submit "Create Project", :class => "blackFillButton" %>
+        <%end%>
     </div>
 
 

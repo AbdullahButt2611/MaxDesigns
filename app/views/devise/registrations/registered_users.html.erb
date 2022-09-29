@@ -22,7 +22,7 @@
                     <th data-title = "Email"><%= user.email %></th>
                     <th data-title = "Cotact"><%= user.contact %></th>
                     <th data-title = "Qualification"><%= user.qualification %></th>
-                    <th data-title = "Applied Role"><%= user.user_user_roles.titleize %></th>
+                    <th data-title = "Applied Role"><%= user.user_roles.titleize %></th>
                     <th class="userUpdateLink "><%= link_to "Update", update_activity_status_path(user), xhr: true, remote: true,class: "blackFillButton" ,data: { method: :patch,
 		                params: { activity_status: { status: 1 } } } %></th>
 

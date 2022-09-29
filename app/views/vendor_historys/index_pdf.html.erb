@@ -31,46 +31,47 @@
                 <div class="leftRightContainer">
                     <h1 class="section__title">Your History</h1>
                 </div>
-                 <% @vendor_history.each do |history|%>
-                    <table class="table">
+                <table class="table">
+                    <% @vendor_history.each do |history|%>
 
-                            <%if not  @month_count == history.date.month%>
-                                <thead class="thead-light">
-                                    
-                                    <div class="leftRightContainer">
-                                        <p class="contactForm__subtitle section__title" id="vendor_history_month_heading"><%= history.date.strftime("%B")%></p>
-                                    </div>
-                                    <tr>
-                                        <th scope="col">Project Name</th>
-                                        <th scope="col">Order Reference</th>
-                                        <th scope="col">Amount Paid</th>
-                                        <th scope="col">Dated</th>
-                                    </tr>
-                                </thead>
-                                <%@month_count = history.date.month%>
-                                <tbody>
-                                        <tr>
-                                            <th data-title = "Project Name" scope="row"><%= Order.find(history.order_id).project.name %></th>
-                                            <th data-title = "Order Reference"><%= history.order_id %></th>
-                                            <th data-title = "Amount Paid"><%= history.amount %></th>
-                                            <th data-title = "Dated"><%= amount_date_formatiing(history.date)%></th>
-                                        </tr>
-                                    
-                                </tbody>
-                            <%else%>
-                                <tbody>
-                                        <tr>
-                                            <th data-title = "Project Name" scope="row"><%= Order.find(history.order_id).project.name %></th>
-                                            <th data-title = "Order Reference"><%= history.order_id %></th>
-                                            <th data-title = "Amount Paid"><%= history.amount %></th>
-                                            <th data-title = "Dated"><%= amount_date_formatiing(history.date)%></th>
-                                        </tr>
-                                    
-                                </tbody>
-                            <% end%>
+                                <%if not  @month_count == history.date.month%>
+                                    <table class="table">
+                                        <thead class="thead-light">
+                                            
+                                            <div class="leftRightContainer">
+                                                <p class="contactForm__subtitle section__title" id="vendor_history_month_heading"><%= history.date.strftime("%B")%></p>
+                                            </div>
+                                            <tr>
+                                                <th scope="col">Project Name</th>
+                                                <th scope="col">Order Reference</th>
+                                                <th scope="col">Amount Paid</th>
+                                                <th scope="col">Dated</th>
+                                            </tr>
+                                        </thead>
+                                        <%@month_count = history.date.month%>
+                                        <tbody>
+                                                <tr>
+                                                    <th data-title = "Project Name" scope="row"><%= Order.find(history.order_id).project.name %></th>
+                                                    <th data-title = "Order Reference"><%= history.order_id %></th>
+                                                    <th data-title = "Amount Paid"><%= history.amount %></th>
+                                                    <th data-title = "Dated"><%= amount_date_formatiing(history.date)%></th>
+                                                </tr>
+                                            
+                                        </tbody>
+                                <%else%>
+                                    <tbody>
+                                            <tr>
+                                                <th data-title = "Project Name" scope="row"><%= Order.find(history.order_id).project.name %></th>
+                                                <th data-title = "Order Reference"><%= history.order_id %></th>
+                                                <th data-title = "Amount Paid"><%= history.amount %></th>
+                                                <th data-title = "Dated"><%= amount_date_formatiing(history.date)%></th>
+                                            </tr>
+                                        
+                                    </tbody>
+                                <% end%>
 
-                    </table>
-                <% end%>
+                    <% end%>
+                </table>
                 
             </div>
             

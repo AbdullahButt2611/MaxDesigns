@@ -1,11 +1,11 @@
 $("#orderDetailTable tr#" + <%=params[:id]%>).remove()
 
-let div_tag = document.getElementById('orderCountDiv');
+
 
 <%if @project.orders.all.count == 0%>
-    div_tag.innerHTML = '<p>No orders taken yet</p>'
+    document.getElementById('orderCountDiv').innerHTML = '<p>No orders taken yet</p>'
 <%else%>
-    div_tag.innerHTML = '<h1><%= @project.orders.all.count%></h1><p>Total Orders</p>'
+    document.getElementById('orderCountDiv').innerHTML = '<h1><%= @project.orders.all.count%></h1><p>Total Orders</p>'
 <%end%>
 
 

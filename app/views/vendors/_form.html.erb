@@ -10,7 +10,11 @@
     <%= form.text_area :address, :placeholder => "Company's Address" %>
 
     <div class="Formbuttondiv">
-        <%= form.submit "Create Company", :class => "blackFillButton" %>
+        <%if @vendor.id%>
+            <%= form.submit "Update Company", :class => "blackFillButton" %>
+        <%else%>
+            <%= form.submit "Create Company", :class => "blackFillButton" %>
+        <%end%>
     </div>
 
 

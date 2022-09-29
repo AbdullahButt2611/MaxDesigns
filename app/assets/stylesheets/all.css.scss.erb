@@ -1949,12 +1949,8 @@ div.field_with_errors{
     width: 100%;
 }
 
-.itemCompanyDetails .blackFillButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 7rem;
-}
+
+
 
 .searchArea{
     justify-content: space-between;
@@ -2163,15 +2159,30 @@ div.field_with_errors{
     padding-top: 12rem;
     display: flex;
     justify-content: flex-end;
-    background: url("https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80");
-    background-position: center;
-    background-repeat: none;
     box-shadow: 0px 0px 22px -1px var(--text-color-light);
     -webkit-box-shadow: 0px 0px 22px -1px var(--text-color-light);
     -moz-box-shadow: 0px 0px 22px -1px var(--text-color-light);
     width: 42%;
     min-width: 26rem;
     border-radius: 0.8rem;
+}
+
+.projectMainCard:nth-child(3n){
+    background: url("https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80");
+    background-position: center;
+    background-repeat: none;
+}
+
+.projectMainCard:nth-child(3n-2){
+    background: url("https://images.unsplash.com/photo-1496564203457-11bb12075d90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80");
+    background-position: center;
+    background-repeat: none;
+}
+
+.projectMainCard:nth-child(3n-1){
+    background: url("https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80");
+    background-position: center;
+    background-repeat: none;
 }
 
 .projectMainCardContent{
@@ -2959,4 +2970,10 @@ div.field_with_errors{
         width: auto;
         gap: 1rem;
     }
+}
+
+/* ====================================   New/Edit Items Page   ================================ */
+.edit_item_container,
+.new_item_container{
+    min-height: 70vh;
 }
