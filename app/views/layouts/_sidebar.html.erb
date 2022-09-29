@@ -1,194 +1,210 @@
 <div class="dashboardBody">
-        <div class="sidebar">
-            <div class="logo_content">
-                <div class="sidelogo">
-                    <i class='bx bxl-gmail'></i>
-                    <div class="logo_name">MAX DESIGNS</div>
-                </div>
 
-                <i class='bx bx-menu' id="btn"></i>
+    <div class="sidebar">
+
+        <div class="logo_content">
+
+            <div class="sidelogo">
+
+                <i class='bx bxl-gmail'></i>
+                <div class="logo_name">MAX DESIGNS</div>
+
             </div>
 
-            <ul class="sideNav-list">
-                <li>
-                    <i class='bx bx-search' ></i>
-                    <input type="text" placeholder="Search...">
-                    <span class="tooltip">Search</span>
-                </li>
-                <li>
-                    <a href="<%= dashboard_path%>">
-                        <i class='bx bx-grid-alt' ></i>
-                        <span class="links_name">Dashboard</span>
-                    </a>
-                    <span class="tooltip">Dashboard</span>
-                </li>
-                <% if not current_user.no_role? %>
-                    <% if can? :simple_user_update, current_user %>
-                        <li>
-                            <a href="/registered_users">
-                                <i class='bx bx-user' ></i>
-                                <span class="links_name">Registered Users</span>
-                            </a>
-                            <span class="tooltip">Registered Users</span>
-                        </li>
-                    <% end %>
+            <i class='bx bx-menu' id="btn"></i>
 
-                    <% if can? :read, Project  %>
-                        <li>
-                            <a href="/projects">
-                                <i class='bx bx-folder' ></i>
-                                <span class="links_name">Projects</span>
-                            </a>
-                            <span class="tooltip">Project</span>
-                        </li>
-                    <%end%>
-
-                    <% if can? :read, AmountReceived  %>
-                        <li>
-                            <a href="<%=amounts_page_path%>">
-                                <i class='bx bx-credit-card-front'></i>
-                                <span class="links_name">Payments</span>
-                            </a>
-                            <span class="tooltip">Payments</span>
-                        </li>
-                    <%end%>
-                    
-                    <% if can? :read, AmountReceived  %>
-                        <li>
-                            <a href="<%= transactions_page_path %>">
-                                <i class='bx bx-wallet'></i>
-                                <span class="links_name">Transactions</span>
-                            </a>
-                            <span class="tooltip">Transactions</span>
-                        </li>
-                    <%end%>
-
-                    <% if can? :item_details_page, Vendor  %>
-                        <li>
-                            <a href="<%= offered_items_page_path%>">
-                                <i class='bx bxs-cart-download'></i>
-                                <span class="links_name">Offered Items</span>
-                            </a>
-                            <span class="tooltip">Offered Items</span>
-                        </li>
-                    <%end%>
-
-                    <% if can? :user_pays_section, User  %>
-                        <li>
-                            <a href="<%=user_pays_section_path%>">
-                                <i class='bx bx-coin'></i>
-                                <span class="links_name">Salary Management</span>
-                            </a>
-                            <span class="tooltip">Salary Management</span>
-                        </li>
-                    <%end%>
-                    
-                    <% if can? :project_status_index, Project  %>
-                        <li>
-                            <a href="<%= project_status_index_path%>">
-                                <i class='bx bx-check-double'></i>
-                                <span class="links_name">Complete Projects</span>
-                            </a>
-                            <span class="tooltip">Complete Projects</span>
-                        </li>
-                    <%end%>
-                    
-                    <% if can? :project_image_handler_index, Project  %>
-                        <li>
-                            <a href="<%= project_image_handler_index_path %>">
-                                <i class='bx bx-image-add'></i>
-                                <span class="links_name">Project Image</span>
-                            </a>
-                            <span class="tooltip">Project Image</span>
-                        </li>
-                    <%end%>
-
-                    <% if can? :index, Contact  %>
-                        <li>
-                            <a href="<%= contacts_display_path%>">
-                                <i class='bx bx-chat' ></i>
-                                <span class="links_name">Contact Requests</span>
-                            </a>
-                            <span class="tooltip">Contact Requests</span>
-                        </li>
-                    <%end%>
-
-                    <% if can? :project_reports, Project  %>
-                        <li>
-                            <a href="<%=project_reports_path%>">
-                                <i class='bx bxs-report'></i>
-                                <span class="links_name">Complete Report</span>
-                            </a>
-                            <span class="tooltip">Complete Report</span>
-                        </li>
-                    <%end%>
-
-                    <% if can? :salary_slips, User  %>
-                        <li>
-                            <a href="<%=salary_slips_path(format: :pdf)%>">
-                                <i class='bx bx-receipt'></i>
-                                <span class="links_name">Salary Receipts</span>
-                            </a>
-                            <span class="tooltip">Salary Receipts</span>
-                        </li>
-                    <%end%>
-                    <!--
-                    <li>
-                        <a href="#">
-                            <i class='bx bx-chat' ></i>
-                            <span class="links_name">Messages</span>
-                        </a>
-                        <span class="tooltip">Messages</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class='bx bx-pie-chart-alt' ></i>
-                            <span class="links_name">Analytics</span>
-                        </a>
-                        <span class="tooltip">Analytics</span>
-                    </li>
-                    
-                    <li>
-                        <a href="#">
-                            <i class='bx bx-cart' ></i>
-                            <span class="links_name">Order</span>
-                        </a>
-                        <span class="tooltip">Order</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class='bx bx-heart' ></i>
-                            <span class="links_name">Saved</span>
-                        </a>
-                        <span class="tooltip">Saved</span>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class='bx bx-cog' ></i>
-                            <span class="links_name">Setting</span>
-                        </a>
-                        <span class="tooltip">Setting</span>
-                    </li>
-                    -->
-                <%end%>
-            </ul>
-
-            <div class="profile_content">
-                <div class="profile">
-                    <div class="profile_details">
-                        <img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png" alt="Profile Picture">
-                        <div class="name_job">
-                            <div class="name"><%= link_to current_user.name.capitalize, profile_path, class: "nav__link" %></div>
-                            <div class="job">Web Developer</div>
-                        </div>
-                    </div>
-                    <a href="/profile"><i class='bx bx-log-out-circle' id="log_out"></i></a>.
-
-                </div>
-            </div>
         </div>
 
-        <div class="home_content">
-            <%= yield %>
-      </div>
+        <ul class="sideNav-list">
+
+            <%# Option for Search Button %>
+            <li>
+
+                <i class='bx bx-search' ></i>
+                <input type="text" placeholder="Search...">
+                <span class="tooltip">Search</span>
+
+            </li>
+
+
+            <%# Option for Dashboard %>
+            <li>
+
+                <a href="<%= dashboard_path%>">
+
+                    <i class='bx bx-grid-alt' ></i>
+                    <span class="links_name">Dashboard</span>
+
+                </a>
+
+                <span class="tooltip">Dashboard</span>
+
+            </li>
+
+
+            <% if not current_user.no_role? %>
+
+
+                <%# Option for Seeing the Requests %>
+                <% if can? :simple_user_update, current_user %>
+                    <li>
+                        <a href="/registered_users">
+                            <i class='bx bx-user' ></i>
+                            <span class="links_name">Registered Users</span>
+                        </a>
+                        <span class="tooltip">Registered Users</span>
+                    </li>
+                <% end %>
+
+
+                <%# Option To Redirect to Projects %>
+                <% if can? :read, Project  %>
+                    <li>
+                        <a href="/projects">
+                            <i class='bx bx-folder' ></i>
+                            <span class="links_name">Projects</span>
+                        </a>
+                        <span class="tooltip">Project</span>
+                    </li>
+                <%end%>
+
+
+                <%# Option for User History of Payments %>
+                <% if can? :read, AmountReceived  %>
+                    <li>
+                        <a href="<%=amounts_page_path%>">
+                            <i class='bx bx-credit-card-front'></i>
+                            <span class="links_name">Payments</span>
+                        </a>
+                        <span class="tooltip">Payments</span>
+                    </li>
+                <%end%>
+
+                
+                <%# Option for User Conducted Transactions %>
+                <% if can? :read, AmountReceived  %>
+                    <li>
+                        <a href="<%= transactions_page_path %>">
+                            <i class='bx bx-wallet'></i>
+                            <span class="links_name">Transactions</span>
+                        </a>
+                        <span class="tooltip">Transactions</span>
+                    </li>
+                <%end%>
+
+
+                <%# Option to Enlish the items offered by the vendor %>
+                <% if can? :item_details_page, Vendor  %>
+                    <li>
+                        <a href="<%= offered_items_page_path%>">
+                            <i class='bx bxs-cart-download'></i>
+                            <span class="links_name">Offered Items</span>
+                        </a>
+                        <span class="tooltip">Offered Items</span>
+                    </li>
+                <%end%>
+
+
+                <%# Option for Employee's Salary Management %>
+                <% if can? :user_pays_section, User  %>
+                    <li>
+                        <a href="<%=user_pays_section_path%>">
+                            <i class='bx bx-coin'></i>
+                            <span class="links_name">Salary Management</span>
+                        </a>
+                        <span class="tooltip">Salary Management</span>
+                    </li>
+                <%end%>
+
+                
+                <%# Option to Set the status to Complete of the Projects %>
+                <% if can? :project_status_index, Project  %>
+                    <li>
+                        <a href="<%= project_status_index_path%>">
+                            <i class='bx bx-check-double'></i>
+                            <span class="links_name">Complete Projects</span>
+                        </a>
+                        <span class="tooltip">Complete Projects</span>
+                    </li>
+                <%end%>
+
+                
+                <%# Option to change the profile image of the projects %>
+                <% if can? :project_image_handler_index, Project  %>
+                    <li>
+                        <a href="<%= project_image_handler_index_path %>">
+                            <i class='bx bx-image-add'></i>
+                            <span class="links_name">Project Image</span>
+                        </a>
+                        <span class="tooltip">Project Image</span>
+                    </li>
+                <%end%>
+
+
+                <%# Option to see all the contacts requests arrived %>
+                <% if can? :index, Contact  %>
+                    <li>
+                        <a href="<%= contacts_display_path%>">
+                            <i class='bx bx-chat' ></i>
+                            <span class="links_name">Contact Requests</span>
+                        </a>
+                        <span class="tooltip">Contact Requests</span>
+                    </li>
+                <%end%>
+
+
+                <%# Option to  download the completed projects complete request%>
+                <% if can? :project_reports, Project  %>
+                    <li>
+                        <a href="<%=project_reports_path%>">
+                            <i class='bx bxs-report'></i>
+                            <span class="links_name">Project Report</span>
+                        </a>
+                        <span class="tooltip">Complete Report</span>
+                    </li>
+                <%end%>
+
+                <%# Option to downlaod  the payroll information%>
+                <% if can? :salary_slips, User  %>
+                    <li>
+                        <a href="<%=salary_slips_path(format: :pdf)%>">
+                            <i class='bx bx-receipt'></i>
+                            <span class="links_name">Payroll Receipts</span>
+                        </a>
+                        <span class="tooltip">Payroll Receipts</span>
+                    </li>
+                <%end%>
+
+            <%end%>
+        </ul>
+
+        <div class="profile_content">
+
+            <div class="profile">
+
+                <div class="profile_details">
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/4139/4139981.png" alt="Profile Picture">
+
+                    <div class="name_job">
+
+                        <div class="name"><%= link_to current_user.name.capitalize, profile_path, class: "nav__link" %></div>
+                        <div class="job">Web Developer</div>
+
+                    </div>
+
+                </div>
+                
+                <a href="/profile"><i class='bx bx-log-out-circle' id="log_out"></i></a>.
+
+            </div>
+
+        </div>
+
     </div>
+
+    <div class="home_content">
+        <%= yield %>
+    </div>
+
+</div>
