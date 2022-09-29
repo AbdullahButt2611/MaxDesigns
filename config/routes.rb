@@ -75,7 +75,7 @@ Rails.application.routes.draw do
       resource :order_details
     end
 
-    resources :amount_receiveds
+    resources :amount_receiveds, except: [:index, :edit, :update, :destroy]
 
   end
   

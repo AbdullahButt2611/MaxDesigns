@@ -24,5 +24,7 @@ module MaxDesigns
     config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :sidekiq       #Change the last value to async
     config.load_defaults 6.0
     config.autoloader = :classic
+    config.time_zone = 'Asia/Karachi' 
+    config.active_record.default_timezone = :local
   end
 end
