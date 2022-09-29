@@ -5,7 +5,7 @@ class AmountReceivedsController < ApplicationController
 	load_and_authorize_resource
 
 
-    # This method will be helpful for see all button if the amounts received by user are more than 10
+    # This method is used to create the history of the user about the amount details added by the user for a particulat project.
     def user_amount
 
         respond_to do |format|
@@ -61,7 +61,7 @@ class AmountReceivedsController < ApplicationController
 
 
 
-    
+
 
     # This method is used to get the project data which will be used to create the amount received data.
     def model_collect_data

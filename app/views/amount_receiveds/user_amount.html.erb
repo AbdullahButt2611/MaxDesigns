@@ -1,46 +1,63 @@
 <section class="contactFormContainer l-section verticalFlexContainer user_amount_form">
 
-            <p class="contactForm__subtitle section__title">Hi, <%= current_user.name%></p>
+    <p class="contactForm__subtitle section__title">Hi, <%= current_user.name%></p>
+
     <div class="leftRightContainer user_amount_left_right">
+
         <div>
             <p class="contactForm__subtitle">Got Some new details to add? <br>Want to put something in system</p>
         </div>
+
         <div>
             <%= link_to "Choose Project", projects_path, class: "blackFillButton" %>
         </div>
+
     </div>
 
     <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
         
         <div class="leftRightContainer">
+
             <h1 class="section__title">Your History</h1>
+
             <div id="link_button_with_heading">
                 <%= link_to "Download PDF", amounts_page_path(format: :pdf), class: "whiteFillButton" %>
             </div>
+
         </div>
 
         <table class="table">
+
             <thead class="thead-light">
+
                 <tr>
+
                     <th scope="col">Project Name</th>
                     <th scope="col">Owner Name</th>
                     <th scope="col">Amount Received</th>
                     <th scope="col">Purpose</th>
                     <th scope="col">Date Time</th>
                     <th scope="col">Mode of Payment</th>
+
                 </tr>
+
             </thead>
     
             <tbody>
+
                 <% @users_amount_data.each do |amount_data|%>
+
                     <tr id="<%= amount_data.id %>">
+
                         <th data-title = "Project Name" scope="row"><%= find_project(amount_data.project_id).name %></th>
                         <th data-title = "Owner Name"><%= find_project(amount_data.project_id).client_name %></th>
                         <th data-title = "Amount Received">Rs: <%= amount_data.money_received %></th>
                         <th data-title = "Purpose"><%= amount_data.purpose %></th>
                         <th data-title = "Date Time"><%= amount_date_formatiing(amount_data.date) %></th>
                         <th data-title = "Mode of Payment"><%= amount_data.mode.titleize%></th>
+                        
                     </tr>
+
                 <% end%>
                 
             </tbody>
@@ -48,8 +65,6 @@
     </div>
 
     
-    
-
-    
 </section>
+
 <%= render "layouts/footer" %>
