@@ -82,12 +82,12 @@
     
             <tbody id="orderDetailTable">
                 <% @project.orders.where(order_type: "paid").each do |order|%>
-                <tr id="<%= order.id%>">
-                    <th data-title = "Ref #" scope="row"><%= order.id%></th>
-                    <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
-                    <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
-                    <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
-                </tr>
+                    <tr id="<%= order.id%>">
+                        <th data-title = "Ref #" scope="row"><%= order.id%></th>
+                        <th data-title = "Status"><%= order.order_type.downcase.titleize%></th>
+                        <th data-title = "Date Added"><%= project_deadline_formatiing(order.order_date)%></th>
+                        <th data-title = "Total Bill">Rs. <%= calculate_total_sum_of_order(order)%></th>
+                    </tr>
                 <% end%>
                 
             </tbody>

@@ -25,6 +25,7 @@
 
         <% if can? :read, AmountReceived  %>
             <div class="projectContentContainer flexContainer">
+
                 <div class="leftRightContainer" id="all_payment_heading">
                     <h1 class="section__title">Amount Received Details<br>By <%= current_user.name %></h1>
                     <div style="align-self: flex-end;">
@@ -33,6 +34,7 @@
                 </div>
             
                 <table class="table">
+                
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">Project Name</th>
@@ -46,7 +48,7 @@
             
                     <tbody>
                     
-                        <% @users_amount_data.each do |amount_data|%>
+                        <% @users_amount_data.where(user_id: current_user.id).each do |amount_data|%>
                             <tr id="<%= amount_data.id %>">
                                 <th data-title = "Project Name" scope="row"><%= find_project(amount_data.project_id).name %></th>
                                 <th data-title = "Owner Name"><%= find_project(amount_data.project_id).client_name %></th>

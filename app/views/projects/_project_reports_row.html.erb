@@ -1,0 +1,29 @@
+<div class="projectMainCard verticalFlexContainer" id="<%= project.id%>">
+
+    <div class="projectMainCardContent l-section">
+
+        <div class="top leftRightContainer">
+            <%= link_to project.name, project_path(project), class: "project_name" %>
+            <p class="type"><%= project.project_type&.downcase&.titleize %></p>
+        </div>
+
+
+        <div class="middle leftRightContainer">
+            <h1 class="address"><%= project.location %></h1>
+            <p class="dealine"><%= project_deadline_formatiing(project.deadline)%></p>
+        </div>
+
+
+        <div class="bottom leftRightContainer">
+
+            <% if can? :read, Order  %>
+                <h1 class="order_placed"><%= project.orders.count %> Orders Placed</h1>
+            <%end%>
+            
+            <%= link_to "Generate Report", project_reports_path(:id=>project.id, format: :pdf), class: "blackFillButton" %>
+            
+        </div>
+        
+    </div>
+
+</div>

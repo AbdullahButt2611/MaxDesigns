@@ -1,5 +1,7 @@
 module ProjectsHelper
 
+
+	# Date Formatter: "October 13, 2022"
 	def project_deadline_formatiing(my_date)
 		require 'date'
 		# str =  Date::MONTHNAMES[date_obj.month]  +" "+date_obj.day.to_s+", "+date_obj.year.to_s
@@ -7,6 +9,9 @@ module ProjectsHelper
 		return my_date
 	end
 
+
+
+	# Function to calculate the sum of all the orders relative to their order details
 	def calculate_total_sum_of_all_orders(project)
 		price = 0
 		project.orders.each do |order|
@@ -18,6 +23,10 @@ module ProjectsHelper
 		return price
 	end
 
+
+
+
+	# Method to identify the amount received till date.
 	def calculate_total_sum_of_amount_details(project)
 		price = 0
 		project.amount_receiveds.each do |detail|
@@ -26,4 +35,6 @@ module ProjectsHelper
 		end
 		return price
 	end
+
+
 end

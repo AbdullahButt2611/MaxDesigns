@@ -93,7 +93,7 @@
             
                     <tbody>
                     
-                        <% @users_amount_data.limit(10).each do |amount_data|%>
+                        <% @users_amount_data.where(user_id: current_user.id).limit(10).each do |amount_data|%>
                             <tr id="<%= amount_data.id %>">
                                 <th data-title = "Project Name" scope="row"><%= find_project(amount_data.project_id).name %></th>
                                 <th data-title = "Owner Name"><%= find_project(amount_data.project_id).client_name %></th>

@@ -45,7 +45,8 @@
                     </thead>
             
                     <tbody id="projectDetailTable" >
-                        <% @project.project_details.limit(10).order('updated_at DESC').each do |detail|%>
+                        <% @project.project_details.where(user_id: current_user.id).order('updated_at DESC').each do |detail|%>
+
                             <tr id="<%= detail.id%>">
                                 <th data-title = "Task" scope="row"><%= detail.task%></th>
                                 <th data-title = "Date Added"><%= project_deadline_formatiing(detail.date)%></th>
@@ -58,6 +59,7 @@
                                     data: { confirm: "This step will remove the project and all its dependencies?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
                                 </th>
                             </tr>
+
                         <% end%>
                         
                     </tbody>

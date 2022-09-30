@@ -1,64 +1,15 @@
 <div class="projectMainContainer l-section verticalFlexContainer">
-        <div class="projectTopContainer flexContainer">
-            <div class="topLeftProject">
-                <h1 class="topPojectTitle">Max Design's Projects</h1>
-                <% if @projects.count == 0 %>
-                    <h4>No Project To display yet</h4>
-                <% elsif @projects.count == 1 %>
-                    <h4>Only <%= @projects.count%> project is available</h4>
-                    <p>Last Updated <%= time_ago_in_words(@projects.first.updated_at)%> Ago</p>
-                 <% else %>
-                    <h4>Total <%= @projects.count%> projects are available</h4>
-                    <p>Last Updated <%= time_ago_in_words(@projects.first.updated_at)%> Ago</p>
-                <% end %>
-            </div>
+        
+    <%= render "index_first_content" %>
 
-            <% if can? :manage, Project  %>
-                <%= link_to "Create New", new_project_path, class: "blackFillButton" %>
-            <%end%>
-        </div>
+    <div class="projectContentContainer flexContainer">
 
-        <div class="projectContentContainer flexContainer">
-            <% @projects.each do |project|%>
-                <div class="projectMainCard verticalFlexContainer" id="<%= project.id%>">
-                    <div class="projectMainCardContent l-section">
-                        <div class="top leftRightContainer">
-                            <%= link_to project.name, project_path(project), class: "project_name" %>
-                            <p class="type"><%= project.project_type&.downcase&.titleize %></p>
-                        </div>
-                        <div class="middle leftRightContainer">
-                            <h1 class="address"><%= project.location %></h1>
-                            <p class="dealine"><%= project_deadline_formatiing(project.deadline)%></p>
-                        </div>
-                        <div class="bottom leftRightContainer">
-
-                            <% if can? :read, Order  %>
-                                <h1 class="order_placed"><%= project.orders.count %> Orders Placed</h1>
-                            <%end%>
-
-                            <% if project.project_status == "enqueued"%>
-                                <p class="status greyStatus"><%= project.project_status&.downcase&.titleize %></p>
-                            <% elsif project.project_status == "in_progress"%>
-                                <p class="status blueStatus"><%= project.project_status&.downcase&.titleize %></p>
-                            <% elsif project.project_status == "final_stage"%>
-                                <p class="status redStatus"><%= project.project_status&.downcase&.titleize %></p>
-                            <% elsif project.project_status == "completed"%>
-                                <p class="status greenStatus"><%= project.project_status&.downcase&.titleize %></p>        
-                            <%end%>
-                        </div>
-                        <% if can? :manage, Project  %>
-                            <div class="operation leftRightContainer">
-                                <%= link_to "Edit", edit_project_path(:id=>project.id), class: "whiteFillButton" %>
-                                <%= link_to "Destroy", project_path(:id=>project.id, :redirect=> false),
-                                    method: :delete,
-                                    data: { confirm: "This step will remove the Item from your shop?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "blackFillButton" %>
-                            </div>
-                        <%end%>
-                    </div>
-                </div>
-            <% end%>
-            
-
-           
-        </div>
+        <% @projects.each do |project|%>
+            <%= render "index_cards", project: project %>
+        <% end%>
+        
     </div>
+    
+</div>
+
+<%= render "layouts/footer" %>

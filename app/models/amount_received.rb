@@ -21,7 +21,7 @@ class AmountReceived < ApplicationRecord
     
     
     #==========================         Before Actions    =======================================
-    before_validation :set_date_time_value
+    before_validation :set_date_time_value, only: :create
     
     
     
@@ -31,7 +31,7 @@ class AmountReceived < ApplicationRecord
 
     #==========================         Scopes    =======================================
     scope :current_users_amounts_added, ->(id) { where(user_id: id).order('created_at DESC')}
-    scope :projects_users_amounts_added, ->(user_id, project_id) { where(user_id: user_id, project_id: project_id) and order('created_at DESC')}
+    scope :projects_users_amounts_added, ->(user_id, project_id) { where(user_id: user_id).where(project_id: project_id).order('created_at DESC')}
    
 
 

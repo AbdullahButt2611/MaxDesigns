@@ -1,4 +1,5 @@
 <div class="projectMainContainer l-section verticalFlexContainer showProjectMainContainer ">
+
      <div class="leftRightContainer user_amount_left_right">
         <div class="pdfLogoImage">
             <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoGrey.png'%></p>
@@ -31,20 +32,28 @@
     
     <br><br>
 
-    
-
     <div class="redLine"></div>
     <% if @project.avatar?  %>
         <div class="projectProfileImageDiv verticalFlexContainer">
-            <%= wicked_pdf_image_tag image_url(@project.avatar)%>
-            <h4><%= @project.name.titleize%> Final Look</h4>
+
+            <div class="projectProfileImageDiv">
+                <%= wicked_pdf_image_tag image_url(@project.avatar)%>
+            </div>
+
+            <div class="field" id="signupMesssageField">
+                <em><%= @project.name%></em>, is a project owned by Mr. <%= @project.client_name%>, located at <%= @project.location%> with a total worth of Rs: <em><%= @project.amount_present%></em> yet. It was basically dealt as the <%= @project.project_type.titleize.downcase%> project by our team and executives.
+            </div>
+
         </div>
 
         <div class="redLine"></div>
+
     <% end  %>
+
     <br><br>
 
     <div class="projectContentContainer flexContainer">
+
         <div class="leftRightContainer">
             <h1 class="section__title">Amount Received Details</h1>
         </div>
@@ -77,9 +86,11 @@
                 <% end%>
                 
             </tbody>
+
         </table>
 
         <div class="leftRightContainer projectTopContainer">
+
             <div class="topLeftProject">
                 <h1 class="clientName">Amount Promised:
                     <div class="topLeftProject">
@@ -93,7 +104,9 @@
                     <h1 class="topPojectTitle">Rs: <%= calculate_total_sum_of_amount_details(@project)%></h1>
                 </h1>
             </div>
+
         </div>
+
     </div>
 
     <br><br>
@@ -105,11 +118,13 @@
 
     
     <div class="projectContentContainer flexContainer">
+
         <div class="leftRightContainer">
             <h1 class="section__title">Project Details</h1>
         </div>
     
         <table class="table">
+
             <thead class="thead-light">
                 <tr>
                     <th scope="col">Task</th>
@@ -126,7 +141,9 @@
                 <% end%>
                 
             </tbody>
+
         </table>
+
     </div>
     
 
@@ -140,6 +157,7 @@
 
     
     <div class="projectContentContainer flexContainer">
+    
         <div class="leftRightContainer">
             <h1 class="section__title">Orders Placed</h1>
         </div>
@@ -147,7 +165,9 @@
         <br><br>
 
         <% @project.orders.each do |order|%>
+
             <br><br>
+
             <div class="leftRightContainer flexContainerAligned">
                 <p class="contactForm__subtitle section__title"  id="report_heading">Ref: <%= order.id%></p>
                 <h1 class="section__title"> <%= project_deadline_formatiing(order.order_date)%></h1>
@@ -176,27 +196,35 @@
                     <% end%>
                     
                 </tbody>
+
             </table>
 
             <div class="leftRightContainer flexContainerAligned">
                 <h1 class="section__title"> <%= order.order_type.downcase.titleize%></h1>
                 <p class="contactForm__subtitle section__title"  id="report_heading">Total Bill: &nbsp;&nbsp;Rs. <%= calculate_total_sum_of_order(order)%></p>
             </div>
+
         <% end%>
+
     </div>
 
     <div class="FinalCount">
+
         <div class="leftRightContainer">
-                <div class="pdfLogoImage">
-                    <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoWhite.png'%></p>
-                </div>
-                <div class="verticalFlexContainer">
-                    <p>Orders Total Bill: </p>
-                    <h1> Rs.<%=  calculate_total_sum_of_all_orders(@project)%></h1>
-                </div>
+
+            <div class="pdfLogoImage">
+                <p class="contactForm__subtitle"><%= wicked_pdf_image_tag 'logoWhite.png'%></p>
             </div>
+            
+            <div class="verticalFlexContainer">
+                <p>Orders Total Bill: </p>
+                <h1> Rs.<%=  calculate_total_sum_of_all_orders(@project)%></h1>
+            </div>
+
+        </div>
+
     </div>
     
 
 
-    </div>
+</div>
