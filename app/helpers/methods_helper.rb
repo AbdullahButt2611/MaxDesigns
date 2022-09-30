@@ -1,4 +1,4 @@
-module OrdersHelper
+module MethodsHelper
 
 	def order_date_formatiing(my_date)
 		require 'date'
@@ -51,5 +51,17 @@ module OrdersHelper
 			end
 		end
 		return counts
+	end
+
+	def item_update_date_formatting(dateValue)
+		timeString = distance_of_time_in_words(dateValue, Time.now)
+		timeString.capitalize
+	end
+
+	def amount_date_formatiing(datetime)
+		require 'date'
+		my_date = Date::MONTHNAMES[datetime.month]+" "+datetime.day.to_s+", "+datetime.year.to_s
+        my_time = datetime.strftime('%H:%M:%S')
+		return my_date + "  " + my_time
 	end
 end

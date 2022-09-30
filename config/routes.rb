@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   end
 
   resources :vendors do
-    resources :items
+    resources :items, except: :show
   end
 
   resources :projects do

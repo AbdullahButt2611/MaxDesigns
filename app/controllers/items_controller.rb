@@ -1,57 +1,67 @@
 class ItemsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :data_collect_method
+	before_action :particular_item_data_collect_method, only: [:destroy, :edit, :update] 
+	before_action :all_item_data_collect_method, only: [:index] 
 	load_and_authorize_resource
 	
-	before_action :authenticate_user!
-	
 	def index
-		@vendor = Vendor.find(params[:vendor_id])
-		@items = @vendor.items.all
 	end
 
 	def new
-		@vendor = Vendor.find(params[:vendor_id])
 		@item = @vendor.items.new
 	end
 
 	def create
-	    @vendor = Vendor.find(params[:vendor_id])
 		@item = @vendor.items.create(item_params)
 	    if @item.save
 	      redirect_to vendor_items_path
 	    else
-	      render :new
+	      render layout: false
 	    end
   	end
 
   	def destroy
-  		@vendor = Vendor.find(params[:vendor_id])
-  		@item = @vendor.items.find(params[:id])
-		  delete_order_detail_having_item(@item)
+		delete_order_detail_having_item(@item)
   		@item.destroy
   		render layout: false
   	end
 
   	def edit
-  		@vendor = Vendor.find(params[:vendor_id])
-  		@item = @vendor.items.find(params[:id])
   	end
 
   	def update
-  		@vendor = Vendor.find(params[:vendor_id])
-  		@item = @vendor.items.find(params[:id])
 		if @item.update(item_params)
 	      redirect_to vendor_items_path
 	    else
-	      render :edit
+			render layout: false
 	    end
   	end
 
+
+
+
+
+
+
+
+
+	# ===============================================================================================================================
+	# ==================================      Additional Functions Defined      =====================================================
+	# ===============================================================================================================================
+
   	private
+
+	# Method to allow strong params
   	def item_params
 		params.require(:item).permit(:name, :price, :item_type)
 	end
 
+
+
+
+	# A method used to delete the order-details and is called before deleting 
+	# the item, so that the association is not disturbed.
 	def delete_order_detail_having_item(item)
 		orders = OrderDetail.where(item_id: item.id)
 		orders.each do |detail| 
@@ -60,4 +70,20 @@ class ItemsController < ApplicationController
 		end
 
 	end
+
+
+
+	# Data Collecting Methods
+	def data_collect_method
+		@vendor = Vendor.find(params[:vendor_id])
+	end
+
+	def particular_item_data_collect_method
+		@item = @vendor.items.find(params[:id])
+	end
+	
+	def all_item_data_collect_method
+		@items = @vendor.items.all
+	end
+
 end

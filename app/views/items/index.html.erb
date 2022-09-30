@@ -1,72 +1,42 @@
 <div class="itemIndexContainer l-section verticalFlexContainer">
-        <div class="ItemIndexMain verticalFlexContainer">
-            <div class="topItemContainer">
-                <div class="ItemMainUpper flexContainer">
-                    <div class="verticalFlexContainer itemCompanyDetails">
-                        <h1 class="itemCompanyName"><%= current_user.vendor.company_name%></h1>
-                        <span class="itemComapanyType"><%= current_user.vendor.company_type%></span>
-                        <span class="itemComapanyAddress"><%= current_user.vendor.address%></span>
-                        <br>
-                        <a href="<%= new_vendor_item_path %>" class="blackFillButton"><i class='bx bx-plus-circle'></i>Increase Items</a>
-                        <br>
-                        <a href="<%= vendor_history_path(current_user.vendor) %>" class="whiteFillButton">Your Order History</a>
-                        <br>
-                        <a href="<%= edit_vendor_path(current_user.vendor) %>" class="blackFillButton">Edit The Company</a>
-                    </div>
+    <div class="ItemIndexMain verticalFlexContainer">
 
-                    <div class="verticalFlexContainer itemOwnerDetails">
-                        <div class="itemCompanyImageContainer">
-                            <img src="<%= current_user.avatar%>" alt="Profile">
-                        </div>
-                        <span class="itemCompanyOwner"><%= current_user.name%></span>
-                    </div>
-                </div>
+        <div class="topItemContainer">
 
-                <div class="searchArea l-section flexContainer">
-                    <div class="itemSearchDiv flexContainer">
-                        <i class='bx bx-search'></i>
-                        <input type="search" placeholder="Search for items here...">
-                    </div>
-                    
-                    <select name="" id="">
-                        <option value="1">Chinese Marble</option>
-                    </select>
-                </div>
-                <h6 class="itemsCountHeading">26 Items Found</h1>
+            <div class="ItemMainUpper flexContainer">
+                <%= render "vendor_display_section" %>
             </div>
-            <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
 
+            <div class="searchArea l-section flexContainer">
+                <%= render "search_section" %>
+            </div>
+
+            <h6 class="itemsCountHeading">Nothing to Search</h1>
+
+        </div>
+        <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
+
+    
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Last Updated</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Remove</th>
+                    </tr>
+                </thead>
         
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Last Updated</th>
-                            <th scope="col">Edit</th>
-                            <th scope="col">Remove</th>
-                        </tr>
-                    </thead>
-            
-                    <tbody>
-                        <% @items.each do |item|%>
-                            <tr id="<%= item.id %>">
-                                <th data-title = "Name" scope="row"><%= item.name %></th>
-                                <th data-title = "Price"><%= item.price %></th>
-                                <th data-title = "Type"><%= item.item_type.capitalize %></th>
-                                <th data-title = "Last Updated"><%= item_update_date_formatting(item.updated_at)%></th>
-                                <th class="userUpdateLink "><%= link_to "Edit", edit_vendor_item_path(:id=>item.id, :vendor_id => @vendor.id), class: "blackFillButton" %></th>
-                                <th class="userRemoveLink"><%= link_to "Destroy", vendor_item_path(:id=>item.id, :vendor_id => @vendor.id),
-                                    method: :delete,
-                                    data: { confirm: "This step will remove the Item from your shop?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
-                                </th>
-                            </tr>
-                        <% end%>
-                        
-                    </tbody>
-                </table>
-            </div>
+                <tbody>
+                    <% @items.each do |item|%>
+                        <%= render "index_table_body", item: item %>
+                    <% end%>
+                </tbody>
+            </table>
         </div>
     </div>
-    <%= render "layouts/footer" %>
+</div>
+
+<%= render "layouts/footer" %>

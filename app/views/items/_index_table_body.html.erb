@@ -1,0 +1,11 @@
+<tr id="<%= item.id %>">
+    <th data-title = "Name" scope="row"><%= item.name %></th>
+    <th data-title = "Price"><%= item.price %></th>
+    <th data-title = "Type"><%= item.item_type.capitalize %></th>
+    <th data-title = "Last Updated"><%= item_update_date_formatting(item.updated_at)%></th>
+    <th class="userUpdateLink "><%= link_to "Edit", edit_vendor_item_path(:id=>item.id, :vendor_id => @vendor.id), class: "blackFillButton" %></th>
+    <th class="userRemoveLink"><%= link_to "Destroy", vendor_item_path(:id=>item.id, :vendor_id => @vendor.id),
+        method: :delete,
+        data: { confirm: "This step will remove the Item from your shop?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
+    </th>
+</tr>
