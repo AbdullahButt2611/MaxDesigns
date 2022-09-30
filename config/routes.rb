@@ -18,12 +18,7 @@ Rails.application.routes.draw do
 
   get '/unprocessable_identity', to: 'welcomes#error', as: 'error'
 
-  get '/project_image_index', to: 'projects#project_image_handler_index', as: 'project_image_handler_index'
-
-  get '/edit_project_image/:id', to: 'projects#edit_projects_image', as: 'edit_projects_image'
   
-  patch '/change_project_image/:id', to: 'projects#put_projects_image', as: 'put_projects_image'
-
   
   
   
@@ -33,18 +28,6 @@ Rails.application.routes.draw do
   
   get '/offered_items', to: 'vendors#item_details_page', as: 'offered_items_page'
   
-  get "/project_status_index", to: "projects#project_status_index", as: 'project_status_index'
-  patch '/complete_changer/:id', to: 'projects#complete_changer', as: 'complete_changer'
-  
-  get "/completed_project_reports", to: "projects#project_reports", as: 'project_reports'
-  
-  
-  
-  get '/see_all_payments', to: 'projects#see_all_payments', as: 'see_all_payments'
-  
-  get '/see_all_details', to: 'projects#see_all_details', as: 'see_all_details'
-  
-  get '/see_all_order_details', to: 'projects#see_all_order_details', as: 'see_all_order_details'
   
   get '/:id/history', to: 'vendor_historys#index', as: 'vendor_history'
   
@@ -54,15 +37,15 @@ Rails.application.routes.draw do
   # Route For Dashboard
   get '/dashboard', to: 'dashboards#index', as: 'dashboard'
   
-
-
-
+  
+  
+  
   # Additional Route for Order Details
   get '/search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
   
   
   
-
+  
   # Routes For Contacts
   get '/contacts', to: 'contacts#new', as: 'contacts'
   get '/contacts/all', to: 'contacts#index', as: 'contacts_display'
@@ -76,19 +59,32 @@ Rails.application.routes.draw do
     patch '/simple_user_update', to: 'users/registrations#simple_user_update', as: 'simple_user_update'
     patch '/update_activity_status', to: 'users/registrations#update_activity_status', as: 'update_activity_status'
     get '/users_pay_section', to: 'users/registrations#user_pays_section', as: 'user_pays_section'
-   get "/edit_user_pay/:id/edit", to: "users/registrations#edit_user_pay", as: 'edit_user_pay'
-   patch '/update_user_pay/:id', to: 'users/registrations#update_user_pay', as: 'update_user_pay'
-   get "/salary_slips", to: "users/registrations#salary_slips", as: 'salary_slips'
+    get "/edit_user_pay/:id/edit", to: "users/registrations#edit_user_pay", as: 'edit_user_pay'
+    patch '/update_user_pay/:id', to: 'users/registrations#update_user_pay', as: 'update_user_pay'
+    get "/salary_slips", to: "users/registrations#salary_slips", as: 'salary_slips'
   end
-
+  
   resources :vendors do
     resources :items, except: :show
   end
-
-
-
-
   
+  
+  
+  
+  
+  
+  
+  
+  # Routes For Projects
+  get '/project_image_index', to: 'projects#project_image_handler_index', as: 'project_image_handler_index'
+  get '/edit_project_image/:id', to: 'projects#edit_projects_image', as: 'edit_projects_image'
+  patch '/change_project_image/:id', to: 'projects#put_projects_image', as: 'put_projects_image'
+  get "/project_status_index", to: "projects#project_status_index", as: 'project_status_index'
+  patch '/complete_changer/:id', to: 'projects#complete_changer', as: 'complete_changer'
+  get "/completed_project_reports", to: "projects#project_reports", as: 'project_reports'
+  get '/see_all_payments', to: 'projects#see_all_payments', as: 'see_all_payments'
+  get '/see_all_details', to: 'projects#see_all_details', as: 'see_all_details'
+  get '/see_all_order_details', to: 'projects#see_all_order_details', as: 'see_all_order_details'
   resources :projects do
     resources :project_details, except: [:index, :show]
 
