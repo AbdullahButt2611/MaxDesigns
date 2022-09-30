@@ -1,0 +1,21 @@
+<div class="projectTopContainer flexContainer orderProjectMainContainer">
+    <div>
+        <div class="topLeftProject">
+            <h1 class="topPojectTitle upperTopPojectTitle"><%= @project.name%></h1>
+            <h4>Reference # <%= @order.id%></h4>
+            <p><%= order_date_formatiing(@order.order_date)%></p>
+        </div>
+        <br>
+    </div>
+    <div class="verticalFlexContainer">
+        <div class="topLeftProject " id = "TypeContentChangeable">
+            <h1 class="clientName lowerTopPojectTitle" id="totalOrderPrice">Rs: <%= calculate_total_sum_of_order(@order)%></h1>
+            <% if @order.order_type == "unpaid" %>
+                <h4 class = "redColorStatus" ><%= @order.order_type.downcase.titleize%></h4>
+            <% else %>
+                <h4 class = "greenColorStatus"><%= @order.order_type.downcase.titleize%></h4>
+            <% end%>
+            <p><%= @project.location%></p>
+        </div>
+    </div>
+</div>

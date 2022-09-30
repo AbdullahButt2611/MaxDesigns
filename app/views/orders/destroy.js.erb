@@ -1,7 +1,5 @@
 $("#orderDetailTable tr#" + <%=params[:id]%>).remove()
 
-
-
 <%if @project.orders.all.count == 0%>
     document.getElementById('orderCountDiv').innerHTML = '<p>No orders taken yet</p>'
 <%else%>

@@ -92,7 +92,7 @@ Rails.application.routes.draw do
   resources :projects do
     resources :project_details
 
-    resources :orders do
+    resources :orders, only: [:create, :destroy, :show] do
       resources :transactions
       resource :order_details, except: [:index, :show, :edit, :update]
     end

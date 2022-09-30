@@ -1,0 +1,37 @@
+<% @order.order_details.each do |detail|%>
+    <tr id="<%= detail.id%>">
+        <th data-title = "Item Name" scope="row"><%= find_item(detail.vendor_id, detail.item_id).name%></th>
+        <th data-title = "Quantity"><%= detail.quantity%></th>
+        <th data-title = "Identity Price">Rs: <%= find_item(detail.vendor_id, detail.item_id).price %></th>
+        <th data-title = "Sum Price">Rs: <%= sum_price_calculator(detail.vendor_id, detail.item_id, detail.quantity) %></th>
+        <th data-title = "Vendor"><%= find_vendor(detail.vendor_id) %></th>
+        <%if @order.order_type == "unpaid"%>
+            <th class="userRemoveLink">
+                <%= link_to "Destroy", project_order_order_details_path(:id=>detail.id, :project_id => @project.id, :order_id => @order.id),
+                method: :delete,
+                data: { confirm: "This step will remove the order and all it's dependencies?\n Are you sure you want to delete this item" }, xhr: true, remote: true, class: "whiteFillButton" %>
+            </th>
+        <%end%>
+    </tr>
+<% end%>
+
+<%if @order.order_type == "unpaid"%>
+    <tr class="rowToAddNewLink" id="removableTr">
+        <th data-title = "Item Name" scope="row">Order</th>
+        <th data-title = "Quantity">something</th>
+        <th data-title = "Identity Price">from</th>
+        <th data-title = "Sum Price">vendor's</th>
+        <th data-title = "Vendor">list</th>
+        <th class="userRemoveLink">
+            <%= link_to "Add Items", new_project_order_order_details_path(project_id: @project.id, order_id: @order.id),  class: "whiteFillButton" %>
+        </th>
+    </tr>
+<%else%>
+    <tr class="rowToAddNewLink">
+        <th data-title = "Item Name" scope="row">Bill</th>
+        <th data-title = "Quantity">has</th>
+        <th data-title = "Identity Price">been</th>
+        <th data-title = "Sum Price">paid</th>
+        <th data-title = "Vendor">now</th>
+    </tr>
+<%end%>
