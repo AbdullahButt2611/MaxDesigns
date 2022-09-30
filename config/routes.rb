@@ -24,10 +24,7 @@ Rails.application.routes.draw do
   
   patch '/change_project_image/:id', to: 'projects#put_projects_image', as: 'put_projects_image'
 
-  get '/contacts', to: 'contacts#new', as: 'contacts'
-
-  get '/contacts/all', to: 'contacts#index', as: 'contacts_display'
-
+  
   get '/dashboard', to: 'dashboards#index', as: 'dashboard'
 
   get '/search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
@@ -37,21 +34,31 @@ Rails.application.routes.draw do
   get '/transactions', to: 'transactions#user_based_transactions', as: 'transactions_page'
   
   get '/offered_items', to: 'vendors#item_details_page', as: 'offered_items_page'
-
+  
   get "/project_status_index", to: "projects#project_status_index", as: 'project_status_index'
   patch '/complete_changer/:id', to: 'projects#complete_changer', as: 'complete_changer'
-
+  
   get "/completed_project_reports", to: "projects#project_reports", as: 'project_reports'
 
   
 
   get '/see_all_payments', to: 'projects#see_all_payments', as: 'see_all_payments'
-
+  
   get '/see_all_details', to: 'projects#see_all_details', as: 'see_all_details'
-
+  
   get '/see_all_order_details', to: 'projects#see_all_order_details', as: 'see_all_order_details'
-
+  
   get '/:id/history', to: 'vendor_historys#index', as: 'vendor_history'
+  
+  
+  
+  # Routes For Contacts
+  get '/contacts', to: 'contacts#new', as: 'contacts'
+  get '/contacts/all', to: 'contacts#index', as: 'contacts_display'
+  resources :contacts, only: [:create]
+  
+
+
 
   devise_scope :user do
    get "/registered_users", to: "users/registrations#registered_users"
@@ -76,7 +83,7 @@ Rails.application.routes.draw do
     end
 
     resources :amount_receiveds, except: [:index, :edit, :update, :destroy]
-
+    
   end
   
 
@@ -95,7 +102,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contacts, except: [:new, :index]
 
   namespace :api do
     namespace :v1 do

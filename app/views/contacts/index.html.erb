@@ -3,11 +3,13 @@
     <p class="contactForm__subtitle section__title">Contact Requests</p>
 
     <div class="verticalFlexContainer registeredUsersContainer ItemsTable">
+
         <div class="leftRightContainer">
             <h1 class="section__title">Request Details</h1>
         </div>
 
         <table class="table">
+
             <thead class="thead-light">
                 <tr>
                     <th scope="col">Name</th>
@@ -21,28 +23,14 @@
 
             <tbody>
                 <% @contacts.each do |contact|%>
-                    <tr>
-                        <th data-title = "Name" scope="row"><%= contact.name %></th>
-                        <th data-title = "Email"><%= contact.email %></th>
-                        <th data-title = "Contact Number"><%= contact.contactNumber %></th>
-                        <th data-title = "Company"><%= contact.company %></th>
-                        <th data-title = "Message"><%= contact.message %></th>
-                        <th data-title = "Date Time"><%= amount_date_formatiing(contact.created_at) %></th>
-                    </tr>
+                    <%= render "table_body_content", contact: contact %>
                 <% end%>
-                
             </tbody>
     
-            
         </table>
 
-        
     </div>
-
-    
-
-    
-
     
 </section>
+
 <%= render "layouts/footer" %>

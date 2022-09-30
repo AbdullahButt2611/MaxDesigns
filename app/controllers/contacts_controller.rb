@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   
+
   def index
     authorize! :index, current_user
     @contacts = Contact.all_contacts
@@ -13,8 +14,10 @@ class ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
 
     if @contact.save
+
       @user = User.last
       redirect_to root_path
+
     else
       render layout: false
     end
@@ -23,9 +26,19 @@ class ContactsController < ApplicationController
 
  
 
+
+
+
+  
+# ===============================================================================================================================
+# ==================================      Additional Functions Defined      =====================================================
+# ===============================================================================================================================
   private
 
+  # Method to allow the strong params
   def contact_params
     params.require(:contact).permit(:name, :email, :contactNumber, :company, :message)
   end
+
+
 end
