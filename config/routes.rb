@@ -25,8 +25,7 @@ Rails.application.routes.draw do
   patch '/change_project_image/:id', to: 'projects#put_projects_image', as: 'put_projects_image'
 
   
-  get '/dashboard', to: 'dashboards#index', as: 'dashboard'
-
+  
   get '/search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
   
   get '/amounts', to: 'amount_receiveds#user_amount', as: 'amounts_page'
@@ -39,7 +38,7 @@ Rails.application.routes.draw do
   patch '/complete_changer/:id', to: 'projects#complete_changer', as: 'complete_changer'
   
   get "/completed_project_reports", to: "projects#project_reports", as: 'project_reports'
-
+  
   
 
   get '/see_all_payments', to: 'projects#see_all_payments', as: 'see_all_payments'
@@ -50,21 +49,28 @@ Rails.application.routes.draw do
   
   get '/:id/history', to: 'vendor_historys#index', as: 'vendor_history'
   
+
+
+
+  # Route For Dashboard
+  get '/dashboard', to: 'dashboards#index', as: 'dashboard'
   
+
+
   
   # Routes For Contacts
   get '/contacts', to: 'contacts#new', as: 'contacts'
   get '/contacts/all', to: 'contacts#index', as: 'contacts_display'
   resources :contacts, only: [:create]
   
-
-
-
+  
+  
+  
   devise_scope :user do
-   get "/registered_users", to: "users/registrations#registered_users"
-   patch '/simple_user_update', to: 'users/registrations#simple_user_update', as: 'simple_user_update'
-   patch '/update_activity_status', to: 'users/registrations#update_activity_status', as: 'update_activity_status'
-   get '/users_pay_section', to: 'users/registrations#user_pays_section', as: 'user_pays_section'
+    get "/registered_users", to: "users/registrations#registered_users"
+    patch '/simple_user_update', to: 'users/registrations#simple_user_update', as: 'simple_user_update'
+    patch '/update_activity_status', to: 'users/registrations#update_activity_status', as: 'update_activity_status'
+    get '/users_pay_section', to: 'users/registrations#user_pays_section', as: 'user_pays_section'
    get "/edit_user_pay/:id/edit", to: "users/registrations#edit_user_pay", as: 'edit_user_pay'
    patch '/update_user_pay/:id', to: 'users/registrations#update_user_pay', as: 'update_user_pay'
    get "/salary_slips", to: "users/registrations#salary_slips", as: 'salary_slips'
@@ -87,6 +93,9 @@ Rails.application.routes.draw do
   end
   
 
+
+
+  # Additional Routes
   module Routes
     module ClassMethods
       
@@ -103,6 +112,9 @@ Rails.application.routes.draw do
   end
 
 
+
+
+  # Route Created To Check API
   namespace :api do
     namespace :v1 do
       get "/identify", to: 'live_checkers#identify'

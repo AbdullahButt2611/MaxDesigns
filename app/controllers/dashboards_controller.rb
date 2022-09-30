@@ -1,7 +1,25 @@
 class DashboardsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :collect_data_model
 	
 	def index 
+	end
+	
+	
+
+
+
+
+
+
+	
+
+# ===============================================================================================================================
+# ==================================      Additional Functions Defined      =====================================================
+# ===============================================================================================================================
+	private
+	
+	def collect_data_model
 		@uncomplete_projects = Project.not_completed_projects.count
 		@complete_projects = Project.completed_projects.count
 		@all_projects = Project.total_projects.count
