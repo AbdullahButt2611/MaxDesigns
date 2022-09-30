@@ -12,6 +12,5 @@ class Contact < ApplicationRecord
   #==========================         Scopes    =======================================
   scope :all_contacts, -> {Contact.all.order("created_at DESC")}
 
-
   
 end

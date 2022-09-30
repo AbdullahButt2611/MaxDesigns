@@ -26,7 +26,6 @@ Rails.application.routes.draw do
 
   
   
-  get '/search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
   
   get '/amounts', to: 'amount_receiveds#user_amount', as: 'amounts_page'
   
@@ -40,7 +39,7 @@ Rails.application.routes.draw do
   get "/completed_project_reports", to: "projects#project_reports", as: 'project_reports'
   
   
-
+  
   get '/see_all_payments', to: 'projects#see_all_payments', as: 'see_all_payments'
   
   get '/see_all_details', to: 'projects#see_all_details', as: 'see_all_details'
@@ -49,15 +48,21 @@ Rails.application.routes.draw do
   
   get '/:id/history', to: 'vendor_historys#index', as: 'vendor_history'
   
-
-
-
+  
+  
+  
   # Route For Dashboard
   get '/dashboard', to: 'dashboards#index', as: 'dashboard'
   
 
 
+
+  # Additional Route for Order Details
+  get '/search_item_type', to: 'order_details#search_item_type', as: 'search_item_type'
   
+  
+  
+
   # Routes For Contacts
   get '/contacts', to: 'contacts#new', as: 'contacts'
   get '/contacts/all', to: 'contacts#index', as: 'contacts_display'
@@ -80,12 +85,16 @@ Rails.application.routes.draw do
     resources :items, except: :show
   end
 
+
+
+
+  
   resources :projects do
     resources :project_details
 
     resources :orders do
       resources :transactions
-      resource :order_details
+      resource :order_details, except: [:index, :show, :edit, :update]
     end
 
     resources :amount_receiveds, except: [:index, :edit, :update, :destroy]
@@ -110,6 +119,7 @@ Rails.application.routes.draw do
       receiver.send :include, InstanceMethods
     end
   end
+
 
 
 

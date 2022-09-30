@@ -1,0 +1,26 @@
+<%= form_with model: order_detail, url: project_order_order_details_path(project_id: @project.id, order_id: @order.id), method: :post, local: false,  html: {class: "contactForm verticalFlexContainer"} do |form|%>
+    
+    <div class="inputs verticalFlexContainer noLeftSide">
+
+        <%= form.label "Item Type" %>
+
+        <div class="flexContainer OrderDetailSearcher">
+
+            <div class="inputs verticalFlexContainer itemFormSelect">
+                <%= form.select :vendor_name, @vendors%>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="inputs flexContainer">
+        <%= form.number_field :item_id, :placeholder => "Item ID",  min: "1" %>
+        <%= form.number_field :quantity, :placeholder => "Quantity",  min: "1" %>
+    </div>
+
+    <div class="Formbuttondiv">
+        <%= form.submit "Add to Order", :class => "blackFillButton" %>
+    </div>
+
+<% end %>
