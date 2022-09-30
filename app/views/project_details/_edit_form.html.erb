@@ -1,6 +1,5 @@
 <%= form_with model: @project_detail, url: project_project_detail_path(@project, @project_detail), method: :patch, html: {class: "contactForm verticalFlexContainer"} do |form|%>
 
-
     <div class="inputs verticalFlexContainer itemFormSelect">
         <%= form.label "Today's Task" %>
         <%= form.text_area :task, :placeholder => "Task Accomplished" %>
@@ -9,6 +8,5 @@
     <div class="Formbuttondiv">
         <%= form.submit "Make Changes", :class => "blackFillButton" %>
     </div> 
-
 
 <% end %>

@@ -1,13 +1,13 @@
 <section class="contactFormContainer l-section verticalFlexContainer">
+
     <p class="contactForm__subtitle">Looks Like some amendments are required</p>
     <h2 class="contactForm__title">Let's clarify the details here</h2>
     
-    <%= render "devise/shared/error_messages", resource: @project_detail %>
+    <div class="errorDivContainer">
+    </div>
 
     <%= render "edit_form", item: @project_detail %>
 
-    
-
-    
 </section>
+
 <%= render "layouts/footer" %>
